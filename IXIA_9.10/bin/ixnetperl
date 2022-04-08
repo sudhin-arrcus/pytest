@@ -1,0 +1,24 @@
+#!/bin/sh
+#
+__FILE__=$(readlink -f "$0")
+__DIR__=$(dirname "$__FILE__")
+IXN_libs=$(readlink -f "$__DIR__/../lib")
+
+for FOLDER in `find $IXN_libs -type f -name IxNetwork.pm | rev | cut -d/ -f2- | rev`
+do
+    PERL5LIB="$PERL5LIB:$FOLDER"
+done
+
+export PERL5LIB
+
+if ! [ -x "$(command -v ixiaperl5.18)" ]; then
+    if ! [ -x "$(command -v perl)" ]; then
+        echo 'ERROR: Could not find an usable perl interpreter (ixiaperl5.18 or perl). Please consult the user guide for installing the API Dependencies.' >&2
+        exit 1
+    else 
+        echo 'WARNING: ixiaperl5.18 is not installed. Using the default perl interpreter instead.'
+        perl ${@+"$@"}
+    fi
+else 
+    ixiaperl5.18  ${@+"$@"}
+fi

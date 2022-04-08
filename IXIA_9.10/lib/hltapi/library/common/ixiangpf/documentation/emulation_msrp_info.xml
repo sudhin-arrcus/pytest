@@ -1,0 +1,839 @@
+<?xml version="1.0" encoding="utf-8"?>
+<method xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="emulation_msrp_info" name_robot="Emulation Msrp Info" displayPriority="4" ixHalOrProtocolPythonApiSupport="false" ixHalOrProtocolPythonScriptgenSupport="false" ixHalOrProtocolPerlApiSupport="false" ixHalOrProtocolPerlScriptgenSupport="false" ixHalOrProtocolTclApiSupport="false" ixHalOrProtocolTclScriptgenSupport="false" ixLoadPythonApiSupport="false" ixLoadPythonScriptgenSupport="false" ixLoadPerlApiSupport="false" ixLoadPerlScriptgenSupport="false" ixLoadTclApiSupport="false" ixLoadTclScriptgenSupport="false" ixNetworkCpfPythonApiSupport="true" ixNetworkCpfPythonScriptgenSupport="false" ixNetworkCpfPerlApiSupport="true" ixNetworkCpfPerlScriptgenSupport="false" ixNetworkCpfTclApiSupport="true" ixNetworkCpfTclScriptgenSupport="false" ixNetworkCpfRobotApiSupport="true" ixNetworkCpfRobotScriptgenSupport="false" ixNetworkPythonApiSupport="false" ixNetworkPythonScriptgenSupport="false" ixNetworkPerlApiSupport="false" ixNetworkPerlScriptgenSupport="false" ixNetworkTclApiSupport="false" ixNetworkTclScriptgenSupport="false" ixNetworkRobotApiSupport="false" ixNetworkRobotScriptgenSupport="false" Lang="none">
+  <description supportType="ixNetworkSupport" contentType="noContent" target="noTarget" />
+  <description supportType="ixLoadSupport" contentType="noContent" target="noTarget" />
+  <description supportType="ixHalOrProtocolSupport" contentType="noContent" target="noTarget" />
+  <description supportType="ixNetworkCpfSupport" contentType="new" target="noTarget">Retrieves information about the MSRP Talker/Listener protocol.</description>
+  <chapter>MSRP APIs</chapter>
+  <arguments>
+    <argument name="mode" definedBy="ixiaDefined" ixHalOrProtocolPythonApiSupport="false" ixHalOrProtocolPythonScriptgenSupport="false" ixHalOrProtocolPerlApiSupport="false" ixHalOrProtocolPerlScriptgenSupport="false" ixHalOrProtocolTclApiSupport="false" ixHalOrProtocolTclScriptgenSupport="false" ixLoadPythonApiSupport="false" ixLoadPythonScriptgenSupport="false" ixLoadPerlApiSupport="false" ixLoadPerlScriptgenSupport="false" ixLoadTclApiSupport="false" ixLoadTclScriptgenSupport="false" ixNetworkCpfPythonApiSupport="true" ixNetworkCpfPythonScriptgenSupport="supportedInOtherCommand" ixNetworkCpfPerlApiSupport="true" ixNetworkCpfPerlScriptgenSupport="supportedInOtherCommand" ixNetworkCpfTclApiSupport="true" ixNetworkCpfTclScriptgenSupport="supportedInOtherCommand" ixNetworkCpfRobotApiSupport="true" ixNetworkCpfRobotScriptgenSupport="supportedInOtherCommand" ixNetworkPythonApiSupport="false" ixNetworkPythonScriptgenSupport="false" ixNetworkPerlApiSupport="false" ixNetworkPerlScriptgenSupport="false" ixNetworkTclApiSupport="false" ixNetworkTclScriptgenSupport="false" ixNetworkRobotApiSupport="false" ixNetworkRobotScriptgenSupport="false" lang="false">
+      <ixHalOrProtocolSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkCpfSupport contentType="new" target="noTarget" mandatory="true">
+        <description>
+          <text />
+          <choices>
+            <choice>
+              <choiceName>stats</choiceName>
+              <choiceText>Gather MSRP Talker/Listener statistics.</choiceText>
+            </choice>
+            <choice>
+              <choiceName>clear_stats</choiceName>
+              <choiceText>Clear MSRP Talker/Listener statistics.</choiceText>
+            </choice>
+            <choice>
+              <choiceName>learned_database</choiceName>
+              <choiceText>Get Talker/Listener Learned Database</choiceText>
+            </choice>
+            <choice>
+              <choiceName>clear_learned_database</choiceName>
+              <choiceText>Clear Talker/Listener Learned Database</choiceText>
+            </choice>
+          </choices>
+        </description>
+        <restriction type="VALUETYPE" valueType="CHOICES" value="stats clear_stats learned_database clear_learned_database" />
+      </ixNetworkCpfSupport>
+      <ixLoadSupport contentType="noContent" target="noTarget" mandatory="false" />
+    </argument>
+    <argument name="handle" definedBy="ciscoDefined" ixHalOrProtocolPythonApiSupport="false" ixHalOrProtocolPythonScriptgenSupport="false" ixHalOrProtocolPerlApiSupport="false" ixHalOrProtocolPerlScriptgenSupport="false" ixHalOrProtocolTclApiSupport="false" ixHalOrProtocolTclScriptgenSupport="false" ixLoadPythonApiSupport="false" ixLoadPythonScriptgenSupport="false" ixLoadPerlApiSupport="false" ixLoadPerlScriptgenSupport="false" ixLoadTclApiSupport="false" ixLoadTclScriptgenSupport="false" ixNetworkCpfPythonApiSupport="true" ixNetworkCpfPythonScriptgenSupport="supportedInOtherCommand" ixNetworkCpfPerlApiSupport="true" ixNetworkCpfPerlScriptgenSupport="supportedInOtherCommand" ixNetworkCpfTclApiSupport="true" ixNetworkCpfTclScriptgenSupport="supportedInOtherCommand" ixNetworkCpfRobotApiSupport="true" ixNetworkCpfRobotScriptgenSupport="supportedInOtherCommand" ixNetworkPythonApiSupport="false" ixNetworkPythonScriptgenSupport="false" ixNetworkPerlApiSupport="false" ixNetworkPerlScriptgenSupport="false" ixNetworkTclApiSupport="false" ixNetworkTclScriptgenSupport="false" ixNetworkRobotApiSupport="false" ixNetworkRobotScriptgenSupport="false" lang="false">
+      <ixHalOrProtocolSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkCpfSupport contentType="new" target="noTarget" mandatory="false">
+        <description>
+          <text />
+        </description>
+        <restriction type="VALUETYPE" valueType="ANY" />
+      </ixNetworkCpfSupport>
+      <ixLoadSupport contentType="noContent" target="noTarget" mandatory="false" />
+    </argument>
+    <argument name="port_handle" definedBy="ciscoDefined" ixHalOrProtocolPythonApiSupport="false" ixHalOrProtocolPythonScriptgenSupport="false" ixHalOrProtocolPerlApiSupport="false" ixHalOrProtocolPerlScriptgenSupport="false" ixHalOrProtocolTclApiSupport="false" ixHalOrProtocolTclScriptgenSupport="false" ixLoadPythonApiSupport="false" ixLoadPythonScriptgenSupport="false" ixLoadPerlApiSupport="false" ixLoadPerlScriptgenSupport="false" ixLoadTclApiSupport="false" ixLoadTclScriptgenSupport="false" ixNetworkCpfPythonApiSupport="true" ixNetworkCpfPythonScriptgenSupport="supportedInOtherCommand" ixNetworkCpfPerlApiSupport="true" ixNetworkCpfPerlScriptgenSupport="supportedInOtherCommand" ixNetworkCpfTclApiSupport="true" ixNetworkCpfTclScriptgenSupport="supportedInOtherCommand" ixNetworkCpfRobotApiSupport="true" ixNetworkCpfRobotScriptgenSupport="supportedInOtherCommand" ixNetworkPythonApiSupport="false" ixNetworkPythonScriptgenSupport="false" ixNetworkPerlApiSupport="false" ixNetworkPerlScriptgenSupport="false" ixNetworkTclApiSupport="false" ixNetworkTclScriptgenSupport="false" ixNetworkRobotApiSupport="false" ixNetworkRobotScriptgenSupport="false" lang="false">
+      <ixHalOrProtocolSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkCpfSupport contentType="new" target="noTarget" mandatory="false">
+        <description>
+          <text />
+        </description>
+        <restriction type="VALUETYPE" valueType="REGEXP" value="^[0-9]+/[0-9]+/[0-9]+$" />
+      </ixNetworkCpfSupport>
+      <ixLoadSupport contentType="noContent" target="noTarget" mandatory="false" />
+    </argument>
+  </arguments>
+  <returnValues>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>status</key>
+      <value>$::SUCCESS | $::FAILURE</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>log</key>
+      <value>If status is failure, detailed information provided.</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>sessions_up</key>
+      <value>Sessions Up</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>sessions_down</key>
+      <value>Sessions Down</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>sessions_total</key>
+      <value>Sessions Total</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_packet_tx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>sessions_not_started</key>
+      <value>Sessions Not Started</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_packet_tx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_packet_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_listener_tx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_talker_advertisement_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_talker_failed_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_listener_ready_tx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_listener_ready_failed_tx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_listener_asking_failed_tx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_domain_tx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_domain_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>mvrp_packet_tx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>mvrp_packet_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_listener_new_tx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_talker_advertisement_new_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_talker_advertisement_mt_tx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_listener_mt_tx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_listener_joinmt_tx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_talker_advertisement_joinmt_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_listener_joinin_tx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_talker_advertisement_joinin_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_listener_lv_tx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_talker_advertisement_lv_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_listener_in_tx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_talker_advertisement_in_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_malformed_packet_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_malformed_domain_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_malformed_talker_advertisement_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_malformed_talker_failed_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_talker_failed_new_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_talker_failed_mt_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_talker_failed_joinmt_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_talker_failed_joinin_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_talker_failed_lv_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_talker_failed_in_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_listener_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_talker_advertisement_tx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_listener_ready_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_listener_ready_failed_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_listener_asking_failed_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_listener_new_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_talker_advertisement_new_tx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_listener_mt_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_listener_joinmt_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_talker_advertisement_joinmt_tx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_listener_joinin_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_talker_advertisement_joinin_tx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_listener_lv_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_talker_advertisement_lv_tx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_listener_in_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_talker_advertisement_in_tx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>msrp_malformed_listener_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>mvrp_malformed_packet_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.talker_stream_database.attribute_type</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.talker_stream_database.stream_id</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.talker_stream_database.destination_mac</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.talker_stream_database.vlan_id</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.talker_stream_database.max_frame_size</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.talker_stream_database.max_interval_frame</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.talker_stream_database.priority</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.talker_stream_database.rank</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.talker_stream_database.latency</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.talker_stream_database.declaration_type</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.talker_stream_database.applicant_state</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.talker_stream_database.registrar_state</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.talker_stream_database.source_mac</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.talker_stream_database.talker_advertise_tx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.talker_stream_database.talker_joint_mt_tx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.talker_stream_database.talker_joinin_tx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.talker_stream_database.talker_new_tx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.talker_stream_database.talker_mt_tx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.talker_stream_database.talker_lv_tx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.talker_stream_database.listener_advertise_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.talker_stream_database.listener_ready_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.talker_stream_database.listener_ready_failed_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.talker_stream_database.listener_asking_failed_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.talker_stream_database.listener_new_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.talker_stream_database.listener_joinmt_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.talker_stream_database.listener_joinin_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.talker_stream_database.listener_in_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.talker_stream_database.listener_lv_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.talker_stream_database.listener_mt_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.talker_domain_database.sr_class_id</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.talker_domain_database.sr_class_priority</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.talker_domain_database.sr_class_vid</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.talker_domain_database.applicant_state</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.talker_domain_database.registrar_state</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.talker_domain_database.domain_tx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.talker_domain_database.domain_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.talker_domain_database.source_mac</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.talker_vlan_database.vlan_id</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.talker_vlan_database.applicant_state</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.talker_vlan_database.registrar_state</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.talker_vlan_database.source_mac</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_stream_database.attribute_type</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_stream_database.stream_id</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_stream_database.destination_mac</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_stream_database.vlan_id</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_stream_database.max_frame_size</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_stream_database.max_interval_frame</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_stream_database.priority</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_stream_database.rank</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_stream_database.latency</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_stream_database.declaration_type</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_stream_database.applicant_state</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_stream_database.registrar_state</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_stream_database.source_mac</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_stream_database.error_code</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_stream_database.bridge_id</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_stream_database.talker_advertise_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_stream_database.talker_failed_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_stream_database.talker_joint_mt_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_stream_database.talker_joinin_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_stream_database.talker_in_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_stream_database.talker_new_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_stream_database.talker_mt_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_stream_database.talker_lv_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_stream_database.talker_failed_new_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_stream_database.talker_failed_joinmt_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_stream_database.talker_failed_joinin_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_stream_database.talker_failed_in_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_stream_database.talker_failed_lv_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_stream_database.talker_failed_mt_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_stream_database.listener_advertise_tx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_stream_database.listener_ready_tx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_stream_database.listener_ready_failed_tx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_stream_database.listener_asking_failed_tx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_stream_database.listener_new_tx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_stream_database.listener_joinmt_tx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_stream_database.listener_joinin_tx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_stream_database.listener_in_tx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_stream_database.listener_lv_tx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_stream_database.listener_mt_tx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_domain_database.sr_class_id</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_domain_database.sr_class_priority</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_domain_database.sr_class_vid</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_domain_database.sr_class_priority</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_domain_database.applicant_state</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_domain_database.registrar_state</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_domain_database.domain_tx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_domain_database.domain_rx</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_domain_database.source_mac</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_vlan_database.vlan_id</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_vlan_database.applicant_state</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_vlan_database.registrar_state</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.listener_vlan_database.source_mac</key>
+      <value />
+      <tag value="" />
+    </returnValue>
+  </returnValues>
+  <sampleInput>
+    <sampleInputElem supportType="ixNetworkCpfSupport" />
+  </sampleInput>
+  <sampleOutput>
+    <sampleOutputElem supportType="ixNetworkCpfSupport" />
+  </sampleOutput>
+  <notes>
+    <note supportType="ixNetworkCpfSupport"> </note>
+  </notes>
+  <seeAlso>
+    <seeAlsoElem supportType="ixNetworkCpfSupport" />
+  </seeAlso>
+  <examples>
+    <example supportType="ixNetworkCpfSupport" />
+  </examples>
+  <code_examples />
+</method>

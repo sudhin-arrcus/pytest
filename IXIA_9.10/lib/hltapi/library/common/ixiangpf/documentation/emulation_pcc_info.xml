@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="utf-8"?>
+<method xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="emulation_pcc_info" name_robot="Emulation Pcc Info" displayPriority="4" ixHalOrProtocolPythonApiSupport="false" ixHalOrProtocolPythonScriptgenSupport="false" ixHalOrProtocolPerlApiSupport="false" ixHalOrProtocolPerlScriptgenSupport="false" ixHalOrProtocolTclApiSupport="false" ixHalOrProtocolTclScriptgenSupport="false" ixLoadPythonApiSupport="false" ixLoadPythonScriptgenSupport="false" ixLoadPerlApiSupport="false" ixLoadPerlScriptgenSupport="false" ixLoadTclApiSupport="false" ixLoadTclScriptgenSupport="false" ixNetworkCpfPythonApiSupport="true" ixNetworkCpfPythonScriptgenSupport="false" ixNetworkCpfPerlApiSupport="true" ixNetworkCpfPerlScriptgenSupport="false" ixNetworkCpfTclApiSupport="true" ixNetworkCpfTclScriptgenSupport="false" ixNetworkCpfRobotApiSupport="true" ixNetworkCpfRobotScriptgenSupport="false" ixNetworkPythonApiSupport="false" ixNetworkPythonScriptgenSupport="false" ixNetworkPerlApiSupport="false" ixNetworkPerlScriptgenSupport="false" ixNetworkTclApiSupport="false" ixNetworkTclScriptgenSupport="false" ixNetworkRobotApiSupport="false" ixNetworkRobotScriptgenSupport="false" Lang="none">
+  <description supportType="ixNetworkSupport" contentType="noContent" target="noTarget" />
+  <description supportType="ixLoadSupport" contentType="noContent" target="noTarget" />
+  <description supportType="ixHalOrProtocolSupport" contentType="noContent" target="noTarget" />
+  <description supportType="ixNetworkCpfSupport" contentType="new" target="noTarget">This procedure retrieves information about the PCEP sessions. 
+    This procedure is also used to fetch stats, learned information and configured properties of PCC, depending on the given mode and handle.</description>
+  <chapter>PCEP PCC APIs</chapter>
+  <arguments>
+    <argument name="mode" definedBy="ixiaDefined" ixHalOrProtocolPythonApiSupport="false" ixHalOrProtocolPythonScriptgenSupport="false" ixHalOrProtocolPerlApiSupport="false" ixHalOrProtocolPerlScriptgenSupport="false" ixHalOrProtocolTclApiSupport="false" ixHalOrProtocolTclScriptgenSupport="false" ixLoadPythonApiSupport="false" ixLoadPythonScriptgenSupport="false" ixLoadPerlApiSupport="false" ixLoadPerlScriptgenSupport="false" ixLoadTclApiSupport="false" ixLoadTclScriptgenSupport="false" ixNetworkCpfPythonApiSupport="true" ixNetworkCpfPythonScriptgenSupport="supportedInOtherCommand" ixNetworkCpfPerlApiSupport="true" ixNetworkCpfPerlScriptgenSupport="supportedInOtherCommand" ixNetworkCpfTclApiSupport="true" ixNetworkCpfTclScriptgenSupport="supportedInOtherCommand" ixNetworkCpfRobotApiSupport="true" ixNetworkCpfRobotScriptgenSupport="supportedInOtherCommand" ixNetworkPythonApiSupport="false" ixNetworkPythonScriptgenSupport="false" ixNetworkPerlApiSupport="false" ixNetworkPerlScriptgenSupport="false" ixNetworkTclApiSupport="false" ixNetworkTclScriptgenSupport="false" ixNetworkRobotApiSupport="false" ixNetworkRobotScriptgenSupport="false" lang="false">
+      <ixHalOrProtocolSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkCpfSupport contentType="new" target="noTarget" mandatory="true">
+        <description>
+          <text>For fetching per_port_stats provide any PCC handle, for per_session_stats and per_device_group_stats provide a PCC handle which is on the corresponding port.
+        For fetching learned information, PCC handle needs to be given.
+        For  fetch_info, provide handle of the node/object from which you need to fetch a property.</text>
+          <choices>
+            <choice>
+              <choiceName>per_port_stats</choiceName>
+              <choiceText>Retrieves PCEP PCC per port stats.</choiceText>
+            </choice>
+            <choice>
+              <choiceName>per_session_stats</choiceName>
+              <choiceText>Retrieves PCEP PCC per session stats.</choiceText>
+            </choice>
+            <choice>
+              <choiceName>per_device_group_stats</choiceName>
+              <choiceText>Retrieves PCEP PCC per device group stats.</choiceText>
+            </choice>
+            <choice>
+              <choiceName>clear_stats</choiceName>
+              <choiceText>Clear PCEP PCC statistics.</choiceText>
+            </choice>
+            <choice>
+              <choiceName>fetch_info</choiceName>
+              <choiceText>Get PCEP PCC Info.</choiceText>
+            </choice>
+            <choice>
+              <choiceName>learned_info_sr_basic_pce_initiated</choiceName>
+              <choiceText>Get SR-TE PCE Initiated LSP Basic Learned Information</choiceText>
+            </choice>
+            <choice>
+              <choiceName>learned_info_sr_basic_pcc_requested</choiceName>
+              <choiceText>Get SR-TE PCC Requested LSP Basic Learned Information</choiceText>
+            </choice>
+            <choice>
+              <choiceName>learned_info_sr_basic_pcc_sync</choiceName>
+              <choiceText>Get SR-TE PCC Sync/Report LSP Basic Learned Information</choiceText>
+            </choice>
+            <choice>
+              <choiceName>learned_info_sr_basic_all</choiceName>
+              <choiceText>Get SR-TE All LSPs Basic Learned Information</choiceText>
+            </choice>
+            <choice>
+              <choiceName>learned_info_sr_detailed_all</choiceName>
+              <choiceText>Get SR-TE All LSPs Detailed Learned Information</choiceText>
+            </choice>
+            <choice>
+              <choiceName>clear_learned_info</choiceName>
+              <choiceText>Clear PCEP PCC Learned Information</choiceText>
+            </choice>
+          </choices>
+        </description>
+        <restriction type="VALUETYPE" valueType="CHOICES" value="per_port_stats per_session_stats per_device_group_stats clear_stats fetch_info learned_info_sr_basic_pce_initiated learned_info_sr_basic_pcc_requested learned_info_sr_basic_pcc_sync learned_info_sr_basic_all learned_info_sr_detailed_all clear_learned_info" />
+      </ixNetworkCpfSupport>
+      <ixLoadSupport contentType="noContent" target="noTarget" mandatory="false" />
+    </argument>
+    <argument name="handle" definedBy="ciscoDefined" ixHalOrProtocolPythonApiSupport="false" ixHalOrProtocolPythonScriptgenSupport="false" ixHalOrProtocolPerlApiSupport="false" ixHalOrProtocolPerlScriptgenSupport="false" ixHalOrProtocolTclApiSupport="false" ixHalOrProtocolTclScriptgenSupport="false" ixLoadPythonApiSupport="false" ixLoadPythonScriptgenSupport="false" ixLoadPerlApiSupport="false" ixLoadPerlScriptgenSupport="false" ixLoadTclApiSupport="false" ixLoadTclScriptgenSupport="false" ixNetworkCpfPythonApiSupport="true" ixNetworkCpfPythonScriptgenSupport="supportedInOtherCommand" ixNetworkCpfPerlApiSupport="true" ixNetworkCpfPerlScriptgenSupport="supportedInOtherCommand" ixNetworkCpfTclApiSupport="true" ixNetworkCpfTclScriptgenSupport="supportedInOtherCommand" ixNetworkCpfRobotApiSupport="true" ixNetworkCpfRobotScriptgenSupport="supportedInOtherCommand" ixNetworkPythonApiSupport="false" ixNetworkPythonScriptgenSupport="false" ixNetworkPerlApiSupport="false" ixNetworkPerlScriptgenSupport="false" ixNetworkTclApiSupport="false" ixNetworkTclScriptgenSupport="false" ixNetworkRobotApiSupport="false" ixNetworkRobotScriptgenSupport="false" lang="false">
+      <ixHalOrProtocolSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkCpfSupport contentType="new" target="noTarget" mandatory="true">
+        <description>
+          <text>The PCEP PCC handle to act upon.</text>
+        </description>
+        <restriction type="VALUETYPE" valueType="ANY" />
+      </ixNetworkCpfSupport>
+      <ixLoadSupport contentType="noContent" target="noTarget" mandatory="false" />
+    </argument>
+    <argument name="port_handle" definedBy="ciscoDefined" ixHalOrProtocolPythonApiSupport="false" ixHalOrProtocolPythonScriptgenSupport="false" ixHalOrProtocolPerlApiSupport="false" ixHalOrProtocolPerlScriptgenSupport="false" ixHalOrProtocolTclApiSupport="false" ixHalOrProtocolTclScriptgenSupport="false" ixLoadPythonApiSupport="false" ixLoadPythonScriptgenSupport="false" ixLoadPerlApiSupport="false" ixLoadPerlScriptgenSupport="false" ixLoadTclApiSupport="false" ixLoadTclScriptgenSupport="false" ixNetworkCpfPythonApiSupport="true" ixNetworkCpfPythonScriptgenSupport="supportedInOtherCommand" ixNetworkCpfPerlApiSupport="true" ixNetworkCpfPerlScriptgenSupport="supportedInOtherCommand" ixNetworkCpfTclApiSupport="true" ixNetworkCpfTclScriptgenSupport="supportedInOtherCommand" ixNetworkCpfRobotApiSupport="true" ixNetworkCpfRobotScriptgenSupport="supportedInOtherCommand" ixNetworkPythonApiSupport="false" ixNetworkPythonScriptgenSupport="false" ixNetworkPerlApiSupport="false" ixNetworkPerlScriptgenSupport="false" ixNetworkTclApiSupport="false" ixNetworkTclScriptgenSupport="false" ixNetworkRobotApiSupport="false" ixNetworkRobotScriptgenSupport="false" lang="false">
+      <ixHalOrProtocolSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkCpfSupport contentType="new" target="noTarget" mandatory="false">
+        <description>
+          <text>Port handle.</text>
+        </description>
+        <restriction type="VALUETYPE" valueType="REGEXP" value="^[0-9]+/[0-9]+/[0-9]+$" />
+      </ixNetworkCpfSupport>
+      <ixLoadSupport contentType="noContent" target="noTarget" mandatory="false" />
+    </argument>
+    <argument name="lsp_delegation_state" definedBy="ixiaDefined" ixHalOrProtocolPythonApiSupport="false" ixHalOrProtocolPythonScriptgenSupport="false" ixHalOrProtocolPerlApiSupport="false" ixHalOrProtocolPerlScriptgenSupport="false" ixHalOrProtocolTclApiSupport="false" ixHalOrProtocolTclScriptgenSupport="false" ixLoadPythonApiSupport="false" ixLoadPythonScriptgenSupport="false" ixLoadPerlApiSupport="false" ixLoadPerlScriptgenSupport="false" ixLoadTclApiSupport="false" ixLoadTclScriptgenSupport="false" ixNetworkCpfPythonApiSupport="true" ixNetworkCpfPythonScriptgenSupport="supportedInOtherCommand" ixNetworkCpfPerlApiSupport="true" ixNetworkCpfPerlScriptgenSupport="supportedInOtherCommand" ixNetworkCpfTclApiSupport="true" ixNetworkCpfTclScriptgenSupport="supportedInOtherCommand" ixNetworkCpfRobotApiSupport="true" ixNetworkCpfRobotScriptgenSupport="supportedInOtherCommand" ixNetworkPythonApiSupport="false" ixNetworkPythonScriptgenSupport="false" ixNetworkPerlApiSupport="false" ixNetworkPerlScriptgenSupport="false" ixNetworkTclApiSupport="false" ixNetworkTclScriptgenSupport="false" ixNetworkRobotApiSupport="false" ixNetworkRobotScriptgenSupport="false" lang="false">
+      <ixHalOrProtocolSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkCpfSupport contentType="new" target="noTarget" mandatory="false">
+        <description>
+          <text>Get LSP Delegation State. Mandatory flag for fetching LSP Delegation State of PCC Requested SR LSPs/ PCC Pre-Established SR LSPs</text>
+        </description>
+        <restriction type="VALUETYPE" valueType="FLAG" />
+      </ixNetworkCpfSupport>
+      <ixLoadSupport contentType="noContent" target="noTarget" mandatory="false" />
+    </argument>
+    <argument name="re_delegation_timer_status" definedBy="ixiaDefined" ixHalOrProtocolPythonApiSupport="false" ixHalOrProtocolPythonScriptgenSupport="false" ixHalOrProtocolPerlApiSupport="false" ixHalOrProtocolPerlScriptgenSupport="false" ixHalOrProtocolTclApiSupport="false" ixHalOrProtocolTclScriptgenSupport="false" ixLoadPythonApiSupport="false" ixLoadPythonScriptgenSupport="false" ixLoadPerlApiSupport="false" ixLoadPerlScriptgenSupport="false" ixLoadTclApiSupport="false" ixLoadTclScriptgenSupport="false" ixNetworkCpfPythonApiSupport="true" ixNetworkCpfPythonScriptgenSupport="supportedInOtherCommand" ixNetworkCpfPerlApiSupport="true" ixNetworkCpfPerlScriptgenSupport="supportedInOtherCommand" ixNetworkCpfTclApiSupport="true" ixNetworkCpfTclScriptgenSupport="supportedInOtherCommand" ixNetworkCpfRobotApiSupport="true" ixNetworkCpfRobotScriptgenSupport="supportedInOtherCommand" ixNetworkPythonApiSupport="false" ixNetworkPythonScriptgenSupport="false" ixNetworkPerlApiSupport="false" ixNetworkPerlScriptgenSupport="false" ixNetworkTclApiSupport="false" ixNetworkTclScriptgenSupport="false" ixNetworkRobotApiSupport="false" ixNetworkRobotScriptgenSupport="false" lang="false">
+      <ixHalOrProtocolSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkCpfSupport contentType="new" target="noTarget" mandatory="false">
+        <description>
+          <text>Get Re-Delegation Timer Status. Mandatory flag for fetching Re-Delegation Timer Status of PCC Requested SR LSPs/ PCC Pre-Established SR LSPs</text>
+        </description>
+        <restriction type="VALUETYPE" valueType="FLAG" />
+      </ixNetworkCpfSupport>
+      <ixLoadSupport contentType="noContent" target="noTarget" mandatory="false" />
+    </argument>
+  </arguments>
+  <returnValues>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>status</key>
+      <value>$::SUCCESS | $::FAILURE</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>log</key>
+      <value>If status is failure, detailed information provided.</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>sessions_up</key>
+      <value>Sessions Up</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>sessions_down</key>
+      <value>Sessions Down</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>sessions_not_started</key>
+      <value>Sessions Not Started</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>sessions_total</key>
+      <value>Sessions Total</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>session_flap_count</key>
+      <value>Session Flap Count</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>open_message_rx</key>
+      <value>Open Message Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>open_message_tx</key>
+      <value>Open Message Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>keepalive_message_rx</key>
+      <value>Keepalive Message Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>keepalive_message_tx</key>
+      <value>Keepalive Message Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>close_message_rx</key>
+      <value>Close Message Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>close_message_tx</key>
+      <value>Close Message Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>unknown_message_rx</key>
+      <value>Unknown Message Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>total_tcp_connection_established</key>
+      <value>Total TCP Connection Established</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>pcinitiate_message_rx</key>
+      <value>PCInitiate Message Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>remove_initiated_lsp_rx</key>
+      <value>Remove Initiated LSP Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>pcrpt_message_tx</key>
+      <value>PCRpt Message Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>pcupdate_message_rx</key>
+      <value>PCUpdate Message Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>pcerr_message_rx</key>
+      <value>PCErr Message Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>pcerr_message_tx</key>
+      <value>PCErr Message Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>total_initiated_lsp_rx</key>
+      <value>Total Initiated LSP Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>sync_lsp_tx</key>
+      <value>Sync LSP Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>pcreq_message_tx</key>
+      <value>PCReq Message Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>pcrep_message_rx</key>
+      <value>PCRep Message Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>total_requested_lsp_tx</key>
+      <value>Total Requested LSP Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>total_responded_lsp_rx</key>
+      <value>Total Responded LSP Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>no_path_rx</key>
+      <value>No Path Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>rsvp_going_up_lsp_tx</key>
+      <value>RSVP Going Up LSP Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>rsvp_up_lsp_tx</key>
+      <value>RSVP Up LSP Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>rsvp_remove_lsp_tx</key>
+      <value>RSVP Remove LSP Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>rsvp_delegated_lsp_tx</key>
+      <value>RSVP Delegated LSP Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>rsvp_revoked_lsp_tx</key>
+      <value>RSVP Revoked LSP Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>rsvp_delegation_returned_lsp_rx</key>
+      <value>RSVP Delegation Returned LSP Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>sr_delegated_lsp_tx</key>
+      <value>SR Delegated LSP Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>sr_revoked_lsp_tx</key>
+      <value>SR Revoked LSP Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>sr_delegation_returned_lsp_rx</key>
+      <value>SR Delegation Returned LSP Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.pccsrlearnedinformation.learned_pce_ip_address</key>
+      <value>PCE IP</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.pccsrlearnedinformation.learned_lsp_type</key>
+      <value>LSP Type</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.pccsrlearnedinformation.symbolic_path_name</key>
+      <value>Symbolic Path Name</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.pccsrlearnedinformation.plsp_id</key>
+      <value>PLSP-ID</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.pccsrlearnedinformation.source_ip_address</key>
+      <value>Source IP Address</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.pccsrlearnedinformation.dest_ip_address</key>
+      <value>Destination IP Address</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.pccsrlearnedinformation.bandwidth</key>
+      <value>Bandwidth (Bps)</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.pccsrlearnedinformation.ero_info</key>
+      <value>ERO Info</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.pccsrlearnedinformation.learned_error_info</key>
+      <value>Error Info</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.pccdetailedlearnedinformation.learned_lsp_index</key>
+      <value>LSP Index</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.pccdetailedlearnedinformation.learned_msg_db_type</key>
+      <value>LSP Type</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.pccdetailedlearnedinformation.request_id</key>
+      <value>Request ID</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.pccdetailedlearnedinformation.plsp_id</key>
+      <value>LSP-ID</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.pccdetailedlearnedinformation.symbolic_path_name</key>
+      <value>Symbolic Path Name</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.pccdetailedlearnedinformation.ip_version</key>
+      <value>IP Version</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.pccdetailedlearnedinformation.source_ipv4_address</key>
+      <value>Source IPv4 Address</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.pccdetailedlearnedinformation.dest_ipv4_address</key>
+      <value>Destination IPv4 Address</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.pccdetailedlearnedinformation.source_ipv6_address</key>
+      <value>Source IPv6 Address</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.pccdetailedlearnedinformation.dest_ipv6_address</key>
+      <value>Destination IPv6 Address</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.pccdetailedlearnedinformation.sid_type</key>
+      <value>SID-Type</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.pccdetailedlearnedinformation.sid</key>
+      <value>SID</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.pccdetailedlearnedinformation.mpls_label</key>
+      <value>MPLS Label</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.pccdetailedlearnedinformation.nai_type</key>
+      <value>NAI-Type</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.pccdetailedlearnedinformation.ipv4_node_id</key>
+      <value>IPv4 Node ID</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.pccdetailedlearnedinformation.ipv6_node_id</key>
+      <value>IPv6 Node ID</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.pccdetailedlearnedinformation.local_i_pv4address</key>
+      <value>Local IPv4 Address</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.pccdetailedlearnedinformation.remote_i_pv4address</key>
+      <value>Remote IPv4 Address</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.pccdetailedlearnedinformation.local_i_pv6address</key>
+      <value>Local IPv6 Address</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.pccdetailedlearnedinformation.remote_i_pv6address</key>
+      <value>Remote IPv6 Address</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.pccdetailedlearnedinformation.local_node_i_d</key>
+      <value>Local Node-ID</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.pccdetailedlearnedinformation.local_inteface_i_d</key>
+      <value>Local Interface ID</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.pccdetailedlearnedinformation.remote_node_i_d</key>
+      <value>Remote Node-ID</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.pccdetailedlearnedinformation.remote_interface_i_d</key>
+      <value>Remote Interface ID</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.pccdetailedlearnedinformation.error_info</key>
+      <value>Error Info</value>
+      <tag value="" />
+    </returnValue>
+  </returnValues>
+  <sampleInput>
+    <sampleInputElem supportType="ixNetworkCpfSupport" />
+  </sampleInput>
+  <sampleOutput>
+    <sampleOutputElem supportType="ixNetworkCpfSupport" />
+  </sampleOutput>
+  <notes>
+    <note supportType="ixNetworkCpfSupport"> </note>
+  </notes>
+  <seeAlso>
+    <seeAlsoElem supportType="ixNetworkCpfSupport" />
+  </seeAlso>
+  <examples>
+    <example supportType="ixNetworkCpfSupport" />
+  </examples>
+  <code_examples />
+</method>

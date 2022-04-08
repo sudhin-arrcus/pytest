@@ -1,0 +1,587 @@
+<?xml version="1.0" encoding="utf-8"?>
+<method xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="emulation_igmp_info" name_robot="Emulation Igmp Info" displayPriority="5" ixHalOrProtocolPythonApiSupport="false" ixHalOrProtocolPythonScriptgenSupport="false" ixHalOrProtocolPerlApiSupport="false" ixHalOrProtocolPerlScriptgenSupport="false" ixHalOrProtocolTclApiSupport="false" ixHalOrProtocolTclScriptgenSupport="false" ixLoadPythonApiSupport="false" ixLoadPythonScriptgenSupport="false" ixLoadPerlApiSupport="false" ixLoadPerlScriptgenSupport="false" ixLoadTclApiSupport="false" ixLoadTclScriptgenSupport="false" ixNetworkCpfPythonApiSupport="true" ixNetworkCpfPythonScriptgenSupport="false" ixNetworkCpfPerlApiSupport="true" ixNetworkCpfPerlScriptgenSupport="false" ixNetworkCpfTclApiSupport="true" ixNetworkCpfTclScriptgenSupport="false" ixNetworkCpfRobotApiSupport="true" ixNetworkCpfRobotScriptgenSupport="false" ixNetworkPythonApiSupport="false" ixNetworkPythonScriptgenSupport="false" ixNetworkPerlApiSupport="false" ixNetworkPerlScriptgenSupport="false" ixNetworkTclApiSupport="false" ixNetworkTclScriptgenSupport="false" ixNetworkRobotApiSupport="false" ixNetworkRobotScriptgenSupport="false" Lang="none">
+  <description supportType="ixNetworkSupport" contentType="noContent" target="noTarget" />
+  <description supportType="ixLoadSupport" contentType="noContent" target="noTarget" />
+  <description supportType="ixHalOrProtocolSupport" contentType="noContent" target="noTarget" />
+  <description supportType="ixNetworkCpfSupport" contentType="new" target="noTarget">This procedure gathers IGMP statistics for a specific Ixia port. It is only supported for IxTclNetwork and not by IxNetwork-FT.</description>
+  <chapter>IGMPvX APIs</chapter>
+  <arguments>
+    <argument name="mode" definedBy="ixiaDefined" ixHalOrProtocolPythonApiSupport="false" ixHalOrProtocolPythonScriptgenSupport="false" ixHalOrProtocolPerlApiSupport="false" ixHalOrProtocolPerlScriptgenSupport="false" ixHalOrProtocolTclApiSupport="false" ixHalOrProtocolTclScriptgenSupport="false" ixLoadPythonApiSupport="false" ixLoadPythonScriptgenSupport="false" ixLoadPerlApiSupport="false" ixLoadPerlScriptgenSupport="false" ixLoadTclApiSupport="false" ixLoadTclScriptgenSupport="false" ixNetworkCpfPythonApiSupport="true" ixNetworkCpfPythonScriptgenSupport="supportedInOtherCommand" ixNetworkCpfPerlApiSupport="true" ixNetworkCpfPerlScriptgenSupport="supportedInOtherCommand" ixNetworkCpfTclApiSupport="true" ixNetworkCpfTclScriptgenSupport="supportedInOtherCommand" ixNetworkCpfRobotApiSupport="true" ixNetworkCpfRobotScriptgenSupport="supportedInOtherCommand" ixNetworkPythonApiSupport="false" ixNetworkPythonScriptgenSupport="false" ixNetworkPerlApiSupport="false" ixNetworkPerlScriptgenSupport="false" ixNetworkTclApiSupport="false" ixNetworkTclScriptgenSupport="false" ixNetworkRobotApiSupport="false" ixNetworkRobotScriptgenSupport="false" lang="false">
+      <ixHalOrProtocolSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkCpfSupport contentType="new" target="noTarget" mandatory="true">
+        <description>
+          <text>The statistics that should be retrieved for IGMP hosts/queriers.</text>
+          <choices>
+            <choice>
+              <choiceName>stats_per_device_group</choiceName>
+              <choiceText>Gather IGMP statistics per Device Group.</choiceText>
+            </choice>
+            <choice>
+              <choiceName>stats_per_session</choiceName>
+              <choiceText>Gather IGMP Statistics per Session</choiceText>
+            </choice>
+            <choice>
+              <choiceName>aggregate</choiceName>
+              <choiceText>Gather aggregated IGMP statistics</choiceText>
+            </choice>
+            <choice>
+              <choiceName>clear_stats</choiceName>
+              <choiceText>Clear IGMP statistics</choiceText>
+            </choice>
+            <choice>
+              <choiceName>learned_info</choiceName>
+              <choiceText>Get learned info for IGMP Querier</choiceText>
+            </choice>
+          </choices>
+        </description>
+        <restriction type="VALUETYPE" valueType="CHOICES" value="stats_per_device_group stats_per_session aggregate clear_stats learned_info" />
+        <restriction type="DEFAULT" valueType="ANY" value="aggregate" />
+      </ixNetworkCpfSupport>
+      <ixLoadSupport contentType="noContent" target="noTarget" mandatory="false" />
+    </argument>
+    <argument name="port_handle" definedBy="ciscoDefined" ixHalOrProtocolPythonApiSupport="false" ixHalOrProtocolPythonScriptgenSupport="false" ixHalOrProtocolPerlApiSupport="false" ixHalOrProtocolPerlScriptgenSupport="false" ixHalOrProtocolTclApiSupport="false" ixHalOrProtocolTclScriptgenSupport="false" ixLoadPythonApiSupport="false" ixLoadPythonScriptgenSupport="false" ixLoadPerlApiSupport="false" ixLoadPerlScriptgenSupport="false" ixLoadTclApiSupport="false" ixLoadTclScriptgenSupport="false" ixNetworkCpfPythonApiSupport="true" ixNetworkCpfPythonScriptgenSupport="supportedInOtherCommand" ixNetworkCpfPerlApiSupport="true" ixNetworkCpfPerlScriptgenSupport="supportedInOtherCommand" ixNetworkCpfTclApiSupport="true" ixNetworkCpfTclScriptgenSupport="supportedInOtherCommand" ixNetworkCpfRobotApiSupport="true" ixNetworkCpfRobotScriptgenSupport="supportedInOtherCommand" ixNetworkPythonApiSupport="false" ixNetworkPythonScriptgenSupport="false" ixNetworkPerlApiSupport="false" ixNetworkPerlScriptgenSupport="false" ixNetworkTclApiSupport="false" ixNetworkTclScriptgenSupport="false" ixNetworkRobotApiSupport="false" ixNetworkRobotScriptgenSupport="false" lang="false">
+      <ixHalOrProtocolSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkCpfSupport contentType="new" target="noTarget" mandatory="false">
+        <description>
+          <text>This parameter is used to specify the port from which 
+       statistics will be gathered.</text>
+        </description>
+        <restriction type="VALUETYPE" valueType="REGEXP" value="^[0-9]+/[0-9]+/[0-9]+$" />
+      </ixNetworkCpfSupport>
+      <ixLoadSupport contentType="noContent" target="noTarget" mandatory="false" />
+    </argument>
+    <argument name="timeout" definedBy="CiscoDefinedNotSupported" ixHalOrProtocolPythonApiSupport="false" ixHalOrProtocolPythonScriptgenSupport="false" ixHalOrProtocolPerlApiSupport="false" ixHalOrProtocolPerlScriptgenSupport="false" ixHalOrProtocolTclApiSupport="false" ixHalOrProtocolTclScriptgenSupport="false" ixLoadPythonApiSupport="false" ixLoadPythonScriptgenSupport="false" ixLoadPerlApiSupport="false" ixLoadPerlScriptgenSupport="false" ixLoadTclApiSupport="false" ixLoadTclScriptgenSupport="false" ixNetworkCpfPythonApiSupport="false" ixNetworkCpfPythonScriptgenSupport="false" ixNetworkCpfPerlApiSupport="false" ixNetworkCpfPerlScriptgenSupport="false" ixNetworkCpfTclApiSupport="false" ixNetworkCpfTclScriptgenSupport="false" ixNetworkCpfRobotApiSupport="false" ixNetworkCpfRobotScriptgenSupport="false" ixNetworkPythonApiSupport="false" ixNetworkPythonScriptgenSupport="false" ixNetworkPerlApiSupport="false" ixNetworkPerlScriptgenSupport="false" ixNetworkTclApiSupport="false" ixNetworkTclScriptgenSupport="false" ixNetworkRobotApiSupport="false" ixNetworkRobotScriptgenSupport="false" lang="false">
+      <ixHalOrProtocolSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkCpfSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixLoadSupport contentType="noContent" target="noTarget" mandatory="false" />
+    </argument>
+    <argument name="handle" definedBy="ixiaDefined" ixHalOrProtocolPythonApiSupport="false" ixHalOrProtocolPythonScriptgenSupport="false" ixHalOrProtocolPerlApiSupport="false" ixHalOrProtocolPerlScriptgenSupport="false" ixHalOrProtocolTclApiSupport="false" ixHalOrProtocolTclScriptgenSupport="false" ixLoadPythonApiSupport="false" ixLoadPythonScriptgenSupport="false" ixLoadPerlApiSupport="false" ixLoadPerlScriptgenSupport="false" ixLoadTclApiSupport="false" ixLoadTclScriptgenSupport="false" ixNetworkCpfPythonApiSupport="true" ixNetworkCpfPythonScriptgenSupport="supportedInOtherCommand" ixNetworkCpfPerlApiSupport="true" ixNetworkCpfPerlScriptgenSupport="supportedInOtherCommand" ixNetworkCpfTclApiSupport="true" ixNetworkCpfTclScriptgenSupport="supportedInOtherCommand" ixNetworkCpfRobotApiSupport="true" ixNetworkCpfRobotScriptgenSupport="supportedInOtherCommand" ixNetworkPythonApiSupport="false" ixNetworkPythonScriptgenSupport="false" ixNetworkPerlApiSupport="false" ixNetworkPerlScriptgenSupport="false" ixNetworkTclApiSupport="false" ixNetworkTclScriptgenSupport="false" ixNetworkRobotApiSupport="false" ixNetworkRobotScriptgenSupport="false" lang="false">
+      <ixHalOrProtocolSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkCpfSupport contentType="new" target="noTarget" mandatory="false">
+        <description>
+          <text>IGMP session handle for which the IGMP info is applied. The session handle is an emulated IGMP router object reference.</text>
+        </description>
+        <restriction type="VALUETYPE" valueType="ANY" />
+      </ixNetworkCpfSupport>
+      <ixLoadSupport contentType="noContent" target="noTarget" mandatory="false" />
+    </argument>
+    <argument name="type" definedBy="ixiaDefined" ixHalOrProtocolPythonApiSupport="false" ixHalOrProtocolPythonScriptgenSupport="false" ixHalOrProtocolPerlApiSupport="false" ixHalOrProtocolPerlScriptgenSupport="false" ixHalOrProtocolTclApiSupport="false" ixHalOrProtocolTclScriptgenSupport="false" ixLoadPythonApiSupport="false" ixLoadPythonScriptgenSupport="false" ixLoadPerlApiSupport="false" ixLoadPerlScriptgenSupport="false" ixLoadTclApiSupport="false" ixLoadTclScriptgenSupport="false" ixNetworkCpfPythonApiSupport="true" ixNetworkCpfPythonScriptgenSupport="supportedInOtherCommand" ixNetworkCpfPerlApiSupport="true" ixNetworkCpfPerlScriptgenSupport="supportedInOtherCommand" ixNetworkCpfTclApiSupport="true" ixNetworkCpfTclScriptgenSupport="supportedInOtherCommand" ixNetworkCpfRobotApiSupport="true" ixNetworkCpfRobotScriptgenSupport="supportedInOtherCommand" ixNetworkPythonApiSupport="false" ixNetworkPythonScriptgenSupport="false" ixNetworkPerlApiSupport="false" ixNetworkPerlScriptgenSupport="false" ixNetworkTclApiSupport="false" ixNetworkTclScriptgenSupport="false" ixNetworkRobotApiSupport="false" ixNetworkRobotScriptgenSupport="false" lang="false">
+      <ixHalOrProtocolSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkCpfSupport contentType="new" target="noTarget" mandatory="false">
+        <description>
+          <text>The type of aggregated statistics to be gathered. Valid only for -mode aggregate.</text>
+          <choices>
+            <choice>
+              <choiceName>host</choiceName>
+              <choiceText>statistics gathered from IxNetwork for the igmp sessions configured using emulation_igmp_config.</choiceText>
+            </choice>
+            <choice>
+              <choiceName>querier</choiceName>
+              <choiceText>statistics gathered from IxNetwork for the igmp sessions configured using emulation_igmp_querier_config.</choiceText>
+            </choice>
+            <choice>
+              <choiceName>both</choiceName>
+              <choiceText>both host and querier agregated statistics will be retrieved.</choiceText>
+            </choice>
+            <choice>
+              <choiceName>igmp_over_ppp</choiceName>
+              <choiceText>Not Supported</choiceText>
+            </choice>
+            <choice>
+              <choiceName>igmp</choiceName>
+              <choiceText>Not Supported</choiceText>
+            </choice>
+          </choices>
+        </description>
+        <restriction type="VALUETYPE" valueType="CHOICES" value="igmp_over_ppp igmp host querier both" />
+        <restriction type="DEFAULT" valueType="ANY" value="host" />
+      </ixNetworkCpfSupport>
+      <ixLoadSupport contentType="noContent" target="noTarget" mandatory="false" />
+    </argument>
+  </arguments>
+  <returnValues>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>status</key>
+      <value>$::SUCCESS | $::FAILURE</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>log</key>
+      <value>When status is failure, contains more information</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.sessions_total</key>
+      <value>Sessions Total</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.sessions_up</key>
+      <value>Sessions Up</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.sessions_down</key>
+      <value>Sessions Down</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.sessions_notstarted</key>
+      <value>Sessions Not Started</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.total_tx</key>
+      <value>Total Frames Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.total_rx</key>
+      <value>Total Frames Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.invalid_rx</key>
+      <value>Invalid Packets Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.rprt_v1_tx</key>
+      <value>v1 Membership Reports Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.rprt_v1_rx</key>
+      <value>v1 Membership Reports Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.rprt_v2_tx</key>
+      <value>v2 Membership Reports Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.rprt_v2_rx</key>
+      <value>v2 Membership Reports Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.rprt_v3_tx</key>
+      <value>v3 Membership Reports Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.rprt_v3_rx</key>
+      <value>v3 Membership Reports Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.gen_query_rx</key>
+      <value>General Queries Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.grp_query_rx</key>
+      <value>v2 Group-Specific Queries Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.v3_group_and_source_specific_queries_rx</key>
+      <value>v3 Group&amp;Source Specific Queries Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.leave_v2_tx</key>
+      <value>v2 Leave Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.leave_v2_rx</key>
+      <value>v2 Leave Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.v3_mode_include_tx</key>
+      <value>v3 MODE_IS_INCLUDE Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.v3_mode_include_rx</key>
+      <value>v3 MODE_IS_INCLUDE Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.v3_mode_exclude_tx</key>
+      <value>v3 MODE_IS_EXCLUDE Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.v3_mode_exclude_rx</key>
+      <value>v3 MODE_IS_EXCLUDE Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.v3_change_mode_include_tx</key>
+      <value>v3 CHANGE_TO_INCLUDE_MODE Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.v3_change_mode_include_rx</key>
+      <value>v3 CHANGE_TO_INCLUDE_MODE Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.v3_change_mode_exclude_tx</key>
+      <value>v3 CHANGE_TO_EXCLUDE_MODE Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.v3_change_mode_exclude_rx</key>
+      <value>v3 CHANGE_TO_EXCLUDE_MODE Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.v3_allow_new_source_tx</key>
+      <value>v3 ALLOW_NEW_SOURCES Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.v3_allow_new_source_rx</key>
+      <value>v3 ALLOW_NEW_SOURCES Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.v3_block_old_source_tx</key>
+      <value>v3 BLOCK_OLD_SOURCES Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.v3_block_old_source_rx</key>
+      <value>v3 BLOCK_OLD_SOURCES Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.port_name</key>
+      <value>Port Name</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.pair_joined</key>
+      <value>Pairs Joined</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.sessions_total</key>
+      <value>Sessions Total</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.sessions_up</key>
+      <value>Sessions Up</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.sessions_down</key>
+      <value>Sessions Down</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.sessions_notstarted</key>
+      <value>Sessions Not Started</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.invalid_rx</key>
+      <value>Invalid Packets Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.gen_query_v1_tx</key>
+      <value>v1 General Queries Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.gen_query_v2_tx</key>
+      <value>v2 General Queries Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.gen_query_v3_tx</key>
+      <value>v3 General Queries Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.grp_v2_query_tx</key>
+      <value>v2 Group Specific Queries Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.grp_v3_query_tx</key>
+      <value>v3 Group Specific Queries Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.grp_src_v3_query_tx</key>
+      <value>v3 Group and Source Specific Queries Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.rprt_v1_rx</key>
+      <value>v1 Membership Reports Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.rprt_v2_rx</key>
+      <value>v2 Membership Reports Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.rprt_v3_rx</key>
+      <value>v3 Membership Reports Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.leave_rx</key>
+      <value>Leave Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.total_tx</key>
+      <value>Total Frames Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.total_rx</key>
+      <value>Total Frames Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.gen_query_rx</key>
+      <value>General Queries Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.grp_query_rx</key>
+      <value>Group Specific Queries Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;port_handle&gt;.igmp.aggregate.port_name</key>
+      <value>Port Name</value>
+      <tag value="" />
+    </returnValue>
+  </returnValues>
+  <sampleInput>
+    <sampleInputElem supportType="ixNetworkCpfSupport" />
+  </sampleInput>
+  <sampleOutput>
+    <sampleOutputElem supportType="ixNetworkCpfSupport" />
+  </sampleOutput>
+  <notes>
+    <note supportType="ixNetworkCpfSupport"> </note>
+  </notes>
+  <seeAlso>
+    <seeAlsoElem supportType="ixNetworkCpfSupport" />
+  </seeAlso>
+  <examples>
+    <example supportType="ixNetworkCpfSupport" />
+  </examples>
+  <code_examples>
+    <example lang="tcl" supportType="ixNetworkCpfSupport"><![CDATA[
+# Command : ::ixiangpf::emulation_igmp_info
+
+# This command will fetch aggregate stats for IGMP host
+
+set stats [::ixiangpf::emulaiton_igmp_info 		   \
+	-mode                   aggregate 		   \	
+	-handle 		<igmp_host_handle>         \
+]
+
+# This command will return stats as
+# {status 1} {{IGMP Host} {{{IGMP Host Stats Per Device} {{status started} 
+# {sessions_total 10} {sessions_up 10} {sessions_down 0} {sessions_notstarted 0} 
+# {igmp {{aggregate {{total_tx 360} {total_rx 32} {invalid_rx 0} {rprt_v1_tx 0} 
+# {rprt_v1_rx 0} {rprt_v2_tx 360} {rprt_v2_rx 0} {rprt_v3_tx 0} {rprt_v3_rx 0} 
+# {gen_query_rx 32} {grp_query_rx 0} {v3_group_and_source_specific_queries_rx 0}
+#  {leave_v2_tx 0} {leave_v2_rx 0} {v3_mode_include_tx 0} {v3_mode_include_rx 0} 
+# {v3_mode_exclude_tx 0} {v3_mode_exclude_rx 0} {v3_change_mode_include_tx 0} 
+# {v3_change_mode_include_rx 0} {v3_change_mode_exclude_tx 0} {v3_change_mode_exclude_rx 0}
+#  {v3_allow_new_source_tx 0} {v3_allow_new_source_rx 0} {v3_block_old_source_tx 0} 
+# {v3_block_old_source_rx 0} {pair_joined 100}}}}}}}}}
+
+#This command will return learned info for IGMP Querier
+
+set learned_info [::ixiangpf::emulation_igmp_info	   \
+	-mode 			learned_info		   \
+	-handle 		<igmp_querier_handle>	   \
+]
+
+#This command will return learned info as
+
+# {status 1} {1/2/4 {{/topology:2/deviceGroup:1/ethernet:1/ipv4:1/igmpQuerier:1/item:1 
+# {{record {{1 {{group_adress 225.0.0.4} {group_timer 241} {filter_mode N/A} {compatibility_mode v2} 
+# {compatibility_timer 0} {source_address N/A} {source_timer 0}}} {2 {{group_adress 225.0.0.2}
+#  {group_timer 241} {filter_mode N/A} {compatibility_mode v2} {compatibility_timer 0} {source_address N/A} 
+# {source_timer 0}}} {3 {{group_adress 225.0.0.1} {group_timer 241} {filter_mode N/A} {compatibility_mode v2} 
+# {compatibility_timer 0} {source_address N/A} {source_timer 0}}} {4 {{group_adress 225.0.0.3} {group_timer 241} 
+# {filter_mode N/A} {compatibility_mode v2} {compatibility_timer 0} {source_address N/A} {source_timer 0}}}
+#  {5 {{group_adress 225.0.0.8} {group_timer 241} {filter_mode N/A} {compatibility_mode v2} {compatibility_timer 0} 
+# {source_address N/A} {source_timer 0}}} {6 {{group_adress 225.0.0.6} {group_timer 241} {filter_mode N/A} 
+# {compatibility_mode v2} {compatibility_timer 0} {source_address N/A} {source_timer 0}}} {7 {{group_adress 225.0.0.5}
+#  {group_timer 241} {filter_mode N/A} {compatibility_mode v2} {compatibility_timer 0} {source_address N/A} {source_timer 0}}} 
+# {8 {{group_adress 225.0.0.7} group_timer 241} {filter_mode N/A} {compatibility_mode v2} {compatibility_timer 0} 
+# {source_address N/A} {source_timer 0}}} {9 {{group_adress 225.0.0.9} {group_timer 241} {filter_mode N/A} 
+# {compatibility_mode v2} {compatibility_timer 0} {source_address N/A} {source_timer 0}}} {10 {{group_adress 225.0.0.10} 
+# {group_timer 241} {filter_mode N/A} {compatibility_mode v2} {compatibility_timer 0} 
+# {source_address N/A} {source_timer 0}}}}} {querier_version v2} {querier_address 100.1.0.1}}}}}
+    ]]></example>
+    <example lang="python" supportType="ixNetworkCpfSupport"><![CDATA[
+# Command : ixiangpf.emulation_igmp_info
+# This command will fetch aggregate stats for IGMP host
+
+status = ixiangpf.emulaiton_igmp_info(
+    mode                                                        = "aggregate",
+    handle                                                      = "<igmp_host_handle>",
+)
+# This command will return stats as
+# {'status': '1', 'IGMP Host': {'IGMP Host Stats Per Device': {'status': 'started', 
+# 'sessions_total': '10', 'sessions_up': '1', 'sessions_down': '0', 'sessions_notstarted': 
+# '9', 'igmp': {'aggregate': {'total_tx': '30', 'total_rx': '2', 'v3_change_mode_include_rx': 
+# '0', 'v3_mode_exclude_tx': '0', 'rprt_v2_tx': '30', 'v3_mode_exclude_rx': '0', 
+# 'v3_change_mode_include_tx': '0', 'v3_mode_include_tx': '0', 'rprt_v2_rx': '0', 
+# 'pair_joined': '10', 'v3_mode_include_rx': '0', 'rprt_v3_tx': '0', 'rprt_v3_rx': '0', 
+# 'rprt_v1_rx': '0', 'rprt_v1_tx': '0', 'v3_group_and_source_specific_queries_rx': '0',
+#  'v3_block_old_source_rx': '0', 'leave_v2_rx': '0', 'v3_block_old_source_tx': '0', 
+# 'leave_v2_tx': '0', 'grp_query_rx': '0', 'invalid_rx': '0', 'v3_allow_new_source_tx': '0', '
+# v3_change_mode_exclude_rx': '0','gen_query_rx': '2', 'v3_change_mode_exclude_tx': '0', 
+# 'v3_allow_new_source_rx': '0'}}}}}
+#This command will return learned info for IGMP Querier
+
+status = ixiangpf.emulation_igmp_info(
+    mode                                                        = "learned_info",
+    handle                                                      = "<igmp_querier_handle>",
+)
+#This command will return learned info as
+# {'status': '1', '1/2/2': {'/topology:2/deviceGroup:1/ethernet:1/ipv4:1/igmpQuerier:1/item:1': 
+# {'record': {'1': {'group_timer': '256', 'compatibility_mode': 'v2', 'compatibility_timer': '0', 
+# 'source_timer': '0', 'group_adress': '225.0.0.4', 'filter_mode': 'N/A', 'source_address': 'N/A'}, 
+# '10': {'group_timer': '256', 'compatibility_mode': 'v2', 'compatibility_timer': '0', 'source_timer': '0', 
+# 'group_adress': '225.0.0.10', 'filter_mode': 'N/A', 'source_address': 'N/A'}, '3': {'group_timer': '256', 
+# 'compatibility_mode': 'v2', 'compatibility_timer': '0', 'source_timer': '0', 'group_adress': '225.0.0.1', 
+# 'filter_mode': 'N/A', 'source_address': 'N/A'}, '2': {'group_timer': '256', 'compatibility_mode': 'v2', 
+# 'compatibility_timer': '0', 'source_timer': '0', 'group_adress': '225.0.0.2', 'filter_mode': 'N/A',
+# 'source_address': 'N/A'}, '5': {'group_timer': '256', 'compatibility_mode': 'v2', 'compatibility_timer': '0',
+#  'source_timer': '0', 'group_adress': '225.0.0.8', 'filter_mode': 'N/A', 'source_address': 'N/A'}, '4': 
+# {'group_timer': '256', 'compatibility_mode': 'v2', 'compatibility_timer': '0', 'source_timer': '0', 
+# 'group_adress': '225.0.0.3', 'filter_mode': 'N/A', 'source_address': 'N/A'},'7': {'group_timer': '256', 
+# 'compatibility_mode': 'v2', 'compatibility_timer': '0', 'source_timer': '0', 'group_adress': '225.0.0.5', 
+# 'filter_mode': 'N/A', 'source_address': 'N/A'}, '6': {'group_timer': '256', 'compatibility_mode': 'v2', 
+# 'compatibility_timer': '0', 'source_timer': '0', 'group_adress': '225.0.0.6', 'filter_mode': 'N/A', 
+# 'source_address': 'N/A'}, '9': {'group_timer': '256', 'compatibility_mode': 'v2', 'compatibility_timer': '0', 
+# 'source_timer': '0', 'group_adress': '225.0.0.9', 'filter_mode': 'N/A', 'source_address': 'N/A'}, '8': 
+# {'group_timer': '256', 'compatibility_mode': 'v2', 'compatibility_timer': '0', 'source_timer': '0', 'group_adress': 
+# '225.0.0.7', 'filter_mode': 'N/A', 'source_address': 'N/A'}}, 'querier_address': '100.1.0.1', 'querier_version': 'v2'}}}
+    ]]></example>
+    <example lang="perl" supportType="ixNetworkCpfSupport"><![CDATA[
+# Command : ixiangpf::emulation_igmp_info
+
+# This command will fetch aggregate stats for IGMP host
+my $stats = ixiangpf::emulaiton_igmp_info ({
+    mode                                                        => "aggregate",
+    handle                                                      => "<igmp_host_handle>",
+});
+# This command will return stats as
+# {status 1} {{IGMP Host} {{{IGMP Host Stats Per Device} {{status started} 
+# {sessions_total 10} {sessions_up 10} {sessions_down 0} {sessions_notstarted 0} 
+# {igmp {{aggregate {{total_tx 360} {total_rx 32} {invalid_rx 0} {rprt_v1_tx 0} 
+# {rprt_v1_rx 0} {rprt_v2_tx 360} {rprt_v2_rx 0} {rprt_v3_tx 0} {rprt_v3_rx 0} 
+# {gen_query_rx 32} {grp_query_rx 0} {v3_group_and_source_specific_queries_rx 0}
+#  {leave_v2_tx 0} {leave_v2_rx 0} {v3_mode_include_tx 0} {v3_mode_include_rx 0} 
+# {v3_mode_exclude_tx 0} {v3_mode_exclude_rx 0} {v3_change_mode_include_tx 0} 
+# {v3_change_mode_include_rx 0} {v3_change_mode_exclude_tx 0} {v3_change_mode_exclude_rx 0}
+#  {v3_allow_new_source_tx 0} {v3_allow_new_source_rx 0} {v3_block_old_source_tx 0} 
+# {v3_block_old_source_rx 0} {pair_joined 100}}}}}}}}}
+
+#This command will return learned info for IGMP Querier
+
+my $learned_info = ixiangpf::emulation_igmp_info ({
+    mode                                                        => "learned_info",
+    handle                                                      => "<igmp_querier_handle>",
+});
+
+#This command will return learned info as
+# {status 1} {1/2/4 {{/topology:2/deviceGroup:1/ethernet:1/ipv4:1/igmpQuerier:1/item:1 
+# {{record {{1 {{group_adress 225.0.0.4} {group_timer 241} {filter_mode N/A} {compatibility_mode v2} 
+# {compatibility_timer 0} {source_address N/A} {source_timer 0}}} {2 {{group_adress 225.0.0.2}
+#  {group_timer 241} {filter_mode N/A} {compatibility_mode v2} {compatibility_timer 0} {source_address N/A} 
+# {source_timer 0}}} {3 {{group_adress 225.0.0.1} {group_timer 241} {filter_mode N/A} {compatibility_mode v2} 
+# {compatibility_timer 0} {source_address N/A} {source_timer 0}}} {4 {{group_adress 225.0.0.3} {group_timer 241} 
+# {filter_mode N/A} {compatibility_mode v2} {compatibility_timer 0} {source_address N/A} {source_timer 0}}}
+#  {5 {{group_adress 225.0.0.8} {group_timer 241} {filter_mode N/A} {compatibility_mode v2} {compatibility_timer 0} 
+# {source_address N/A} {source_timer 0}}} {6 {{group_adress 225.0.0.6} {group_timer 241} {filter_mode N/A} 
+# {compatibility_mode v2} {compatibility_timer 0} {source_address N/A} {source_timer 0}}} {7 {{group_adress 225.0.0.5}
+#  {group_timer 241} {filter_mode N/A} {compatibility_mode v2} {compatibility_timer 0} {source_address N/A} {source_timer 0}}} 
+# {8 {{group_adress 225.0.0.7} group_timer 241} {filter_mode N/A} {compatibility_mode v2} {compatibility_timer 0} 
+# {source_address N/A} {source_timer 0}}} {9 {{group_adress 225.0.0.9} {group_timer 241} {filter_mode N/A} 
+# {compatibility_mode v2} {compatibility_timer 0} {source_address N/A} {source_timer 0}}} {10 {{group_adress 225.0.0.10} 
+# {group_timer 241} {filter_mode N/A} {compatibility_mode v2} {compatibility_timer 0} 
+# {source_address N/A} {source_timer 0}}}}} {querier_version v2} {querier_address 100.1.0.1}}}}}
+    ]]></example>
+    <example lang="robot" supportType="ixNetworkCpfSupport"><![CDATA[
+# Command : Emulaiton Igmp Info 
+# This command will fetch aggregate stats for IGMP host
+
+   ${result} =  Emulaiton Igmp Info  mode=aggregate   handle=<igmp_host_handle>  
+   ${status} =  Get From Dictionary  ${result}  status
+   Run Keyword If  '${status}' != '1'  FAIL  "Error: Status is not SUCCESS"  ELSE  Log  "Status is SUCCESS"
+   ${stats} =  Get From Dictionary  ${result}  stats
+
+# This command will return stats as
+# {'status': '1', 'IGMP Host': {'IGMP Host Stats Per Device': {'status': 'started', 
+# 'sessions_total': '10', 'sessions_up': '1', 'sessions_down': '0', 'sessions_notstarted': 
+# '9', 'igmp': {'aggregate': {'total_tx': '30', 'total_rx': '2', 'v3_change_mode_include_rx': 
+# '0', 'v3_mode_exclude_tx': '0', 'rprt_v2_tx': '30', 'v3_mode_exclude_rx': '0', 
+# 'v3_change_mode_include_tx': '0', 'v3_mode_include_tx': '0', 'rprt_v2_rx': '0', 
+# 'pair_joined': '10', 'v3_mode_include_rx': '0', 'rprt_v3_tx': '0', 'rprt_v3_rx': '0', 
+# 'rprt_v1_rx': '0', 'rprt_v1_tx': '0', 'v3_group_and_source_specific_queries_rx': '0',
+#  'v3_block_old_source_rx': '0', 'leave_v2_rx': '0', 'v3_block_old_source_tx': '0', 
+# 'leave_v2_tx': '0', 'grp_query_rx': '0', 'invalid_rx': '0', 'v3_allow_new_source_tx': '0', '
+# v3_change_mode_exclude_rx': '0','gen_query_rx': '2', 'v3_change_mode_exclude_tx': '0', 
+# 'v3_allow_new_source_rx': '0'}}}}}
+
+#This command will return learned info for IGMP Querier
+
+   ${result} =  Emulaiton Igmp Info  mode=learned_info   handle=<igmp_querier_handle>  
+   ${status} =  Get From Dictionary  ${result}  status
+   Run Keyword If  '${status}' != '1'  FAIL  "Error: Status is not SUCCESS"  ELSE  Log  "Status is SUCCESS"
+   ${learned_info} =  Get From Dictionary  ${result}  learned_info
+
+#This command will return learned info as
+# {'status': '1', '1/2/2': {'/topology:2/deviceGroup:1/ethernet:1/ipv4:1/igmpQuerier:1/item:1': 
+# {'record': {'1': {'group_timer': '256', 'compatibility_mode': 'v2', 'compatibility_timer': '0', 
+# 'source_timer': '0', 'group_adress': '225.0.0.4', 'filter_mode': 'N/A', 'source_address': 'N/A'}, 
+# '10': {'group_timer': '256', 'compatibility_mode': 'v2', 'compatibility_timer': '0', 'source_timer': '0', 
+# 'group_adress': '225.0.0.10', 'filter_mode': 'N/A', 'source_address': 'N/A'}, '3': {'group_timer': '256', 
+# 'compatibility_mode': 'v2', 'compatibility_timer': '0', 'source_timer': '0', 'group_adress': '225.0.0.1', 
+# 'filter_mode': 'N/A', 'source_address': 'N/A'}, '2': {'group_timer': '256', 'compatibility_mode': 'v2', 
+# 'compatibility_timer': '0', 'source_timer': '0', 'group_adress': '225.0.0.2', 'filter_mode': 'N/A',
+# 'source_address': 'N/A'}, '5': {'group_timer': '256', 'compatibility_mode': 'v2', 'compatibility_timer': '0',
+#  'source_timer': '0', 'group_adress': '225.0.0.8', 'filter_mode': 'N/A', 'source_address': 'N/A'}, '4': 
+# {'group_timer': '256', 'compatibility_mode': 'v2', 'compatibility_timer': '0', 'source_timer': '0', 
+# 'group_adress': '225.0.0.3', 'filter_mode': 'N/A', 'source_address': 'N/A'},'7': {'group_timer': '256', 
+# 'compatibility_mode': 'v2', 'compatibility_timer': '0', 'source_timer': '0', 'group_adress': '225.0.0.5', 
+# 'filter_mode': 'N/A', 'source_address': 'N/A'}, '6': {'group_timer': '256', 'compatibility_mode': 'v2', 
+# 'compatibility_timer': '0', 'source_timer': '0', 'group_adress': '225.0.0.6', 'filter_mode': 'N/A', 
+# 'source_address': 'N/A'}, '9': {'group_timer': '256', 'compatibility_mode': 'v2', 'compatibility_timer': '0', 
+# 'source_timer': '0', 'group_adress': '225.0.0.9', 'filter_mode': 'N/A', 'source_address': 'N/A'}, '8': 
+# {'group_timer': '256', 'compatibility_mode': 'v2', 'compatibility_timer': '0', 'source_timer': '0', 'group_adress': 
+# '225.0.0.7', 'filter_mode': 'N/A', 'source_address': 'N/A'}}, 'querier_address': '100.1.0.1', 'querier_version': 'v2'}}}
+
+    ]]></example>
+  </code_examples>
+</method>

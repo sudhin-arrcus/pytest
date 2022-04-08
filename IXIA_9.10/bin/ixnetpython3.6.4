@@ -1,0 +1,24 @@
+#!/bin/sh
+#
+__FILE__=$(readlink -f "$0")
+__DIR__=$(dirname "$__FILE__")
+IXN_libs=$(readlink -f "$__DIR__/../lib")
+
+for FOLDER in `find $IXN_libs -type f -name IxNetwork.py | rev | cut -d/ -f2- | rev`
+do
+    PYTHONPATH="$PYTHONPATH:$FOLDER"
+done
+
+export PYTHONPATH 
+
+if ! [ -x "$(command -v ixiapython3.6.4)" ]; then
+    if ! [ -x "$(command -v python3)" ]; then
+        echo 'ERROR: Could not find an usable python3 interpreter (ixiapython3.6.4 or python3). Please consult the user guide for installing the API Dependencies.' >&2
+        exit 1
+    else 
+        echo 'WARNING: ixiapython3.6.4 is not installed. Using the default python3 interpreter instead.'
+        python3 ${@+"$@"}
+    fi
+else 
+    ixiapython3.6.4  ${@+"$@"}
+fi

@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<method xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="emulation_dhcp_server_control" name_robot="Emulation Dhcp Server Control" displayPriority="2" ixHalOrProtocolPythonApiSupport="false" ixHalOrProtocolPythonScriptgenSupport="false" ixHalOrProtocolPerlApiSupport="false" ixHalOrProtocolPerlScriptgenSupport="false" ixHalOrProtocolTclApiSupport="false" ixHalOrProtocolTclScriptgenSupport="false" ixLoadPythonApiSupport="false" ixLoadPythonScriptgenSupport="false" ixLoadPerlApiSupport="false" ixLoadPerlScriptgenSupport="false" ixLoadTclApiSupport="false" ixLoadTclScriptgenSupport="false" ixNetworkCpfPythonApiSupport="true" ixNetworkCpfPythonScriptgenSupport="false" ixNetworkCpfPerlApiSupport="true" ixNetworkCpfPerlScriptgenSupport="false" ixNetworkCpfTclApiSupport="true" ixNetworkCpfTclScriptgenSupport="false" ixNetworkCpfRobotApiSupport="true" ixNetworkCpfRobotScriptgenSupport="false" ixNetworkPythonApiSupport="false" ixNetworkPythonScriptgenSupport="false" ixNetworkPerlApiSupport="false" ixNetworkPerlScriptgenSupport="false" ixNetworkTclApiSupport="false" ixNetworkTclScriptgenSupport="false" ixNetworkRobotApiSupport="false" ixNetworkRobotScriptgenSupport="false" Lang="none">
+  <description supportType="ixNetworkSupport" contentType="noContent" target="noTarget" />
+  <description supportType="ixLoadSupport" contentType="noContent" target="noTarget" />
+  <description supportType="ixHalOrProtocolSupport" contentType="noContent" target="noTarget" />
+  <description supportType="ixNetworkCpfSupport" contentType="new" target="noTarget">This procedure controls DHCP Server actions on an Ixia port.</description>
+  <chapter>DHCP Server APIs</chapter>
+  <arguments>
+    <argument name="dhcp_handle" definedBy="ciscoDefined" ixHalOrProtocolPythonApiSupport="false" ixHalOrProtocolPythonScriptgenSupport="false" ixHalOrProtocolPerlApiSupport="false" ixHalOrProtocolPerlScriptgenSupport="false" ixHalOrProtocolTclApiSupport="false" ixHalOrProtocolTclScriptgenSupport="false" ixLoadPythonApiSupport="false" ixLoadPythonScriptgenSupport="false" ixLoadPerlApiSupport="false" ixLoadPerlScriptgenSupport="false" ixLoadTclApiSupport="false" ixLoadTclScriptgenSupport="false" ixNetworkCpfPythonApiSupport="true" ixNetworkCpfPythonScriptgenSupport="supportedInOtherCommand" ixNetworkCpfPerlApiSupport="true" ixNetworkCpfPerlScriptgenSupport="supportedInOtherCommand" ixNetworkCpfTclApiSupport="true" ixNetworkCpfTclScriptgenSupport="supportedInOtherCommand" ixNetworkCpfRobotApiSupport="true" ixNetworkCpfRobotScriptgenSupport="supportedInOtherCommand" ixNetworkPythonApiSupport="false" ixNetworkPythonScriptgenSupport="false" ixNetworkPerlApiSupport="false" ixNetworkPerlScriptgenSupport="false" ixNetworkTclApiSupport="false" ixNetworkTclScriptgenSupport="false" ixNetworkRobotApiSupport="false" ixNetworkRobotScriptgenSupport="false" lang="false">
+      <ixHalOrProtocolSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkCpfSupport contentType="new" target="noTarget" mandatory="false">
+        <description>
+          <text>DHCP Server range to perform action for. This parameter is supported using 
+         the following APIs: IxTclNetwork.</text>
+        </description>
+        <restriction type="VALUETYPE" valueType="ANY" />
+      </ixNetworkCpfSupport>
+      <ixLoadSupport contentType="noContent" target="noTarget" mandatory="false" />
+    </argument>
+    <argument name="port_handle" definedBy="ciscoDefined" ixHalOrProtocolPythonApiSupport="false" ixHalOrProtocolPythonScriptgenSupport="false" ixHalOrProtocolPerlApiSupport="false" ixHalOrProtocolPerlScriptgenSupport="false" ixHalOrProtocolTclApiSupport="false" ixHalOrProtocolTclScriptgenSupport="false" ixLoadPythonApiSupport="false" ixLoadPythonScriptgenSupport="false" ixLoadPerlApiSupport="false" ixLoadPerlScriptgenSupport="false" ixLoadTclApiSupport="false" ixLoadTclScriptgenSupport="false" ixNetworkCpfPythonApiSupport="true" ixNetworkCpfPythonScriptgenSupport="supportedInOtherCommand" ixNetworkCpfPerlApiSupport="true" ixNetworkCpfPerlScriptgenSupport="supportedInOtherCommand" ixNetworkCpfTclApiSupport="true" ixNetworkCpfTclScriptgenSupport="supportedInOtherCommand" ixNetworkCpfRobotApiSupport="true" ixNetworkCpfRobotScriptgenSupport="supportedInOtherCommand" ixNetworkPythonApiSupport="false" ixNetworkPythonScriptgenSupport="false" ixNetworkPerlApiSupport="false" ixNetworkPerlScriptgenSupport="false" ixNetworkTclApiSupport="false" ixNetworkTclScriptgenSupport="false" ixNetworkRobotApiSupport="false" ixNetworkRobotScriptgenSupport="false" lang="false">
+      <ixHalOrProtocolSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkCpfSupport contentType="new" target="noTarget" mandatory="false">
+        <description>
+          <text>The port handle to perform action for. This parameter is supported using 
+         the following APIs: IxTclNetwork.</text>
+        </description>
+        <restriction type="VALUETYPE" valueType="ANY" />
+      </ixNetworkCpfSupport>
+      <ixLoadSupport contentType="noContent" target="noTarget" mandatory="false" />
+    </argument>
+    <argument name="args" definedBy="CiscoDefinedNotSupported" ixHalOrProtocolPythonApiSupport="false" ixHalOrProtocolPythonScriptgenSupport="false" ixHalOrProtocolPerlApiSupport="false" ixHalOrProtocolPerlScriptgenSupport="false" ixHalOrProtocolTclApiSupport="false" ixHalOrProtocolTclScriptgenSupport="false" ixLoadPythonApiSupport="false" ixLoadPythonScriptgenSupport="false" ixLoadPerlApiSupport="false" ixLoadPerlScriptgenSupport="false" ixLoadTclApiSupport="false" ixLoadTclScriptgenSupport="false" ixNetworkCpfPythonApiSupport="false" ixNetworkCpfPythonScriptgenSupport="false" ixNetworkCpfPerlApiSupport="false" ixNetworkCpfPerlScriptgenSupport="false" ixNetworkCpfTclApiSupport="false" ixNetworkCpfTclScriptgenSupport="false" ixNetworkCpfRobotApiSupport="false" ixNetworkCpfRobotScriptgenSupport="false" ixNetworkPythonApiSupport="false" ixNetworkPythonScriptgenSupport="false" ixNetworkPerlApiSupport="false" ixNetworkPerlScriptgenSupport="false" ixNetworkTclApiSupport="false" ixNetworkTclScriptgenSupport="false" ixNetworkRobotApiSupport="false" ixNetworkRobotScriptgenSupport="false" lang="false">
+      <ixHalOrProtocolSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkCpfSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixLoadSupport contentType="noContent" target="noTarget" mandatory="false" />
+    </argument>
+    <argument name="action" definedBy="ciscoDefined" ixHalOrProtocolPythonApiSupport="false" ixHalOrProtocolPythonScriptgenSupport="false" ixHalOrProtocolPerlApiSupport="false" ixHalOrProtocolPerlScriptgenSupport="false" ixHalOrProtocolTclApiSupport="false" ixHalOrProtocolTclScriptgenSupport="false" ixLoadPythonApiSupport="false" ixLoadPythonScriptgenSupport="false" ixLoadPerlApiSupport="false" ixLoadPerlScriptgenSupport="false" ixLoadTclApiSupport="false" ixLoadTclScriptgenSupport="false" ixNetworkCpfPythonApiSupport="true" ixNetworkCpfPythonScriptgenSupport="true" ixNetworkCpfPerlApiSupport="true" ixNetworkCpfPerlScriptgenSupport="true" ixNetworkCpfTclApiSupport="true" ixNetworkCpfTclScriptgenSupport="true" ixNetworkCpfRobotApiSupport="true" ixNetworkCpfRobotScriptgenSupport="true" ixNetworkPythonApiSupport="false" ixNetworkPythonScriptgenSupport="false" ixNetworkPerlApiSupport="false" ixNetworkPerlScriptgenSupport="false" ixNetworkTclApiSupport="false" ixNetworkTclScriptgenSupport="false" ixNetworkRobotApiSupport="false" ixNetworkRobotScriptgenSupport="false" lang="false">
+      <ixHalOrProtocolSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkCpfSupport contentType="new" target="noTarget" mandatory="true">
+        <description>
+          <text>This is a mandatory argument. Used to select the task to perform. 
+         This parameter is supported using the following APIs: IxTclNetwork. 
+         Valid choices are: abort abort_async renew reset collect restart_down force_renew reconfigure.</text>
+          <choices>
+            <choice>
+              <choiceName>abort</choiceName>
+              <choiceText />
+            </choice>
+            <choice>
+              <choiceName>abort_async</choiceName>
+              <choiceText />
+            </choice>
+            <choice>
+              <choiceName>renew</choiceName>
+              <choiceText />
+            </choice>
+            <choice>
+              <choiceName>reset</choiceName>
+              <choiceText />
+            </choice>
+            <choice>
+              <choiceName>collect</choiceName>
+              <choiceText />
+            </choice>
+            <choice>
+              <choiceName>restart_down</choiceName>
+              <choiceText />
+            </choice>
+            <choice>
+              <choiceName>force_renew</choiceName>
+              <choiceText>This should be used with DHCPv4 Server.</choiceText>
+            </choice>
+            <choice>
+              <choiceName>reconfigure</choiceName>
+              <choiceText>This should be used with DHCPv6 Server.</choiceText>
+            </choice>
+          </choices>
+        </description>
+        <restriction type="VALUETYPE" valueType="CHOICES" value="abort abort_async renew reset collect restart_down force_renew reconfigure" />
+      </ixNetworkCpfSupport>
+      <ixLoadSupport contentType="noContent" target="noTarget" mandatory="false" />
+    </argument>
+  </arguments>
+  <returnValues>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>status</key>
+      <value>$::SUCCESS | $::FAILURE Status of procedure call.</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>log</key>
+      <value>When status is failure, contains more information.</value>
+      <tag value="" />
+    </returnValue>
+  </returnValues>
+  <sampleInput>
+    <sampleInputElem supportType="ixNetworkCpfSupport" />
+  </sampleInput>
+  <sampleOutput>
+    <sampleOutputElem supportType="ixNetworkCpfSupport" />
+  </sampleOutput>
+  <notes>
+    <note supportType="ixNetworkCpfSupport"> </note>
+  </notes>
+  <seeAlso>
+    <seeAlsoElem supportType="ixNetworkCpfSupport" />
+  </seeAlso>
+  <examples>
+    <example supportType="ixNetworkCpfSupport" />
+  </examples>
+  <code_examples>
+    <example lang="tcl" supportType="ixNetworkCpfSupport"><![CDATA[
+# Command :- ::ixiangpf::emulation_dhcp_server_control
+
+# This command can be used to perform action collect on DHCP Server
+
+set control_status [::ixiangpf::emulation_dhcp_server_control 	\
+	-dhcp_handle      <dhcp_serverhandle>			\
+	-action           collect			      	\
+]
+
+# This command will generate output as given 
+# {status 1}
+
+# This command can be used to perform action reset on DHCP Server
+
+set control_status [::ixiangpf::emulation_dhcp_server_control \
+	-dhcp_handle      <dhcp_serverhandle>                 \
+	-action           reset                               \
+]
+
+# This command will generate output as given 
+# {status 1}
+    ]]></example>
+    <example lang="python" supportType="ixNetworkCpfSupport"><![CDATA[
+# Command :- ixiangpf.emulation_dhcp_server_control
+# This command can be used to perform action collect on DHCP Server
+
+status = ixiangpf.emulation_dhcp_server_control(
+    dhcp_handle                                                 = "<dhcp_serverhandle>",
+    action                                                      = "collect",
+)
+# This command will generate output as given 
+# {status 1}
+# This command can be used to perform action reset on DHCP Server
+
+status = ixiangpf.emulation_dhcp_server_control(
+    dhcp_handle                                                 = "<dhcp_serverhandle>",
+    action                                                      = "reset",
+)
+# This command will generate output as given 
+# {status 1}
+    ]]></example>
+    <example lang="perl" supportType="ixNetworkCpfSupport"><![CDATA[
+# Command :- ixiangpf::emulation_dhcp_server_control
+# This command can be used to perform action collect on DHCP Server
+my $control_status = ixiangpf::emulation_dhcp_server_control ({
+    dhcp_handle                                                 => "<dhcp_serverhandle>",
+    action                                                      => "collect",
+});
+# This command will generate output as given 
+# {status 1}
+# This command can be used to perform action reset on DHCP Server
+my $control_status = ixiangpf::emulation_dhcp_server_control ({
+    dhcp_handle                                                 => "<dhcp_serverhandle>",
+    action                                                      => "reset",
+});
+# This command will generate output as given 
+# {status 1}
+    ]]></example>
+    <example lang="robot" supportType="ixNetworkCpfSupport"><![CDATA[
+# Command :- Emulation Dhcp Server Control
+# This command can be used to perform action collect on DHCP Server
+
+   ${result} =  Emulation Dhcp Server Control  dhcp_handle=<dhcp_serverhandle>   action=collect  
+   ${status} =  Get From Dictionary  ${result}  status
+   Run Keyword If  '${status}' != '1'  FAIL  "Error: Status is not SUCCESS"  ELSE  Log  "Status is SUCCESS"
+   ${control_status} =  Get From Dictionary  ${result}  control_status
+
+# This command will generate output as given 
+# {status 1}
+# This command can be used to perform action reset on DHCP Server
+
+   ${result} =  Emulation Dhcp Server Control  dhcp_handle=<dhcp_serverhandle>   action=reset  
+   ${status} =  Get From Dictionary  ${result}  status
+   Run Keyword If  '${status}' != '1'  FAIL  "Error: Status is not SUCCESS"  ELSE  Log  "Status is SUCCESS"
+   ${control_status} =  Get From Dictionary  ${result}  control_status
+
+# This command will generate output as given 
+# {status 1}
+    ]]></example>
+  </code_examples>
+</method>

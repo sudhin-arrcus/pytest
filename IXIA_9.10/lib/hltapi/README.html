@@ -1,0 +1,444 @@
+
+<HTML>
+<TITLE>
+        Ixia Software Release Notes
+    : 
+        HLT API 9.10 
+     : 
+        Build Number: 9.10.2007.43 (August 18, 2020)
+    </TITLE>
+<BODY>
+
+<CENTER>
+<H1>
+        Ixia Software Release Notes
+    <BR>
+        HLT API 9.10 
+    <BR>
+        Build Number: 9.10.2007.43 (August 18, 2020)
+    </H1>
+</CENTER>
+<UL>
+<LI>
+<A HREF="#About This Release">About This Release</A>
+</LI>
+<LI>
+<A HREF="#Ixia Software Compatibility">Ixia Software Compatibility</A>
+</LI>
+<LI>
+<A HREF="#Installation Notes">Installation Notes</A>
+</LI>
+<LI>
+<A HREF="#How to Report Problems">How to Report Problems</A>
+</LI>
+<LI>
+<A HREF="#Additional Documentation">Additional Documentation</A>
+</LI>
+<LI>
+<A HREF="#What's New in HLT API">What's New in HLT API</A>
+</LI>
+<LI>
+<A HREF="#Known Issues">Known Issues</A>
+</LI>
+<LI>
+<A HREF="#Resolved Defects List">Resolved Defects List</A>
+</LI>
+</UL>
+<BR>
+<HR>
+   
+
+<H2>
+<A NAME="About This Release">About This Release</A>
+</H2>
+<PRE>
+HLTAPI9.10 is an alignment release with all other applications. It is a full-featured, fully-supported HLTAPI release, that may be used in 
+a production environment, when new features and/or hardware support are required. Please see the "What's New" section below for more information.     
+
+</PRE>
+<HR>
+      
+   
+
+
+
+
+
+<H2>
+<A NAME="Ixia Software Compatibility">Ixia Software Compatibility</A>
+</H2>
+<PRE>
+<table border="2" cellspacing="2" cellpadding="1" width="650">
+        <thead>
+            <tr>
+                <th>env(IXIA_VERSION)</th>
+                <th>HLT</th>
+                <th>IxOS</th>
+                <th>IxRouter</th>
+                <th>IxNetwork</th>
+               <th>IxLoad</th>
+            </tr>
+        </thead>
+        <tbody> 
+            <tr>
+                <td>HLTSET236</td>
+                <td>9.10 </td>
+                <td>9.10 </td>
+                <td>N/A</td>
+                <td>N/A (P)</td>
+                <td>N/A</td>
+            </tr>
+             <tr>
+                <td>HLTSET237</td>
+                <td>9.10 </td>
+                <td>N/A</td>
+                <td>N/A</td>
+                <td>9.10 (NO)</td>
+                <td>N/A</td>
+            </tr>                  
+        </tbody>
+    </table>
+
+
+Note: Based on the HLTSET, HLT loads different sets of APIs as described below:
+
+- *P-Loads:
+   o IxOS (tclHal API)
+- *NO-Loads: 
+   o IxTclNetwork (only; without IxTclHal)
+
+The default setting for env(IXIA_VERSION) is the latest HLTSET237 value, if the 
+value is not set. If the value is set to an IxOS major.minor version, then the 
+largest HLTSET list that corresponds to that IxOS version is used.
+
+For additional product compatibility information please refer to the following 
+online utility. An Ixia website account is required before accessing.
+  
+<A HREF="http://www.ixiacom.com/support-overview/product-support/product-compatibility-matrix">http://www.ixiacom.com/support-overview/product-support/product-compatibility-matrix</A>
+
+<H3>IxNetwork API Notes</H3>
+HLT now supports only IxTclNetwork API. To access this API, you can use 
+HLTSETs *NO
+
+<H3>Previous Release Notes</H3> 
+Please visit the <A HREF="http://support.ixiacom.com/support-overview/product-support/downloads-updates/versions/7726">HLT API support web page</A> for the Release Notes of previous HLTAPI versions.
+</PRE>
+<HR>   
+
+
+<H2>
+<A NAME="Installation Notes">Installation Notes</A>
+</H2>
+<PRE>
+   
+<H3>Installing on HLAPI Windows</H3>
+Starting with IxNetwork 7.51EA release, we recommend installing HLAPI by using the IxNetwork installer.
+HLAPI can be installed by choosing the "Custom" setup type of the IxNetwork installer. From the "Custom 
+Setup for Bundle Features" dialog box, the "HLTAPI" feature can be selected. Moreover, the sample 
+scripts will be installed in the same way, as a feature option. If the user doesn't select the "Samples 
+and Scripts" option from the dialog box, the HLAPI samples will not be installed by default.
+Please refer to the "IxNetwork Getting Started Guide.pdf" file for more details.
+
+However, in this release, the user still has the option to install HLAPI using its standalone installer, 
+as it is still available. To install, simply execute HLTAPI9.10.exe.
+
+<H3>Installing platform independent HLAPI</H3>
+
+This release introduces a new installation mode for HLAPI on Linux systems.
+
+The platform independent package can be installed using the IxNetwork platform independent installer.
+From this release on, the IxNetwork archive will contain libraries for the corresponding HLAPI and IxOS 
+applications.
+Therefore, in order to access the HLAPI libraries, the user is required to uncompress the IxNetwork 
+TAR/ZIP archive, in the desired location. 
+The "bin" folder of each application provides scripts that launch the language interpreters used by Ixia
+products. Please make sure to edit each script to point to the correct location, where the applications 
+are installed on the system.
+In order to use the HLAPI libraries, please run the "hlapitcl","hlapiperl" or "hlapipython" scripts, to 
+open the desired interpreter and call the "package require Ixia" command (or its corresponding command 
+in Perl/Python).
+
+<H3>Native RedHat/Cent OS installers of HLAPI</H3>
+
+Similar to the platform independent installer presented above, the native RedHat/CentOS install for
+HLAPI will be incapsulated in the IxNetwork binary installer, starting with this release.
+The user will be required to run the IxNetwork binary, which will install the language packages for the
+Tcl, Perl and Python versions used by Ixia products, along with the actual application libraries for 
+IxNetwork, HLAPI and IxOS. 
+During the run of the IxNetwork installer, the user will be presented with the option to install HLAPI, 
+option which is checked by default.
+Please make sure to run the IxNetwork installer with "root" privileges, since the languages packages 
+will always be placed under "/opt/ixia"! 
+By default, the application libraries are also installed under "/opt/ixia", in which case the 
+"hlapitcl","hlapiperl" and "hlapipython" scripts, mentioned in the platform independent installer 
+section above, will work without modifications.
+In the case in which the user selects another install path for the application libraries, he/she will 
+have to edit the "bin" folder scripts as mentioned above, in the "Installing platform independent 
+HLAPI", to point to the correct application libraries folders.
+</PRE>
+<HR> 
+
+
+<H2>
+<A NAME="How to Report Problems">How to Report Problems</A>
+</H2>
+<PRE>
+<table class="outerTable" width="40%" border="1" >       
+	
+        <tbody>
+	    <tr>
+		<td>
+		     <p><h3><strong> Ixia headquarters</strong></h3></p>
+		     <p>26601 W. Agoura Road</p>
+		     <p>Calabasas, California 91302, USA</p>
+		     </p>
+		     <table class="innerTable" width="100%" border="1">    
+                     <tr>
+                      <td rowspan="1">Web Address:</td>
+                      <td><A HREF="https://www.ixiacom.com/contact/info" target="_blank">www.ixiacom.com/contact/info</A></td>
+                     </tr>
+                     <tr>
+                      <td rowspan="1">Phone:</td>
+                      <td>1-877-367-4942 - Toll-frree North America</br></td>		      
+                     </tr>
+		      <tr>
+                      <td rowspan="1">Phone:</td>                     
+		      <td>1-818-871-1800 - Outside North America</br></td>
+                     </tr>
+
+		    <tr>
+		       <td rowspan="1">Fax:</td>
+                      <td>1-818-871-1805</br></td>
+		    </tr>
+		    </table>
+		</td>
+          </tr>  
+            <tr>
+                <td>
+                    <p><strong> Global Support</strong></p>
+                    <table class="innerTable" width="100%" border="1">                   
+                    <tr>
+                      <td rowspan="1">Email:</td>
+                      <td><A HREF="mailto:support@ixiacom.com">support@ixiacom.com</A></td>
+                    </tr>
+                    <tr>
+                      <td rowspan="1">Phone:</td>
+                      <td>1-818-595-2599</br></td>
+                    </tr>
+                   </table>
+                </td>
+            </tr>     
+	    <tr>
+                <td>
+                    <p><strong> Asia Pacific Customer Support</strong></p>
+                    <table class="innerTable" width="100%" border="1">                  
+                    <tr>
+                      <td rowspan="1">Email:</td>
+                      <td><A HREF="mailto:support-asiapac@ixiacom.com">support-asiapac@ixiacom.com</A></td>
+                    </tr>
+                    <tr>
+                      <td rowspan="1">Phone:</td>
+                      <td>+91-80-4939-6410</td>
+                    </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p><strong> Europe, Middle East, and Africa Customer Support</strong></p>
+                    <table class="innerTable" width="100%" border="1">                   
+                    <tr>
+                      <td rowspan="1">Email:</td>
+                      <td><A HREF="mailto:support-emea@ixiacom.com">support-emea@ixiacom.com</A></td>
+                    </tr>
+                    <tr>
+                      <td rowspan="1">Phone:</td>
+                      <td>+40-21-301-5699</td>
+                    </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p><strong> India Customer Support</strong></p>
+                    <table class="innerTable" width="100%" border="1">                
+                    <tr>
+                      <td rowspan="1">Email:</td>
+                      <td><A HREF="mailto:support-india@ixiacom.com">support-india@ixiacom.com</A></td>
+                    </tr>
+                    <tr>
+                      <td rowspan="1">Phone:</td>
+                      <td>+91-80-4939-6410</td>
+                    </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p><strong>Japan Customer Support</strong></p>
+                    <table class="innerTable" width="100%" border="1">        
+                    <tr>
+                      <td rowspan="1">Email:</td>
+                      <td><A HREF="mailto:support-japan@ixiacom.com">support-japan@ixiacom.com</A></td>
+                    </tr>
+                    <tr>
+                      <td rowspan="1">Phone:</td>
+                      <td>+81-3-5326-1980</td>
+                    </tr>
+                    </table>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <p><strong>China Customer Support</strong></p>
+                    <table class="innerTable" width="100%" border="1">                 
+                    <tr>
+                      <td rowspan="1">Email:</td>
+                      <td><A HREF="mailto:support-china@ixiacom.com ">support-china@ixiacom.com </A></td>
+                    </tr>
+                    <tr>
+                      <td rowspan="1">Phone:</td>
+                      <td>400-898-0598 (Greater China region)</td>
+                    </tr>
+                    <tr>
+                      <td rowspan="1">Phone:</td>
+                      <td>+86-10-5732-3932 (Hong Kong customers)</td>
+                    </tr>
+                    </table>
+                </td>
+            </tr> 
+	    <tr>
+                <td>
+                    <p><strong>Korea Office Support</strong></p>
+                    <table class="innerTable" width="100%" border="1">
+                    <tr>
+                      <td rowspan="1">Email:</td>
+                      <td><A HREF="mailto:support-korea@ixiacom.com">support-korea@ixiacom.com</A></td>
+                    </tr>
+                    <tr>
+                      <td rowspan="1">Phone:</td>
+                      <td>+82-2-3461-0095</td>
+                    </tr>
+                    </table>
+                </td>
+            </tr> 
+	    <tr>
+                <td>
+                    <p><strong>Singapore Office Support</strong></p>
+                    <table class="innerTable" width="100%" border="1">
+                    <tr>
+                      <td rowspan="1">Email:</td>
+                      <td><A HREF="mailto:support-korea@ixiacom.com">support-asiapac@ixiacom.com</A></td>
+                    </tr>
+                    <tr>
+                      <td rowspan="1">Phone:</td>
+                      <td>+656-494-8910</td>
+                    </tr>
+                    </table>
+                </td>
+            </tr>  
+        </tbody>
+        </table>
+</PRE>
+<HR>
+
+<H2>
+<A NAME="Additional Documentation">Additional Documentation</A>
+</H2>
+<PRE>
+Please refer to our website at <A HREF="http://support.ixiacom.com/support-services/product-support/user-guides">http://support.ixiacom.com/support-services/product-support/user-guides</A>. 
+
+You will be required to provide a login and password to enter this section of 
+the web site. If you do not have the username and password, please forward your 
+request to <A HREF="mailto:support@ixiacom.com">mailto:support@ixiacom.com</A>.
+</PRE>
+<HR>
+
+
+
+    
+        
+<H2>
+<A NAME="What's New in HLT API">What's New in HLT API</A>
+</H2>       
+
+
+
+<H2>9.10 Features</H2>
+
+
+
+
+<TABLE WIDTH="90%" BORDER="2" CELLPADDING="3" CELLSPACING="4">
+
+
+<TR BGCOLOR="#99CCFF">
+<TH>HLAPI</TH>
+</TR>
+
+
+
+
+
+
+<TR>
+<TD><TT>IxNetwork now supports NGPF based HLAPI of CFM/Y.1731</TT></TD>
+</TR>
+
+
+
+
+
+
+
+
+
+
+<TR>
+<TD><TT>IxNetwork now supports NGPF based  HLAPI of ESMC</TT></TD>
+</TR>
+
+
+
+
+
+
+</TABLE>
+<BR>
+
+
+
+
+
+ 
+    
+<HR>
+
+
+
+<H2>
+<A NAME="Known Issues">Known Issues</A>
+</H2>
+<PRE>
+Please visit the <A HREF="http://support.ixiacom.com/support-overview/product-support/downloads-updates/versions/7726">HLT API support web page</A> for more information on known issues related to this release.
+An Ixia website account is required before accessing.
+</PRE>
+<HR>
+   
+    
+        
+<H2>
+<A NAME="Resolved Defects List">Resolved Defects List</A>
+</H2>
+
+    
+<P>
+<HR>
+</P>
+
+
+
+
+</BODY>
+</HTML>

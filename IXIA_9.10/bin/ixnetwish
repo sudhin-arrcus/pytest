@@ -1,0 +1,24 @@
+#!/bin/sh
+#
+__FILE__=$(readlink -f "$0")
+__DIR__=$(dirname "$__FILE__")
+IXN_libs=$(readlink -f "$__DIR__/../lib")
+
+for FOLDER in `find $IXN_libs -type f -name pkgIndex.tcl | rev | cut -d/ -f2- | rev`
+do
+    TCLLIBPATH="$TCLLIBPATH $FOLDER"
+done
+
+export TCLLIBPATH
+
+if ! [ -x "$(command -v ixiawish8.5.17)" ]; then
+    if ! [ -x "$(command -v wish8.5)" ]; then
+        echo 'ERROR: Could not find an usable Tcl Wish 8.5 interpreter (ixiawish8.5.17 or wish8.5). Please consult the user guide for installing the API Dependencies.' >&2
+        exit 1
+    else 
+        echo 'WARNING: ixiawish8.5.17 is not installed. Using the default Tcl Wish 8.5 interpreter instead.'
+        wish8.5  ${@+"$@"}
+    fi
+else 
+    ixiawish8.5.17  ${@+"$@"}
+fi

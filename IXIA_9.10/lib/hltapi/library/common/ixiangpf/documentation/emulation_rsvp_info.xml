@@ -1,0 +1,768 @@
+<?xml version="1.0" encoding="utf-8"?>
+<method xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="emulation_rsvp_info" name_robot="Emulation Rsvp Info" displayPriority="4" ixHalOrProtocolPythonApiSupport="false" ixHalOrProtocolPythonScriptgenSupport="false" ixHalOrProtocolPerlApiSupport="false" ixHalOrProtocolPerlScriptgenSupport="false" ixHalOrProtocolTclApiSupport="false" ixHalOrProtocolTclScriptgenSupport="false" ixLoadPythonApiSupport="false" ixLoadPythonScriptgenSupport="false" ixLoadPerlApiSupport="false" ixLoadPerlScriptgenSupport="false" ixLoadTclApiSupport="false" ixLoadTclScriptgenSupport="false" ixNetworkCpfPythonApiSupport="true" ixNetworkCpfPythonScriptgenSupport="false" ixNetworkCpfPerlApiSupport="true" ixNetworkCpfPerlScriptgenSupport="false" ixNetworkCpfTclApiSupport="true" ixNetworkCpfTclScriptgenSupport="false" ixNetworkCpfRobotApiSupport="true" ixNetworkCpfRobotScriptgenSupport="false" ixNetworkPythonApiSupport="false" ixNetworkPythonScriptgenSupport="false" ixNetworkPerlApiSupport="false" ixNetworkPerlScriptgenSupport="false" ixNetworkTclApiSupport="false" ixNetworkTclScriptgenSupport="false" ixNetworkRobotApiSupport="false" ixNetworkRobotScriptgenSupport="false" Lang="none">
+  <description supportType="ixNetworkSupport" contentType="noContent" target="noTarget" />
+  <description supportType="ixLoadSupport" contentType="noContent" target="noTarget" />
+  <description supportType="ixHalOrProtocolSupport" contentType="noContent" target="noTarget" />
+  <description supportType="ixNetworkCpfSupport" contentType="new" target="noTarget">Retrieves information about the LDP protocol.</description>
+  <chapter>RSVP APIs</chapter>
+  <arguments>
+    <argument name="mode" definedBy="ixiaDefined" ixHalOrProtocolPythonApiSupport="false" ixHalOrProtocolPythonScriptgenSupport="false" ixHalOrProtocolPerlApiSupport="false" ixHalOrProtocolPerlScriptgenSupport="false" ixHalOrProtocolTclApiSupport="false" ixHalOrProtocolTclScriptgenSupport="false" ixLoadPythonApiSupport="false" ixLoadPythonScriptgenSupport="false" ixLoadPerlApiSupport="false" ixLoadPerlScriptgenSupport="false" ixLoadTclApiSupport="false" ixLoadTclScriptgenSupport="false" ixNetworkCpfPythonApiSupport="true" ixNetworkCpfPythonScriptgenSupport="supportedInOtherCommand" ixNetworkCpfPerlApiSupport="true" ixNetworkCpfPerlScriptgenSupport="supportedInOtherCommand" ixNetworkCpfTclApiSupport="true" ixNetworkCpfTclScriptgenSupport="supportedInOtherCommand" ixNetworkCpfRobotApiSupport="true" ixNetworkCpfRobotScriptgenSupport="supportedInOtherCommand" ixNetworkPythonApiSupport="false" ixNetworkPythonScriptgenSupport="false" ixNetworkPerlApiSupport="false" ixNetworkPerlScriptgenSupport="false" ixNetworkTclApiSupport="false" ixNetworkTclScriptgenSupport="false" ixNetworkRobotApiSupport="false" ixNetworkRobotScriptgenSupport="false" lang="false">
+      <ixHalOrProtocolSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkCpfSupport contentType="new" target="noTarget" mandatory="true">
+        <description>
+          <text />
+          <choices>
+            <choice>
+              <choiceName>stats</choiceName>
+              <choiceText>Gather RSVP statistics.</choiceText>
+            </choice>
+            <choice>
+              <choiceName>clear_stats</choiceName>
+              <choiceText>Clear RSVP TE IF statistics.</choiceText>
+            </choice>
+            <choice>
+              <choiceName>fetch_info</choiceName>
+              <choiceText>Get RSVP TE Info.</choiceText>
+            </choice>
+            <choice>
+              <choiceName>learned_info</choiceName>
+              <choiceText>Get RSVP TE IF Learned Information</choiceText>
+            </choice>
+          </choices>
+        </description>
+        <restriction type="VALUETYPE" valueType="CHOICES" value="stats clear_stats fetch_info learned_info" />
+      </ixNetworkCpfSupport>
+      <ixLoadSupport contentType="noContent" target="noTarget" mandatory="false" />
+    </argument>
+    <argument name="handle" definedBy="ciscoDefined" ixHalOrProtocolPythonApiSupport="false" ixHalOrProtocolPythonScriptgenSupport="false" ixHalOrProtocolPerlApiSupport="false" ixHalOrProtocolPerlScriptgenSupport="false" ixHalOrProtocolTclApiSupport="false" ixHalOrProtocolTclScriptgenSupport="false" ixLoadPythonApiSupport="false" ixLoadPythonScriptgenSupport="false" ixLoadPerlApiSupport="false" ixLoadPerlScriptgenSupport="false" ixLoadTclApiSupport="false" ixLoadTclScriptgenSupport="false" ixNetworkCpfPythonApiSupport="true" ixNetworkCpfPythonScriptgenSupport="supportedInOtherCommand" ixNetworkCpfPerlApiSupport="true" ixNetworkCpfPerlScriptgenSupport="supportedInOtherCommand" ixNetworkCpfTclApiSupport="true" ixNetworkCpfTclScriptgenSupport="supportedInOtherCommand" ixNetworkCpfRobotApiSupport="true" ixNetworkCpfRobotScriptgenSupport="supportedInOtherCommand" ixNetworkPythonApiSupport="false" ixNetworkPythonScriptgenSupport="false" ixNetworkPerlApiSupport="false" ixNetworkPerlScriptgenSupport="false" ixNetworkTclApiSupport="false" ixNetworkTclScriptgenSupport="false" ixNetworkRobotApiSupport="false" ixNetworkRobotScriptgenSupport="false" lang="false">
+      <ixHalOrProtocolSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkCpfSupport contentType="new" target="noTarget" mandatory="true">
+        <description>
+          <text>The RSVP-TE IF handle to act upon.</text>
+        </description>
+        <restriction type="VALUETYPE" valueType="ANY" />
+      </ixNetworkCpfSupport>
+      <ixLoadSupport contentType="noContent" target="noTarget" mandatory="false" />
+    </argument>
+    <argument name="port_handle" definedBy="ciscoDefined" ixHalOrProtocolPythonApiSupport="false" ixHalOrProtocolPythonScriptgenSupport="false" ixHalOrProtocolPerlApiSupport="false" ixHalOrProtocolPerlScriptgenSupport="false" ixHalOrProtocolTclApiSupport="false" ixHalOrProtocolTclScriptgenSupport="false" ixLoadPythonApiSupport="false" ixLoadPythonScriptgenSupport="false" ixLoadPerlApiSupport="false" ixLoadPerlScriptgenSupport="false" ixLoadTclApiSupport="false" ixLoadTclScriptgenSupport="false" ixNetworkCpfPythonApiSupport="true" ixNetworkCpfPythonScriptgenSupport="supportedInOtherCommand" ixNetworkCpfPerlApiSupport="true" ixNetworkCpfPerlScriptgenSupport="supportedInOtherCommand" ixNetworkCpfTclApiSupport="true" ixNetworkCpfTclScriptgenSupport="supportedInOtherCommand" ixNetworkCpfRobotApiSupport="true" ixNetworkCpfRobotScriptgenSupport="supportedInOtherCommand" ixNetworkPythonApiSupport="false" ixNetworkPythonScriptgenSupport="false" ixNetworkPerlApiSupport="false" ixNetworkPerlScriptgenSupport="false" ixNetworkTclApiSupport="false" ixNetworkTclScriptgenSupport="false" ixNetworkRobotApiSupport="false" ixNetworkRobotScriptgenSupport="false" lang="false">
+      <ixHalOrProtocolSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkCpfSupport contentType="new" target="noTarget" mandatory="false">
+        <description>
+          <text />
+        </description>
+        <restriction type="VALUETYPE" valueType="REGEXP" value="^[0-9]+/[0-9]+/[0-9]+$" />
+      </ixNetworkCpfSupport>
+      <ixLoadSupport contentType="noContent" target="noTarget" mandatory="false" />
+    </argument>
+    <argument name="lsp_delegation_state" definedBy="ixiaDefined" ixHalOrProtocolPythonApiSupport="false" ixHalOrProtocolPythonScriptgenSupport="false" ixHalOrProtocolPerlApiSupport="false" ixHalOrProtocolPerlScriptgenSupport="false" ixHalOrProtocolTclApiSupport="false" ixHalOrProtocolTclScriptgenSupport="false" ixLoadPythonApiSupport="false" ixLoadPythonScriptgenSupport="false" ixLoadPerlApiSupport="false" ixLoadPerlScriptgenSupport="false" ixLoadTclApiSupport="false" ixLoadTclScriptgenSupport="false" ixNetworkCpfPythonApiSupport="true" ixNetworkCpfPythonScriptgenSupport="supportedInOtherCommand" ixNetworkCpfPerlApiSupport="true" ixNetworkCpfPerlScriptgenSupport="supportedInOtherCommand" ixNetworkCpfTclApiSupport="true" ixNetworkCpfTclScriptgenSupport="supportedInOtherCommand" ixNetworkCpfRobotApiSupport="true" ixNetworkCpfRobotScriptgenSupport="supportedInOtherCommand" ixNetworkPythonApiSupport="false" ixNetworkPythonScriptgenSupport="false" ixNetworkPerlApiSupport="false" ixNetworkPerlScriptgenSupport="false" ixNetworkTclApiSupport="false" ixNetworkTclScriptgenSupport="false" ixNetworkRobotApiSupport="false" ixNetworkRobotScriptgenSupport="false" lang="false">
+      <ixHalOrProtocolSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkCpfSupport contentType="new" target="noTarget" mandatory="false">
+        <description>
+          <text>Get LSP Delegation State of RSVP-TE p2p Head ( Ingress ) LSPs</text>
+        </description>
+        <restriction type="VALUETYPE" valueType="FLAG" />
+      </ixNetworkCpfSupport>
+      <ixLoadSupport contentType="noContent" target="noTarget" mandatory="false" />
+    </argument>
+    <argument name="re_delegation_timer_status" definedBy="ixiaDefined" ixHalOrProtocolPythonApiSupport="false" ixHalOrProtocolPythonScriptgenSupport="false" ixHalOrProtocolPerlApiSupport="false" ixHalOrProtocolPerlScriptgenSupport="false" ixHalOrProtocolTclApiSupport="false" ixHalOrProtocolTclScriptgenSupport="false" ixLoadPythonApiSupport="false" ixLoadPythonScriptgenSupport="false" ixLoadPerlApiSupport="false" ixLoadPerlScriptgenSupport="false" ixLoadTclApiSupport="false" ixLoadTclScriptgenSupport="false" ixNetworkCpfPythonApiSupport="true" ixNetworkCpfPythonScriptgenSupport="supportedInOtherCommand" ixNetworkCpfPerlApiSupport="true" ixNetworkCpfPerlScriptgenSupport="supportedInOtherCommand" ixNetworkCpfTclApiSupport="true" ixNetworkCpfTclScriptgenSupport="supportedInOtherCommand" ixNetworkCpfRobotApiSupport="true" ixNetworkCpfRobotScriptgenSupport="supportedInOtherCommand" ixNetworkPythonApiSupport="false" ixNetworkPythonScriptgenSupport="false" ixNetworkPerlApiSupport="false" ixNetworkPerlScriptgenSupport="false" ixNetworkTclApiSupport="false" ixNetworkTclScriptgenSupport="false" ixNetworkRobotApiSupport="false" ixNetworkRobotScriptgenSupport="false" lang="false">
+      <ixHalOrProtocolSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkCpfSupport contentType="new" target="noTarget" mandatory="false">
+        <description>
+          <text>Get Re-Delegation Timer Status of RSVP-TE p2p Head ( Ingress ) LSPs</text>
+        </description>
+        <restriction type="VALUETYPE" valueType="FLAG" />
+      </ixNetworkCpfSupport>
+      <ixLoadSupport contentType="noContent" target="noTarget" mandatory="false" />
+    </argument>
+    <argument name="session_information" definedBy="ixiaDefined" ixHalOrProtocolPythonApiSupport="false" ixHalOrProtocolPythonScriptgenSupport="false" ixHalOrProtocolPerlApiSupport="false" ixHalOrProtocolPerlScriptgenSupport="false" ixHalOrProtocolTclApiSupport="false" ixHalOrProtocolTclScriptgenSupport="false" ixLoadPythonApiSupport="false" ixLoadPythonScriptgenSupport="false" ixLoadPerlApiSupport="false" ixLoadPerlScriptgenSupport="false" ixLoadTclApiSupport="false" ixLoadTclScriptgenSupport="false" ixNetworkCpfPythonApiSupport="true" ixNetworkCpfPythonScriptgenSupport="supportedInOtherCommand" ixNetworkCpfPerlApiSupport="true" ixNetworkCpfPerlScriptgenSupport="supportedInOtherCommand" ixNetworkCpfTclApiSupport="true" ixNetworkCpfTclScriptgenSupport="supportedInOtherCommand" ixNetworkCpfRobotApiSupport="true" ixNetworkCpfRobotScriptgenSupport="supportedInOtherCommand" ixNetworkPythonApiSupport="false" ixNetworkPythonScriptgenSupport="false" ixNetworkPerlApiSupport="false" ixNetworkPerlScriptgenSupport="false" ixNetworkTclApiSupport="false" ixNetworkTclScriptgenSupport="false" ixNetworkRobotApiSupport="false" ixNetworkRobotScriptgenSupport="false" lang="false">
+      <ixHalOrProtocolSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkCpfSupport contentType="new" target="noTarget" mandatory="false">
+        <description>
+          <text>Get Session Information of RSVP-TE PCEP Expected Initiated LSPs</text>
+        </description>
+        <restriction type="VALUETYPE" valueType="FLAG" />
+      </ixNetworkCpfSupport>
+      <ixLoadSupport contentType="noContent" target="noTarget" mandatory="false" />
+    </argument>
+    <argument name="lsp_self_ping_status" definedBy="ixiaDefined" ixHalOrProtocolPythonApiSupport="false" ixHalOrProtocolPythonScriptgenSupport="false" ixHalOrProtocolPerlApiSupport="false" ixHalOrProtocolPerlScriptgenSupport="false" ixHalOrProtocolTclApiSupport="false" ixHalOrProtocolTclScriptgenSupport="false" ixLoadPythonApiSupport="false" ixLoadPythonScriptgenSupport="false" ixLoadPerlApiSupport="false" ixLoadPerlScriptgenSupport="false" ixLoadTclApiSupport="false" ixLoadTclScriptgenSupport="false" ixNetworkCpfPythonApiSupport="true" ixNetworkCpfPythonScriptgenSupport="supportedInOtherCommand" ixNetworkCpfPerlApiSupport="true" ixNetworkCpfPerlScriptgenSupport="supportedInOtherCommand" ixNetworkCpfTclApiSupport="true" ixNetworkCpfTclScriptgenSupport="supportedInOtherCommand" ixNetworkCpfRobotApiSupport="true" ixNetworkCpfRobotScriptgenSupport="supportedInOtherCommand" ixNetworkPythonApiSupport="false" ixNetworkPythonScriptgenSupport="false" ixNetworkPerlApiSupport="false" ixNetworkPerlScriptgenSupport="false" ixNetworkTclApiSupport="false" ixNetworkTclScriptgenSupport="false" ixNetworkRobotApiSupport="false" ixNetworkRobotScriptgenSupport="false" lang="false">
+      <ixHalOrProtocolSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkCpfSupport contentType="new" target="noTarget" mandatory="false">
+        <description>
+          <text>Get the LSP Self Ping Status ( Ingress ) LSPs.
+        This is a read-only field that shows the status of the LSP Self Ping session.
+        The status can be one of following based on different scenarios: Success, Timed Out.</text>
+        </description>
+        <restriction type="VALUETYPE" valueType="FLAG" />
+      </ixNetworkCpfSupport>
+      <ixLoadSupport contentType="noContent" target="noTarget" mandatory="false" />
+    </argument>
+  </arguments>
+  <returnValues>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>status</key>
+      <value>$::SUCCESS | $::FAILURE</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>log</key>
+      <value>If status is failure, detailed information provided.</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>sessions_up</key>
+      <value>Sessions Up</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>sessions_down</key>
+      <value>Sessions Down</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>sessions_not_started</key>
+      <value>Sessions Not Started</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>sessions_total</key>
+      <value>Sessions Total</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="CiscoDefinedNotSupported" supportType="ixNetworkCpfSupport">
+      <key>ingress_lsps_configured</key>
+      <value>Ingress Lsps Configured</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="CiscoDefinedNotSupported" supportType="ixNetworkCpfSupport">
+      <key>ingress_sub_lsps_configured</key>
+      <value>Ingress SubLSPs Configured</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="CiscoDefinedNotSupported" supportType="ixNetworkCpfSupport">
+      <key>ingress_lsps_up</key>
+      <value>Ingress Lsps Up</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="CiscoDefinedNotSupported" supportType="ixNetworkCpfSupport">
+      <key>lsp_self_ping_sent_from_ingress</key>
+      <value>The number of LSP self ping messages transmitted by Ingress.</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="CiscoDefinedNotSupported" supportType="ixNetworkCpfSupport">
+      <key>lsp_self_ping_received_by_ingress</key>
+      <value>The number of LSP self ping messages received by Ingress.</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="CiscoDefinedNotSupported" supportType="ixNetworkCpfSupport">
+      <key>lsp_self_ping_received_by_egress</key>
+      <value>The number of LSP self ping messages received by Egress.</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="CiscoDefinedNotSupported" supportType="ixNetworkCpfSupport">
+      <key>lsp_self_ping_forwarded_by_egress</key>
+      <value>The number of LSP self ping messages forwarded by Egress. </value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="CiscoDefinedNotSupported" supportType="ixNetworkCpfSupport">
+      <key>ingress_sub_lsps_up</key>
+      <value>Ingress SubLSPs Up</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="CiscoDefinedNotSupported" supportType="ixNetworkCpfSupport">
+      <key>egress_lsps_up</key>
+      <value>Egress LSPs Up</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="CiscoDefinedNotSupported" supportType="ixNetworkCpfSupport">
+      <key>egress_sub_lsps_up</key>
+      <value>Egress Sub LSPs Up</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="CiscoDefinedNotSupported" supportType="ixNetworkCpfSupport">
+      <key>session_flap_count</key>
+      <value>Session Flap Count</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="CiscoDefinedNotSupported" supportType="ixNetworkCpfSupport">
+      <key>down_state_count</key>
+      <value>Down State Count</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="CiscoDefinedNotSupported" supportType="ixNetworkCpfSupport">
+      <key>path_sent_state_count</key>
+      <value>Path Sent State Count</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="CiscoDefinedNotSupported" supportType="ixNetworkCpfSupport">
+      <key>up_state_count</key>
+      <value>Up State Count</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="CiscoDefinedNotSupported" supportType="ixNetworkCpfSupport">
+      <key>paths_tx</key>
+      <value>Paths Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="CiscoDefinedNotSupported" supportType="ixNetworkCpfSupport">
+      <key>paths_rx</key>
+      <value>Paths Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="CiscoDefinedNotSupported" supportType="ixNetworkCpfSupport">
+      <key>resvs_tx</key>
+      <value>Resvs Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="CiscoDefinedNotSupported" supportType="ixNetworkCpfSupport">
+      <key>resvs_rx</key>
+      <value>Resvs Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="CiscoDefinedNotSupported" supportType="ixNetworkCpfSupport">
+      <key>path_tears_tx</key>
+      <value>Path Tears Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>path_tears_rx</key>
+      <value>Path Tears Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>resv_tears_tx</key>
+      <value>Resv Tears Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>resv_tears_rx</key>
+      <value>Resv Tears Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>path_errs_tx</key>
+      <value>Path Errs Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>path_errs_rx</key>
+      <value>Path Errs Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>resv_errs_tx</key>
+      <value>Resv_Errs_Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>resv_errs_rx</key>
+      <value>Resv Errs Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>resv_confs_tx</key>
+      <value>Resv Confs Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>resv_confs_rx</key>
+      <value>Resv Confs Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>ingress_out_of_order_messages_rx</key>
+      <value>Ingress Out Of Order Messages Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>egress_out_of_order_messages_rx</key>
+      <value>Egress Out Of Order Messages Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>hellos_tx</key>
+      <value>Hellos Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="CiscoDefinedNotSupported" supportType="ixNetworkCpfSupport">
+      <key>hellos_rx</key>
+      <value>Hellos Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="CiscoDefinedNotSupported" supportType="ixNetworkCpfSupport">
+      <key>acks_tx</key>
+      <value>Acks Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="CiscoDefinedNotSupported" supportType="ixNetworkCpfSupport">
+      <key>acks_rx</key>
+      <value>Acks Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>nacks_tx</key>
+      <value>Nacks Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="CiscoDefinedNotSupported" supportType="ixNetworkCpfSupport">
+      <key>nacks_rx</key>
+      <value>Nacks Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>srefreshs_tx</key>
+      <value>Srefreshs Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>srefreshs_rx</key>
+      <value>Srefreshs Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>bundle_messages_tx</key>
+      <value>Bundle Messages Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>bundle_messages_rx</key>
+      <value>Bundle Messages Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>paths_with_recovery_labels_tx</key>
+      <value>Paths With Recovery Labels Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>paths_with_recovery_labels_rx</key>
+      <value>Paths With Recovery Labels Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>unrecovered_resvs_deleted</key>
+      <value>Unrecovered Resvs Deleted</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>own_graceful_restarts</key>
+      <value>Own Graceful Restarts</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>peer_graceful_restarts</key>
+      <value>Peer Graceful Restarts</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>number_of_path_reoptimizations</key>
+      <value>Number Of Path Reoptimizations</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>path_reevaluation_request_tx</key>
+      <value>Path Reevaluation Request Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.assigned.device_id</key>
+      <value>Device ID</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.assigned.our_ip</key>
+      <value>Our IP</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.assigned.dut_ip</key>
+      <value>DUT IP</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.assigned.session_ip</key>
+      <value>Session IP</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.assigned.tunnel_id</key>
+      <value>Tunnel ID</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.assigned.headend_ip</key>
+      <value>Headend IP</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.assigned.lsp_id</key>
+      <value>LSP ID</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.assigned.last_flap_reason</key>
+      <value>Last Flap Reason</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.assigned.current_state</key>
+      <value>Current State</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.assigned.label</key>
+      <value>Label Value</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.assigned.reservation_state</key>
+      <value>Reservation State</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.assigned.setup_time</key>
+      <value>Setup Time(ms)</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.assigned.up_time</key>
+      <value>Up Time(ms)</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.assigned.bandwidth</key>
+      <value>BandWidth (in bps)</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.assigned.ero_type</key>
+      <value>ERO Type</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.assigned.ero_ip</key>
+      <value>ERO IP</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.assigned.ero_prefix_length</key>
+      <value>ERO Prefix Length</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.assigned.ero_as_number</key>
+      <value>ERO AS Number</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.received.device_id</key>
+      <value>Device ID</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.received.our_ip</key>
+      <value>Our IP</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.received.dut_ip</key>
+      <value>DUT IP</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.received.session_ip</key>
+      <value>Session IP</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.received.tunnel_id</key>
+      <value>Tunnel ID</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.received.headend_ip</key>
+      <value>Headend IP</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.received.lsp_id</key>
+      <value>LSP ID</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.received.last_flap_reason</key>
+      <value>Last Flap Reason</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.received.current_state</key>
+      <value>Current State</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.received.label</key>
+      <value>Label Value</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.received.reservation_state</key>
+      <value>Reservation State</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.received.setup_time</key>
+      <value>Setup Time(ms)</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.received.up_time</key>
+      <value>Up Time(ms)</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.received.bandwidth</key>
+      <value>BandWidth (in bps)</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.received.ero_type</key>
+      <value>ERO Type</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.received.ero_ip</key>
+      <value>ERO IP</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.received.ero_prefix_length</key>
+      <value>ERO Prefix Length</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.received.ero_as_number</key>
+      <value>ERO AS Number</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.received.rro_type</key>
+      <value>RRO Type</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.received.rro_ip</key>
+      <value>RRO IP</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.received.rro_label</key>
+      <value>RRO Label</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.received.rro_c_type</key>
+      <value>RRO C-Type</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.received.symbolic_path_name</key>
+      <value>Symbolic Path Name</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.p2mpassigned.device_id</key>
+      <value>Device ID</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.p2mpassigned.our_ip</key>
+      <value>Our IP</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.p2mpassigned.dut_ip</key>
+      <value>Dut IP</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.p2mpassigned.p2mp_id</key>
+      <value>P2MP ID</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.p2mpassigned.p2mp_id_as_number</key>
+      <value>P2MP ID as Number</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.p2mpassigned.tunnel_id</key>
+      <value>Tunnel ID</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.p2mpassigned.head_end_ip</key>
+      <value>Head End IP</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.p2mpassigned.lsp_id</key>
+      <value>LSP ID</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.p2mpassigned.leaf_ip</key>
+      <value>Leaf IP</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.p2mpassigned.sub_group_originator_id</key>
+      <value>Sub Group Originator ID</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.p2mpassigned.sub_group_id</key>
+      <value>Sub Group ID</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.p2mpassigned.current_state</key>
+      <value>Current State</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.p2mpassigned.last_flap_reason</key>
+      <value>Last Flap Reason</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.p2mpassigned.label</key>
+      <value>Label</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.p2mpassigned.reservation_state</key>
+      <value>Reservation State</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.p2mpassigned.setup_time</key>
+      <value>Setup Time(ms)</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.p2mpassigned.up_time</key>
+      <value>Up Time(ms)</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.p2mpreceived.device_id</key>
+      <value>Device ID</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.p2mpreceived.our_ip</key>
+      <value>Our IP</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.p2mpreceived.dut_ip</key>
+      <value>Dut IP</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.p2mpreceived.p2mp_id</key>
+      <value>P2MP ID</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.p2mpreceived.p2mp_id_as_number</key>
+      <value>P2MP ID as Number</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.p2mpreceived.tunnel_id</key>
+      <value>Tunnel ID</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.p2mpreceived.head_end_ip</key>
+      <value>Head End IP</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.p2mpreceived.lsp_id</key>
+      <value>LSP ID</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.p2mpreceived.leaf_ip</key>
+      <value>Leaf IP</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.p2mpreceived.sub_group_originator_id</key>
+      <value>Sub Group Originator ID</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.p2mpreceived.sub_group_id</key>
+      <value>Sub Group ID</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.p2mpreceived.current_state</key>
+      <value>Current State</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.p2mpreceived.last_flap_reason</key>
+      <value>Last Flap Reason</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.p2mpreceived.label</key>
+      <value>Label</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.p2mpreceived.reservation_state</key>
+      <value>Reservation State</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.p2mpreceived.setup_time</key>
+      <value>Setup Time(ms)</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.p2mpreceived.up_time</key>
+      <value>Up Time(ms)</value>
+      <tag value="" />
+    </returnValue>
+  </returnValues>
+  <sampleInput>
+    <sampleInputElem supportType="ixNetworkCpfSupport" />
+  </sampleInput>
+  <sampleOutput>
+    <sampleOutputElem supportType="ixNetworkCpfSupport" />
+  </sampleOutput>
+  <notes>
+    <note supportType="ixNetworkCpfSupport">
+    Coded versus functional specification.
+    For  -mode choice fetch_info, provide handle of the node/object from which you need to fetch a property.
+   </note>
+  </notes>
+  <seeAlso>
+    <seeAlsoElem supportType="ixNetworkCpfSupport" />
+  </seeAlso>
+  <examples>
+    <example supportType="ixNetworkCpfSupport" />
+  </examples>
+  <code_examples />
+</method>

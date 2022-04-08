@@ -1,0 +1,29 @@
+#!/bin/sh
+#
+__FILE__=$(readlink -f "$0")
+__DIR__=$(dirname "$__FILE__")
+HLT_libs=$(readlink -f "$__DIR__/../")
+IXN_libs=$(readlink -f "$__DIR__/../../../ixnetwork/9.10.2007.7")
+IXOS_libs=$(readlink -f "$__DIR__/../../../ixos-api/9.10.16.6")
+
+for LIBS in "$HLT_libs $IXN_libs $IXOS_libs"
+do
+    for FOLDER in `find $LIBS -type f -name pkgIndex.tcl | rev | cut -d/ -f2- | rev`
+    do
+    TCLLIBPATH="$TCLLIBPATH $FOLDER"
+    done
+done
+
+export TCLLIBPATH
+
+if ! [ -x "$(command -v ixiatcl8.6.6)" ]; then
+    if ! [ -x "$(command -v tclsh8.6)" ]; then
+        echo 'ERROR: Could not find an usable Tcl 8.6 interpreter (ixiatcl8.6.6 or tcl8.6). Please consult the user guide for installing the API Dependencies.' >&2
+        exit 1
+    else 
+        echo 'WARNING: ixiatcl8.6.6 is not installed. Using the default Tcl 8.6 interpreter instead.'
+        tclsh8.6  ${@+"$@"}
+    fi
+else 
+    ixiatcl8.6.6  ${@+"$@"}
+fi

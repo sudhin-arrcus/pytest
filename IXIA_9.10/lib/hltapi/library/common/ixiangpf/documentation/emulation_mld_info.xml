@@ -1,0 +1,567 @@
+<?xml version="1.0" encoding="utf-8"?>
+<method xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="emulation_mld_info" name_robot="Emulation Mld Info" displayPriority="2" ixHalOrProtocolPythonApiSupport="false" ixHalOrProtocolPythonScriptgenSupport="false" ixHalOrProtocolPerlApiSupport="false" ixHalOrProtocolPerlScriptgenSupport="false" ixHalOrProtocolTclApiSupport="false" ixHalOrProtocolTclScriptgenSupport="false" ixLoadPythonApiSupport="false" ixLoadPythonScriptgenSupport="false" ixLoadPerlApiSupport="false" ixLoadPerlScriptgenSupport="false" ixLoadTclApiSupport="false" ixLoadTclScriptgenSupport="false" ixNetworkCpfPythonApiSupport="true" ixNetworkCpfPythonScriptgenSupport="false" ixNetworkCpfPerlApiSupport="true" ixNetworkCpfPerlScriptgenSupport="false" ixNetworkCpfTclApiSupport="true" ixNetworkCpfTclScriptgenSupport="false" ixNetworkCpfRobotApiSupport="true" ixNetworkCpfRobotScriptgenSupport="false" ixNetworkPythonApiSupport="false" ixNetworkPythonScriptgenSupport="false" ixNetworkPerlApiSupport="false" ixNetworkPerlScriptgenSupport="false" ixNetworkTclApiSupport="false" ixNetworkTclScriptgenSupport="false" ixNetworkRobotApiSupport="false" ixNetworkRobotScriptgenSupport="false" Lang="none">
+  <description supportType="ixNetworkSupport" contentType="noContent" target="noTarget" />
+  <description supportType="ixLoadSupport" contentType="noContent" target="noTarget" />
+  <description supportType="ixHalOrProtocolSupport" contentType="noContent" target="noTarget" />
+  <description supportType="ixNetworkCpfSupport" contentType="new" target="noTarget">This procedure gathers MLD statistics.
+    This procedure is only supported for IxTclNetwork. 
+    It is not supported by IxNetwork-FT.</description>
+  <chapter>Multicast APIs</chapter>
+  <arguments>
+    <argument name="mode" definedBy="ixiaDefined" ixHalOrProtocolPythonApiSupport="false" ixHalOrProtocolPythonScriptgenSupport="false" ixHalOrProtocolPerlApiSupport="false" ixHalOrProtocolPerlScriptgenSupport="false" ixHalOrProtocolTclApiSupport="false" ixHalOrProtocolTclScriptgenSupport="false" ixLoadPythonApiSupport="false" ixLoadPythonScriptgenSupport="false" ixLoadPerlApiSupport="false" ixLoadPerlScriptgenSupport="false" ixLoadTclApiSupport="false" ixLoadTclScriptgenSupport="false" ixNetworkCpfPythonApiSupport="true" ixNetworkCpfPythonScriptgenSupport="supportedInOtherCommand" ixNetworkCpfPerlApiSupport="true" ixNetworkCpfPerlScriptgenSupport="supportedInOtherCommand" ixNetworkCpfTclApiSupport="true" ixNetworkCpfTclScriptgenSupport="supportedInOtherCommand" ixNetworkCpfRobotApiSupport="true" ixNetworkCpfRobotScriptgenSupport="supportedInOtherCommand" ixNetworkPythonApiSupport="false" ixNetworkPythonScriptgenSupport="false" ixNetworkPerlApiSupport="false" ixNetworkPerlScriptgenSupport="false" ixNetworkTclApiSupport="false" ixNetworkTclScriptgenSupport="false" ixNetworkRobotApiSupport="false" ixNetworkRobotScriptgenSupport="false" lang="false">
+      <ixHalOrProtocolSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkCpfSupport contentType="new" target="noTarget" mandatory="true">
+        <description>
+          <text>The statistics that should be retrieved for MLD host and querier.</text>
+          <choices>
+            <choice>
+              <choiceName>stats</choiceName>
+              <choiceText>Gather MLD aggregated statistics.</choiceText>
+            </choice>
+            <choice>
+              <choiceName>aggregate</choiceName>
+              <choiceText>Gather MLD aggregated statistics.</choiceText>
+            </choice>
+            <choice>
+              <choiceName>stats_per_device_group</choiceName>
+              <choiceText>Gather MLD statistics per Device Group.</choiceText>
+            </choice>
+            <choice>
+              <choiceName>stats_per_session</choiceName>
+              <choiceText>Gather MLD statistics per Session.</choiceText>
+            </choice>
+            <choice>
+              <choiceName>clear_stats</choiceName>
+              <choiceText>Clear MLD statistics.</choiceText>
+            </choice>
+            <choice>
+              <choiceName>learned_info</choiceName>
+              <choiceText>Get Learned Info</choiceText>
+            </choice>
+          </choices>
+        </description>
+        <restriction type="VALUETYPE" valueType="CHOICES" value="stats aggregate stats_per_device_group stats_per_session clear_stats learned_info" />
+      </ixNetworkCpfSupport>
+      <ixLoadSupport contentType="noContent" target="noTarget" mandatory="false" />
+    </argument>
+    <argument name="port_handle" definedBy="ciscoDefined" ixHalOrProtocolPythonApiSupport="false" ixHalOrProtocolPythonScriptgenSupport="false" ixHalOrProtocolPerlApiSupport="false" ixHalOrProtocolPerlScriptgenSupport="false" ixHalOrProtocolTclApiSupport="false" ixHalOrProtocolTclScriptgenSupport="false" ixLoadPythonApiSupport="false" ixLoadPythonScriptgenSupport="false" ixLoadPerlApiSupport="false" ixLoadPerlScriptgenSupport="false" ixLoadTclApiSupport="false" ixLoadTclScriptgenSupport="false" ixNetworkCpfPythonApiSupport="true" ixNetworkCpfPythonScriptgenSupport="supportedInOtherCommand" ixNetworkCpfPerlApiSupport="true" ixNetworkCpfPerlScriptgenSupport="supportedInOtherCommand" ixNetworkCpfTclApiSupport="true" ixNetworkCpfTclScriptgenSupport="supportedInOtherCommand" ixNetworkCpfRobotApiSupport="true" ixNetworkCpfRobotScriptgenSupport="supportedInOtherCommand" ixNetworkPythonApiSupport="false" ixNetworkPythonScriptgenSupport="false" ixNetworkPerlApiSupport="false" ixNetworkPerlScriptgenSupport="false" ixNetworkTclApiSupport="false" ixNetworkTclScriptgenSupport="false" ixNetworkRobotApiSupport="false" ixNetworkRobotScriptgenSupport="false" lang="false">
+      <ixHalOrProtocolSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkCpfSupport contentType="new" target="noTarget" mandatory="false">
+        <description>
+          <text>This option is required to specify the port where to take the action.</text>
+        </description>
+        <restriction type="VALUETYPE" valueType="REGEXP" value="^[0-9]+/[0-9]+/[0-9]+$" />
+      </ixNetworkCpfSupport>
+      <ixLoadSupport contentType="noContent" target="noTarget" mandatory="false" />
+    </argument>
+    <argument name="timeout" definedBy="CiscoDefinedNotSupported" ixHalOrProtocolPythonApiSupport="false" ixHalOrProtocolPythonScriptgenSupport="false" ixHalOrProtocolPerlApiSupport="false" ixHalOrProtocolPerlScriptgenSupport="false" ixHalOrProtocolTclApiSupport="false" ixHalOrProtocolTclScriptgenSupport="false" ixLoadPythonApiSupport="false" ixLoadPythonScriptgenSupport="false" ixLoadPerlApiSupport="false" ixLoadPerlScriptgenSupport="false" ixLoadTclApiSupport="false" ixLoadTclScriptgenSupport="false" ixNetworkCpfPythonApiSupport="false" ixNetworkCpfPythonScriptgenSupport="false" ixNetworkCpfPerlApiSupport="false" ixNetworkCpfPerlScriptgenSupport="false" ixNetworkCpfTclApiSupport="false" ixNetworkCpfTclScriptgenSupport="false" ixNetworkCpfRobotApiSupport="false" ixNetworkCpfRobotScriptgenSupport="false" ixNetworkPythonApiSupport="false" ixNetworkPythonScriptgenSupport="false" ixNetworkPerlApiSupport="false" ixNetworkPerlScriptgenSupport="false" ixNetworkTclApiSupport="false" ixNetworkTclScriptgenSupport="false" ixNetworkRobotApiSupport="false" ixNetworkRobotScriptgenSupport="false" lang="false">
+      <ixHalOrProtocolSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkCpfSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixLoadSupport contentType="noContent" target="noTarget" mandatory="false" />
+    </argument>
+    <argument name="handle" definedBy="ixiaDefined" ixHalOrProtocolPythonApiSupport="false" ixHalOrProtocolPythonScriptgenSupport="false" ixHalOrProtocolPerlApiSupport="false" ixHalOrProtocolPerlScriptgenSupport="false" ixHalOrProtocolTclApiSupport="false" ixHalOrProtocolTclScriptgenSupport="false" ixLoadPythonApiSupport="false" ixLoadPythonScriptgenSupport="false" ixLoadPerlApiSupport="false" ixLoadPerlScriptgenSupport="false" ixLoadTclApiSupport="false" ixLoadTclScriptgenSupport="false" ixNetworkCpfPythonApiSupport="true" ixNetworkCpfPythonScriptgenSupport="true" ixNetworkCpfPerlApiSupport="true" ixNetworkCpfPerlScriptgenSupport="true" ixNetworkCpfTclApiSupport="true" ixNetworkCpfTclScriptgenSupport="true" ixNetworkCpfRobotApiSupport="true" ixNetworkCpfRobotScriptgenSupport="true" ixNetworkPythonApiSupport="false" ixNetworkPythonScriptgenSupport="false" ixNetworkPerlApiSupport="false" ixNetworkPerlScriptgenSupport="false" ixNetworkTclApiSupport="false" ixNetworkTclScriptgenSupport="false" ixNetworkRobotApiSupport="false" ixNetworkRobotScriptgenSupport="false" lang="false">
+      <ixHalOrProtocolSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkCpfSupport contentType="new" target="noTarget" mandatory="false">
+        <description>
+          <text>&lt;p&gt; MLD session handle for which statistics are gathered. The
+        handle is an emulated MLD router object reference.
+        Example :
+        &lt;/p&gt;
+        &lt;p&gt;
+        &lt;ul&gt;
+          &lt;li&gt;::ixiangpf::emulation_mld_info -mode stats -handle $devicehandle -type [both or host or querier]&lt;/li&gt;
+          &lt;li&gt;::ixiangpf::emulation_mld_info -mode learned_info -handle $mldQuerierHandle&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;/p&gt;</text>
+        </description>
+        <restriction type="VALUETYPE" valueType="ANY" />
+      </ixNetworkCpfSupport>
+      <ixLoadSupport contentType="noContent" target="noTarget" mandatory="false" />
+    </argument>
+    <argument name="type" definedBy="ixiaDefined" ixHalOrProtocolPythonApiSupport="false" ixHalOrProtocolPythonScriptgenSupport="false" ixHalOrProtocolPerlApiSupport="false" ixHalOrProtocolPerlScriptgenSupport="false" ixHalOrProtocolTclApiSupport="false" ixHalOrProtocolTclScriptgenSupport="false" ixLoadPythonApiSupport="false" ixLoadPythonScriptgenSupport="false" ixLoadPerlApiSupport="false" ixLoadPerlScriptgenSupport="false" ixLoadTclApiSupport="false" ixLoadTclScriptgenSupport="false" ixNetworkCpfPythonApiSupport="true" ixNetworkCpfPythonScriptgenSupport="supportedInOtherCommand" ixNetworkCpfPerlApiSupport="true" ixNetworkCpfPerlScriptgenSupport="supportedInOtherCommand" ixNetworkCpfTclApiSupport="true" ixNetworkCpfTclScriptgenSupport="supportedInOtherCommand" ixNetworkCpfRobotApiSupport="true" ixNetworkCpfRobotScriptgenSupport="supportedInOtherCommand" ixNetworkPythonApiSupport="false" ixNetworkPythonScriptgenSupport="false" ixNetworkPerlApiSupport="false" ixNetworkPerlScriptgenSupport="false" ixNetworkTclApiSupport="false" ixNetworkTclScriptgenSupport="false" ixNetworkRobotApiSupport="false" ixNetworkRobotScriptgenSupport="false" lang="false">
+      <ixHalOrProtocolSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkCpfSupport contentType="new" target="noTarget" mandatory="false">
+        <description>
+          <text>The type of aggregated statistics to be gathered. 
+       This option is available only when using the IxNetwork 
+       (IxTclNetwork package) 6.30 or later. The option is NOT 
+       supported by IxNetwork-FT (IxTclProtocol package).
+       Valid only for -mode stats.</text>
+          <choices>
+            <choice>
+              <choiceName>host</choiceName>
+              <choiceText>statistics gathered from IxNetwork for the MLD sessions configured using emulation_mld_config.</choiceText>
+            </choice>
+            <choice>
+              <choiceName>querier</choiceName>
+              <choiceText>statistics gathered from IxNetwork for the MLD sessions configured using emulation_mld_querier_config.</choiceText>
+            </choice>
+            <choice>
+              <choiceName>both</choiceName>
+              <choiceText>both host and querier agregated statistics will be retrieved.</choiceText>
+            </choice>
+          </choices>
+        </description>
+        <restriction type="VALUETYPE" valueType="CHOICES" value="host querier both" />
+        <restriction type="DEFAULT" valueType="ANY" value="host" />
+      </ixNetworkCpfSupport>
+      <ixLoadSupport contentType="noContent" target="noTarget" mandatory="false" />
+    </argument>
+  </arguments>
+  <returnValues>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>sessions_total</key>
+      <value>Sessions Total</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>sessions_up</key>
+      <value>Sessions Up</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>sessions_down</key>
+      <value>Sessions Down</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>sessions_not_started</key>
+      <value>Sessions Not Started</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>total_frames_tx</key>
+      <value>MLD Querier Total Frames Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>total_frames_rx</key>
+      <value>MLD Querier Total Frames Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>invalid_packets_rx</key>
+      <value>MLD Querier Invalid Packets Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>v1_general_query_tx</key>
+      <value>MLDv1 General Query Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>v1_group_specific_query_tx</key>
+      <value>MLDv1 Group specific Query Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>v1_querier_membership_reports_rx</key>
+      <value>MLDv1 Querier Membership Reports Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>v1_done_rx</key>
+      <value>MLDv1 Done Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>v2_general_query_tx</key>
+      <value>MLDv2 General Query Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>v2_group_specific_query_tx</key>
+      <value>MLDv2 Group specific Query Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>v2_group_and_source_specific_query_tx</key>
+      <value>MLDv2 Group and Source Specific Query Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>v2_querier_membership_reports_rx</key>
+      <value>MLDv2 Querier Membership Reports Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>v1_general_query_count_rx</key>
+      <value>MLDv1 General Query Count Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>v2_general_query_count_rx</key>
+      <value>MLDv2 General Query Count Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>v1_group_specific_query_count_rx</key>
+      <value>MLDv1 Group Specific Query Count Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>v2_group_specific_query_count_rx</key>
+      <value>MLDv2 Group Specific Query Count Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>sessions_total</key>
+      <value>Sessions Total</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>sessions_up</key>
+      <value>Sessions Up</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>sessions_down</key>
+      <value>Sessions Down</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>sessions_not_started</key>
+      <value>Sessions Not Started</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>total_frames_tx</key>
+      <value>Total Frames Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>total_frames_rx</key>
+      <value>Total Frames Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>invalid_packets_rx</key>
+      <value>Invalid Packets Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>joined_groups</key>
+      <value>(S,G) Pairs Joined</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>v1_membership_reports_tx</key>
+      <value>v1 Membership Reports Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>v1_membership_reports_rx</key>
+      <value>v1 Membership Reports Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>v2_membership_reports_tx</key>
+      <value>v2 Membership Reports Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>v2_membership_reports_rx</key>
+      <value>v2 Membership Reports Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>v1_general_queries_tx</key>
+      <value>v1 General Queries Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>v1_general_queries_rx</key>
+      <value>v1 General Queries Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>v2_general_queries_tx</key>
+      <value>v2 General Queries Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>v2_general_queries_rx</key>
+      <value>v2 General Queries Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>v1_group_specific_queries_tx</key>
+      <value>v1 Group Specific Queries Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>v1_group_specific_queries_rx</key>
+      <value>v1 Group Specific Queries Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>v2_group_specific_queries_tx</key>
+      <value>v2 Group Specific Queries Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>v2_group_specific_queries_rx</key>
+      <value>v2 Group Specific Queries Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>v2_group_and_source_specific_queries_tx</key>
+      <value>v2 Group&amp;Source Specific Queries Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>v2_group_and_source_specific_queries_rx</key>
+      <value>v2 Group&amp;Source Specific Queries Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>v1_done_tx</key>
+      <value>v1 Done Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>v1_done_rx</key>
+      <value>v1 Done Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>v2_mode_is_include_tx</key>
+      <value>v2 MODE_IS_INCLUDE Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>v2_mode_is_include_rx</key>
+      <value>v2 MODE_IS_INCLUDE Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>v2_mode_is_exclude_tx</key>
+      <value>v2 MODE_IS_EXCLUDE Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>v2_mode_is_exclude_rx</key>
+      <value>v2 MODE_IS_EXCLUDE Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>v2_change_to_include_tx</key>
+      <value>v2 CHANGE_TO_INCLUDE_MODE Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>v2_change_to_include_rx</key>
+      <value>v2 CHANGE_TO_INCLUDE_MODE Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>v2_change_to_exclude_tx</key>
+      <value>v2 CHANGE_TO_EXCLUDE_MODE Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>v2_change_to_exclude_rx</key>
+      <value>v2 CHANGE_TO_EXCLUDE_MODE Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>v2_allow_new_sources_tx</key>
+      <value>v2 ALLOW_NEW_SOURCES Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>v2_allow_new_sources_rx</key>
+      <value>v2 ALLOW_NEW_SOURCES Rx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>v2_block_old_sources_tx</key>
+      <value>v2 BLOCK_OLD_SOURCES Tx</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ixiaDefined" supportType="ixNetworkCpfSupport">
+      <key>v2_block_old_sources_rx</key>
+      <value>v2 BLOCK_OLD_SOURCES Rx</value>
+      <tag value="" />
+    </returnValue>
+  </returnValues>
+  <sampleInput>
+    <sampleInputElem supportType="ixNetworkCpfSupport">.</sampleInputElem>
+  </sampleInput>
+  <sampleOutput>
+    <sampleOutputElem supportType="ixNetworkCpfSupport">.</sampleOutputElem>
+  </sampleOutput>
+  <notes>
+    <note supportType="ixNetworkCpfSupport"> </note>
+  </notes>
+  <seeAlso>
+    <seeAlsoElem supportType="ixNetworkCpfSupport" />
+  </seeAlso>
+  <examples>
+    <example supportType="ixNetworkCpfSupport" />
+  </examples>
+  <code_examples>
+    <example lang="tcl" supportType="ixNetworkCpfSupport"><![CDATA[
+# Command : ::ixiangpf::emulation_mld_info
+
+# This command will fetch aggregate stats for MLD host
+
+set stats [::ixiangpf::emulaiton_mld_info 		   \
+	-mode                   aggregate 		   \	
+	-handle 		<mld_host_handle>          \
+]
+
+# This command will return stats as
+# {status 1} {{MLD Host} {{aggregate {{status started} {sessions_total 10} {sessions_up 10} 
+# {sessions_down 0} {sessions_not_started 0} {total_frames_tx 15} {total_frames_rx 10} 
+# {invalid_packets_rx 0} {joined_groups 0} {v1_membership_reports_tx 0} {v1_membership_reports_rx 0}
+#  {v2_membership_reports_tx 15} {v2_membership_reports_rx 0} {v1_general_queries_tx 0} 
+# {v1_general_queries_rx 0} {v2_general_queries_tx 0} {v2_general_queries_rx 10} 
+# {v1_group_specific_queries_tx 0} {v1_group_specific_queries_rx 0} {v2_group_specific_queries_tx 0} 
+# {v2_group_specific_queries_rx 0} {v2_group_and_source_specific_queries_tx 0} {v2_group_and_source_specific_queries_rx 0} 
+# {v1_done_tx 0} {v1_done_rx 0} {v2_mode_is_include_tx 50} {v2_mode_is_include_rx 0} {v2_mode_is_exclude_tx 0} 
+# {v2_mode_is_exclude_rx 0} {v2_change_to_include_tx 0} {v2_change_to_include_rx 0} {v2_change_to_exclude_tx 0} 
+# {v2_change_to_exclude_rx 0} {v2_allow_new_sources_tx 100} {v2_allow_new_sources_rx 0} {v2_block_old_sources_tx 0} 
+# {v2_block_old_sources_rx 0}}}}}
+
+#This command will return learned info for MLD Querier
+
+set learned_info [::ixiangpf::emulation_mld_info	   \
+	-mode 			learned_info		   \
+	-handle 		<mld_querier_handle>	   \
+]
+
+#This command will return learned info as
+
+# {status 1} {/topology:2/deviceGroup:1/ethernet:1/ipv6:1/mldQuerier:1/item:1 {{learned_info {{{Querier Working Version} 
+# {v2 v2 v2 v2 v2 v2 v2 v2 v2 v2 v2 v2}} {{Elected Querier Address} {fe80:0:0:0:212:1ff:fe00:1 fe80:0:0:0:212:1ff:fe00:1 
+# fe80:0:0:0:212:1ff:fe00:1 fe80:0:0:0:212:1ff:fe00:1 fe80:0:0:0:212:1ff:fe00:1 fe80:0:0:0:212:1ff:fe00:1 fe80:0:0:0:212:1ff:fe00:1
+#  fe80:0:0:0:212:1ff:fe00:1 fe80:0:0:0:212:1ff:fe00:1 fe80:0:0:0:212:1ff:fe00:1 fe80:0:0:0:212:1ff:fe00:1 fe80:0:0:0:212:1ff:fe00:1}} 
+# {{Group Address} {ff03:0:0:0:0:0:0:4 ff03:0:0:0:0:0:0:2 ff02:0:0:0:0:1:ff00:2 ff02:0:0:0:0:1:ff00:1 ff03:0:0:0:0:0:0:1 ff03:0:0:0:0:0:0:3
+#  ff03:0:0:0:0:0:0:8 ff03:0:0:0:0:0:0:6 ff03:0:0:0:0:0:0:5 ff03:0:0:0:0:0:0:7 ff03:0:0:0:0:0:0:9 ff03:0:0:0:0:0:0:a}} {{Group Timer (sec)} 
+# {0 0 192 192 0 0 0 0 0 0 0 0}} {{Filter Mode} {Include Include Exclude Exclude Include Include Include Include Include Include Include Include}}
+#  {{Compatibility Mode} {v2 v2 v2 v2 v2 v2 v2 v2 v2 v2 v2 v2}} {{Compatibility Timer (sec)} {0 0 0 0 0 0 0 0 0 0 0 0}} {{Source Address} 
+# {3000:0:0:0:0:0:0:1 3000:0:0:0:0:0:0:1 0:0:0:0:0:0:0:0 0:0:0:0:0:0:0:0 3000:0:0:0:0:0:0:1 3000:0:0:0:0:0:0:1 3000:0:0:0:0:0:0:1 3000:0:0:0:0:0:0:1 
+# 3000:0:0:0:0:0:0:1 3000:0:0:0:0:0:0:1 3000:0:0:0:0:0:0:1 3000:0:0:0:0:0:0:1}} {{Source Timer (sec)} {194 194 0 0 194 194 194 194 194 194 194 194}}}}}}
+    ]]></example>
+    <example lang="python" supportType="ixNetworkCpfSupport"><![CDATA[
+# Command : ixiangpf.emulation_mld_info
+# This command will fetch aggregate stats for MLD host
+
+status = ixiangpf.emulaiton_mld_info(
+    mode                                                        = "aggregate",
+    handle                                                      = "<mld_host_handle>",
+)
+# This command will return stats as
+# {'status': '1', 'MLD Host': {'aggregate': {'status': 'started', 'v2_membership_reports_tx':
+#'60', 'v1_done_tx': '0', 'v2_general_queries_rx': '50', 'v1_done_rx': '0', 'v2_change_to_include_tx': '0', 
+# 'v2_general_queries_tx': '0', 'invalid_packets_rx': '0', 'v1_general_queries_tx': '0', 
+# 'v2_group_and_source_specific_queries_tx': '0', 'sessions_up': '10', 'joined_groups': '0', 
+# 'v2_group_and_source_specific_queries_rx': '0', 'v1_membership_reports_tx': '0', 'v2_change_to_include_rx': '0',
+# 'v2_block_old_sources_rx': '0', 'v2_block_old_sources_tx': '0', 'v2_mode_is_include_tx': '500', 
+# 'v2_allow_new_sources_rx': '0', 'v1_group_specific_queries_rx': '0', 'total_frames_rx': '50', 'v2_allow_new_sources_tx': 
+# '100', 'sessions_total': '10', 'sessions_not_started': '0', 'v2_mode_is_include_rx': '0', 'v1_group_specific_queries_tx': '0',
+# 'v2_group_specific_queries_rx': '0', 'v2_change_to_exclude_rx': '0', 'v2_group_specific_queries_tx': '0', 'v2_membership_reports_rx': '0',
+# 'v2_mode_is_exclude_tx': '0', 'v2_mode_is_exclude_rx': '0', 'sessions_down': '0', 'total_frames_tx': '60', 'v2_change_to_exclude_tx': '0',
+# 'v1_general_queries_rx': '0', 'v1_membership_reports_rx': '0'}}}
+
+#This command will return learned info for MLD Querier
+
+status = ixiangpf.emulation_mld_info(
+    mode                                                        = "learned_info",
+    handle                                                      = "<mld_querier_handle>",
+)
+#This command will return learned info as
+# {'status': '1', '/topology:2/deviceGroup:1/ethernet:1/ipv6:1/mldQuerier:1/item:1': {'learned_info': 
+# {'Elected Querier Address': 'fe80::212:1ff:fe00:1 fe80::212:1ff:fe00:1 fe80::212:1ff:fe00:1 fe80::212:1ff:fe00:1
+# fe80::212:1ff:fe00:1 fe80::212:1ff:fe00:1 fe80::212:1ff:fe00:1 fe80::212:1ff:fe00:1 fe80::212:1ff:fe00:1 fe80::212:1ff:fe00:1
+# fe80::212:1ff:fe00:1 fe80::212:1ff:fe00:1', 'Group Address': 'ff03::4 ff03::2 ff02::1:ff00:2 ff02::1:ff00:1 ff03::1 ff03::3 
+# ff03::8 ff03::6 ff03::5 ff03::7 ff03::9 ff03::a', 'Compatibility Mode': 'v2 v2 v2 v2 v2 v2 v2 v2 v2 v2 v2 v2', 'Filter Mode':
+# 'Include Include Exclude Exclude Include Include Include Include Include Include Include Include', 'Querier Working Version': 
+# 'v2 v2 v2 v2 v2 v2 v2 v2 v2 v2 v2 v2', 'Source Timer (sec)': '220 220 0 0 220 220 220 220 220 220 220 220', 'Group Timer (sec)':
+# '0 0 216 216 0 0 0 0 0 0 0 0', 'Source Address': '3000::1 3000::1 :: :: 3000::1 3000::1 3000::1 3000::1 3000::1 3000::1 3000::1 3000::1',
+# 'Compatibility Timer (sec)': '0 0 0 0 0 0 0 0 0 0 0 0'}}}
+    ]]></example>
+    <example lang="perl" supportType="ixNetworkCpfSupport"><![CDATA[
+# Command : ixiangpf::emulation_mld_info
+# This command will fetch aggregate stats for MLD host
+my $stats = ixiangpf::emulaiton_mld_info ({
+    mode                                                        => "aggregate",
+    handle                                                      => "<mld_host_handle>",
+});
+# This command will return stats as
+# {status 1} {{MLD Host} {{aggregate {{status started} {sessions_total 10} {sessions_up 10} 
+# {sessions_down 0} {sessions_not_started 0} {total_frames_tx 15} {total_frames_rx 10} 
+# {invalid_packets_rx 0} {joined_groups 0} {v1_membership_reports_tx 0} {v1_membership_reports_rx 0}
+#  {v2_membership_reports_tx 15} {v2_membership_reports_rx 0} {v1_general_queries_tx 0} 
+# {v1_general_queries_rx 0} {v2_general_queries_tx 0} {v2_general_queries_rx 10} 
+# {v1_group_specific_queries_tx 0} {v1_group_specific_queries_rx 0} {v2_group_specific_queries_tx 0} 
+# {v2_group_specific_queries_rx 0} {v2_group_and_source_specific_queries_tx 0} {v2_group_and_source_specific_queries_rx 0} 
+# {v1_done_tx 0} {v1_done_rx 0} {v2_mode_is_include_tx 50} {v2_mode_is_include_rx 0} {v2_mode_is_exclude_tx 0} 
+# {v2_mode_is_exclude_rx 0} {v2_change_to_include_tx 0} {v2_change_to_include_rx 0} {v2_change_to_exclude_tx 0} 
+# {v2_change_to_exclude_rx 0} {v2_allow_new_sources_tx 100} {v2_allow_new_sources_rx 0} {v2_block_old_sources_tx 0} 
+# {v2_block_old_sources_rx 0}}}}}
+#This command will return learned info for MLD Querier
+my $learned_info = ixiangpf::emulation_mld_info ({
+    mode                                                        => "learned_info",
+    handle                                                      => "<mld_querier_handle>",
+});
+#This command will return learned info as
+# {status 1} {/topology:2/deviceGroup:1/ethernet:1/ipv6:1/mldQuerier:1/item:1 {{learned_info {{{Querier Working Version} 
+# {v2 v2 v2 v2 v2 v2 v2 v2 v2 v2 v2 v2}} {{Elected Querier Address} {fe80:0:0:0:212:1ff:fe00:1 fe80:0:0:0:212:1ff:fe00:1 
+# fe80:0:0:0:212:1ff:fe00:1 fe80:0:0:0:212:1ff:fe00:1 fe80:0:0:0:212:1ff:fe00:1 fe80:0:0:0:212:1ff:fe00:1 fe80:0:0:0:212:1ff:fe00:1
+#  fe80:0:0:0:212:1ff:fe00:1 fe80:0:0:0:212:1ff:fe00:1 fe80:0:0:0:212:1ff:fe00:1 fe80:0:0:0:212:1ff:fe00:1 fe80:0:0:0:212:1ff:fe00:1}} 
+# {{Group Address} {ff03:0:0:0:0:0:0:4 ff03:0:0:0:0:0:0:2 ff02:0:0:0:0:1:ff00:2 ff02:0:0:0:0:1:ff00:1 ff03:0:0:0:0:0:0:1 ff03:0:0:0:0:0:0:3
+#  ff03:0:0:0:0:0:0:8 ff03:0:0:0:0:0:0:6 ff03:0:0:0:0:0:0:5 ff03:0:0:0:0:0:0:7 ff03:0:0:0:0:0:0:9 ff03:0:0:0:0:0:0:a}} {{Group Timer (sec)} 
+# {0 0 192 192 0 0 0 0 0 0 0 0}} {{Filter Mode} {Include Include Exclude Exclude Include Include Include Include Include Include Include Include}}
+#  {{Compatibility Mode} {v2 v2 v2 v2 v2 v2 v2 v2 v2 v2 v2 v2}} {{Compatibility Timer (sec)} {0 0 0 0 0 0 0 0 0 0 0 0}} {{Source Address} 
+# {3000:0:0:0:0:0:0:1 3000:0:0:0:0:0:0:1 0:0:0:0:0:0:0:0 0:0:0:0:0:0:0:0 3000:0:0:0:0:0:0:1 3000:0:0:0:0:0:0:1 3000:0:0:0:0:0:0:1 3000:0:0:0:0:0:0:1 
+# 3000:0:0:0:0:0:0:1 3000:0:0:0:0:0:0:1 3000:0:0:0:0:0:0:1 3000:0:0:0:0:0:0:1}} {{Source Timer (sec)} {194 194 0 0 194 194 194 194 194 194 194 194}}}}}}
+    ]]></example>
+    <example lang="robot" supportType="ixNetworkCpfSupport"><![CDATA[
+# Command : Emulaiton Mld Info
+# This command will fetch aggregate stats for MLD host
+
+   ${result} =  Emulaiton Mld Info  mode=aggregate   handle=<mld_host_handle>  
+   ${status} =  Get From Dictionary  ${result}  status
+   Run Keyword If  '${status}' != '1'  FAIL  "Error: Status is not SUCCESS"  ELSE  Log  "Status is SUCCESS"
+   ${stats} =  Get From Dictionary  ${result}  stats
+
+# This command will return stats as
+# {'status': '1', 'MLD Host': {'aggregate': {'status': 'started', 'v2_membership_reports_tx':
+#'60', 'v1_done_tx': '0', 'v2_general_queries_rx': '50', 'v1_done_rx': '0', 'v2_change_to_include_tx': '0', 
+# 'v2_general_queries_tx': '0', 'invalid_packets_rx': '0', 'v1_general_queries_tx': '0', 
+# 'v2_group_and_source_specific_queries_tx': '0', 'sessions_up': '10', 'joined_groups': '0', 
+# 'v2_group_and_source_specific_queries_rx': '0', 'v1_membership_reports_tx': '0', 'v2_change_to_include_rx': '0',
+# 'v2_block_old_sources_rx': '0', 'v2_block_old_sources_tx': '0', 'v2_mode_is_include_tx': '500', 
+# 'v2_allow_new_sources_rx': '0', 'v1_group_specific_queries_rx': '0', 'total_frames_rx': '50', 'v2_allow_new_sources_tx': 
+# '100', 'sessions_total': '10', 'sessions_not_started': '0', 'v2_mode_is_include_rx': '0', 'v1_group_specific_queries_tx': '0',
+# 'v2_group_specific_queries_rx': '0', 'v2_change_to_exclude_rx': '0', 'v2_group_specific_queries_tx': '0', 'v2_membership_reports_rx': '0',
+# 'v2_mode_is_exclude_tx': '0', 'v2_mode_is_exclude_rx': '0', 'sessions_down': '0', 'total_frames_tx': '60', 'v2_change_to_exclude_tx': '0',
+# 'v1_general_queries_rx': '0', 'v1_membership_reports_rx': '0'}}}
+
+#This command will return learned info for MLD Querier
+
+   ${result} =  Emulaiton Mld Info  mode=learned_info   handle=<mld_querier_handle>  
+   ${status} =  Get From Dictionary  ${result}  status
+   Run Keyword If  '${status}' != '1'  FAIL  "Error: Status is not SUCCESS"  ELSE  Log  "Status is SUCCESS"
+   ${learned_info} =  Get From Dictionary  ${result}  learned_info
+
+#This command will return learned info as
+# {'status': '1', '/topology:2/deviceGroup:1/ethernet:1/ipv6:1/mldQuerier:1/item:1': {'learned_info': 
+# {'Elected Querier Address': 'fe80::212:1ff:fe00:1 fe80::212:1ff:fe00:1 fe80::212:1ff:fe00:1 fe80::212:1ff:fe00:1
+# fe80::212:1ff:fe00:1 fe80::212:1ff:fe00:1 fe80::212:1ff:fe00:1 fe80::212:1ff:fe00:1 fe80::212:1ff:fe00:1 fe80::212:1ff:fe00:1
+# fe80::212:1ff:fe00:1 fe80::212:1ff:fe00:1', 'Group Address': 'ff03::4 ff03::2 ff02::1:ff00:2 ff02::1:ff00:1 ff03::1 ff03::3 
+# ff03::8 ff03::6 ff03::5 ff03::7 ff03::9 ff03::a', 'Compatibility Mode': 'v2 v2 v2 v2 v2 v2 v2 v2 v2 v2 v2 v2', 'Filter Mode':
+# 'Include Include Exclude Exclude Include Include Include Include Include Include Include Include', 'Querier Working Version': 
+# 'v2 v2 v2 v2 v2 v2 v2 v2 v2 v2 v2 v2', 'Source Timer (sec)': '220 220 0 0 220 220 220 220 220 220 220 220', 'Group Timer (sec)':
+# '0 0 216 216 0 0 0 0 0 0 0 0', 'Source Address': '3000::1 3000::1 :: :: 3000::1 3000::1 3000::1 3000::1 3000::1 3000::1 3000::1 3000::1',
+# 'Compatibility Timer (sec)': '0 0 0 0 0 0 0 0 0 0 0 0'}}
+    ]]></example>
+  </code_examples>
+</method>

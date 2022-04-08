@@ -1,0 +1,24 @@
+#!/bin/sh
+#
+__FILE__=$(readlink -f "$0")
+__DIR__=$(dirname "$__FILE__")
+IXN_libs=$(readlink -f "$__DIR__/../lib")
+
+for FOLDER in `find $IXN_libs -type f -name IxNetwork.py | rev | cut -d/ -f2- | rev`
+do
+    PYTHONPATH="$PYTHONPATH:$FOLDER"
+done
+
+export PYTHONPATH 
+
+if ! [ -x "$(command -v ixiapython2.7.6)" ]; then
+    if ! [ -x "$(command -v python)" ]; then
+        echo 'ERROR: Could not find an usable python interpreter (ixiapython2.7.6 or python). Please consult the user guide for installing the API Dependencies.' >&2
+        exit 1
+    else 
+        echo 'WARNING: ixiapython2.7.6 is not installed. Using the default python interpreter instead.'
+        python ${@+"$@"}
+    fi
+else 
+    ixiapython2.7.6  ${@+"$@"}
+fi

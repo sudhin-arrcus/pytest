@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<method xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="emulation_bfd_info" name_robot="Emulation Bfd Info" displayPriority="1" ixHalOrProtocolPythonApiSupport="false" ixHalOrProtocolPythonScriptgenSupport="false" ixHalOrProtocolPerlApiSupport="false" ixHalOrProtocolPerlScriptgenSupport="false" ixHalOrProtocolTclApiSupport="false" ixHalOrProtocolTclScriptgenSupport="false" ixLoadPythonApiSupport="false" ixLoadPythonScriptgenSupport="false" ixLoadPerlApiSupport="false" ixLoadPerlScriptgenSupport="false" ixLoadTclApiSupport="false" ixLoadTclScriptgenSupport="false" ixNetworkCpfPythonApiSupport="true" ixNetworkCpfPythonScriptgenSupport="true" ixNetworkCpfPerlApiSupport="true" ixNetworkCpfPerlScriptgenSupport="true" ixNetworkCpfTclApiSupport="true" ixNetworkCpfTclScriptgenSupport="true" ixNetworkCpfRobotApiSupport="true" ixNetworkCpfRobotScriptgenSupport="false" ixNetworkPythonApiSupport="false" ixNetworkPythonScriptgenSupport="false" ixNetworkPerlApiSupport="false" ixNetworkPerlScriptgenSupport="false" ixNetworkTclApiSupport="false" ixNetworkTclScriptgenSupport="false" ixNetworkRobotApiSupport="false" ixNetworkRobotScriptgenSupport="false" Lang="none">
+  <description supportType="ixNetworkSupport" contentType="noContent" target="noTarget" />
+  <description supportType="ixLoadSupport" contentType="noContent" target="noTarget" />
+  <description supportType="ixHalOrProtocolSupport" contentType="noContent" target="noTarget" />
+  <description supportType="ixNetworkCpfSupport" contentType="new" target="noTarget">This procedure retrieves information about the BFD sessions.</description>
+  <arguments>
+    <argument name="mode" definedBy="ciscoDefined" ixHalOrProtocolPythonApiSupport="false" ixHalOrProtocolPythonScriptgenSupport="false" ixHalOrProtocolPerlApiSupport="false" ixHalOrProtocolPerlScriptgenSupport="false" ixHalOrProtocolTclApiSupport="false" ixHalOrProtocolTclScriptgenSupport="false" ixLoadPythonApiSupport="false" ixLoadPythonScriptgenSupport="false" ixLoadPerlApiSupport="false" ixLoadPerlScriptgenSupport="false" ixLoadTclApiSupport="false" ixLoadTclScriptgenSupport="false" ixNetworkCpfPythonApiSupport="true" ixNetworkCpfPythonScriptgenSupport="supportedInOtherCommand" ixNetworkCpfPerlApiSupport="true" ixNetworkCpfPerlScriptgenSupport="supportedInOtherCommand" ixNetworkCpfTclApiSupport="true" ixNetworkCpfTclScriptgenSupport="supportedInOtherCommand" ixNetworkCpfRobotApiSupport="true" ixNetworkCpfRobotScriptgenSupport="supportedInOtherCommand" ixNetworkPythonApiSupport="false" ixNetworkPythonScriptgenSupport="false" ixNetworkPerlApiSupport="false" ixNetworkPerlScriptgenSupport="false" ixNetworkTclApiSupport="false" ixNetworkTclScriptgenSupport="false" ixNetworkRobotApiSupport="false" ixNetworkRobotScriptgenSupport="false" lang="false">
+      <ixHalOrProtocolSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkCpfSupport contentType="new" target="noTarget" mandatory="true">
+        <description>
+          <text>The action that should be taken. Valid choices are:
+       aggregate_stats - retrieve stats aggregated per port
+       learned_info - retrieve learned information by the BFD protocol
+       clear_stats - clear stats</text>
+          <choices>
+            <choice>
+              <choiceName>aggregate</choiceName>
+              <choiceText />
+            </choice>
+            <choice>
+              <choiceName>stats_per_device_group</choiceName>
+              <choiceText />
+            </choice>
+            <choice>
+              <choiceName>stats_per_session</choiceName>
+              <choiceText />
+            </choice>
+            <choice>
+              <choiceName>learned_info</choiceName>
+              <choiceText />
+            </choice>
+            <choice>
+              <choiceName>clear_stats</choiceName>
+              <choiceText />
+            </choice>
+          </choices>
+        </description>
+        <restriction type="VALUETYPE" valueType="CHOICES" value="aggregate stats_per_device_group stats_per_session learned_info clear_stats" />
+        <restriction type="DEFAULT" valueType="ANY" value="aggregate" />
+      </ixNetworkCpfSupport>
+      <ixLoadSupport contentType="noContent" target="noTarget" mandatory="false" />
+    </argument>
+    <argument name="handle" definedBy="ciscoDefined" ixHalOrProtocolPythonApiSupport="false" ixHalOrProtocolPythonScriptgenSupport="false" ixHalOrProtocolPerlApiSupport="false" ixHalOrProtocolPerlScriptgenSupport="false" ixHalOrProtocolTclApiSupport="false" ixHalOrProtocolTclScriptgenSupport="false" ixLoadPythonApiSupport="false" ixLoadPythonScriptgenSupport="false" ixLoadPerlApiSupport="false" ixLoadPerlScriptgenSupport="false" ixLoadTclApiSupport="false" ixLoadTclScriptgenSupport="false" ixNetworkCpfPythonApiSupport="true" ixNetworkCpfPythonScriptgenSupport="supportedInOtherCommand" ixNetworkCpfPerlApiSupport="true" ixNetworkCpfPerlScriptgenSupport="supportedInOtherCommand" ixNetworkCpfTclApiSupport="true" ixNetworkCpfTclScriptgenSupport="supportedInOtherCommand" ixNetworkCpfRobotApiSupport="true" ixNetworkCpfRobotScriptgenSupport="supportedInOtherCommand" ixNetworkPythonApiSupport="false" ixNetworkPythonScriptgenSupport="false" ixNetworkPerlApiSupport="false" ixNetworkPerlScriptgenSupport="false" ixNetworkTclApiSupport="false" ixNetworkTclScriptgenSupport="false" ixNetworkRobotApiSupport="false" ixNetworkRobotScriptgenSupport="false" lang="false">
+      <ixHalOrProtocolSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkSupport contentType="noContent" target="noTarget" mandatory="false" />
+      <ixNetworkCpfSupport contentType="new" target="noTarget" mandatory="true">
+        <description>
+          <text>For -mode aggregate, this parameter should be provided with a
+        handle, but the command will return per port
+        aggregated stats. For -mode learned_info, this parameters should be provided
+        with a interface (for the emulated router) and the
+        command will return per interface learned CRP.</text>
+        </description>
+        <restriction type="VALUETYPE" valueType="ANY" />
+      </ixNetworkCpfSupport>
+      <ixLoadSupport contentType="noContent" target="noTarget" mandatory="false" />
+    </argument>
+  </arguments>
+  <returnValues>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>status</key>
+      <value>$::SUCCESS | $::FAILURE</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>log</key>
+      <value>On status of failure, gives detailed information.</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>port_name</key>
+      <value>BFD stats port_name</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>sessions_configured</key>
+      <value>BFD number of sessions configured</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>sessions_auto_created</key>
+      <value>BFD number of sessions auto configured</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>sessions_configured_up</key>
+      <value>BFD number of sessions configured up</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>sessions_auto_created_up</key>
+      <value>BFD number of sessions auto configured up</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>session_flap_cnt</key>
+      <value>BFD sessions flap count</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>control_pkts_tx</key>
+      <value>BFD control packet tx count</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>control_pkts_rx</key>
+      <value>BFD control packet rx count</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>echo_self_pkts_tx</key>
+      <value>BFD echo packet tx count</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>echo_self_pkts_rx</key>
+      <value>BFD echo packet rx count</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>echo_dut_pkts_tx</key>
+      <value>BFD echo dut packet tx count</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>echo_dut_pkts_rx</key>
+      <value>BFD echo dut packet rx count</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>mpls_tx</key>
+      <value>BFD mpls pdu tx count</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>mpls_rx</key>
+      <value>BFD mpls pdu rx count</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.&lt;bfd_learned_info&gt;.local_ip_addr</key>
+      <value>the source IP address for the session</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.&lt;bfd_learned_info&gt;.remote_ip_addr</key>
+      <value>the remote IP address</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.&lt;bfd_learned_info&gt;.local_disc</key>
+      <value>the local discriminator</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.&lt;bfd_learned_info&gt;.session_type</key>
+      <value>the session type: single hop or multihop</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.&lt;bfd_learned_info&gt;.session_state</key>
+      <value>the session state</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.&lt;bfd_learned_info&gt;.protocol_using_session</key>
+      <value>the protocol which is using the session</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.&lt;bfd_learned_info&gt;.session_up_time</key>
+      <value>the up time for the remote router</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.&lt;bfd_learned_info&gt;.remote_disc</key>
+      <value>the remote discriminator</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.&lt;bfd_learned_info&gt;.remote_state</key>
+      <value>the state of the remote router</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.&lt;bfd_learned_info&gt;.rcvd_min_rx_interval</key>
+      <value>the required minimum receive interval</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.&lt;bfd_learned_info&gt;.rcvd_tx_interval</key>
+      <value>the minimum transmit interval desired for that that session</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.&lt;bfd_learned_info&gt;.rcvd_multiplier</key>
+      <value>the required minimum echo interval</value>
+      <tag value="" />
+    </returnValue>
+    <returnValue definedBy="ciscoDefined" supportType="ixNetworkCpfSupport">
+      <key>&lt;handle&gt;.&lt;bfd_learned_info&gt;.remote_flags</key>
+      <value>the remote flags</value>
+      <tag value="" />
+    </returnValue>
+  </returnValues>
+  <sampleInput>
+    <sampleInputElem supportType="ixNetworkCpfSupport" />
+  </sampleInput>
+  <sampleOutput>
+    <sampleOutputElem supportType="ixNetworkCpfSupport" />
+  </sampleOutput>
+  <notes>
+    <note supportType="ixNetworkCpfSupport">1) For many handles specified as parameters this procedure will return a keyed
+    list formatted as follows: &lt;handle&gt;.aggregate.&lt;key_name&gt; when mode is aggregate,
+    or learned_info.&lt;handle&gt;.&lt;key_name&gt;, learned_info.&lt;handle&gt;.&lt;key_name&gt;
+    when mode is learned_info.
+    2) MVPN parameters are not supported with IxTclNetwork API (new API). </note>
+  </notes>
+  <seeAlso>
+    <seeAlsoElem supportType="ixNetworkCpfSupport" />
+  </seeAlso>
+  <examples>
+    <example supportType="ixNetworkCpfSupport" />
+  </examples>
+  <code_examples>
+    <example lang="tcl" supportType="ixNetworkCpfSupport"><![CDATA[
+# Command :- ::ixiangpf::emulation_bfd_info
+
+# This example will fetch the aggregate statitics for a BFD router
+
+set aggregate_stats [::ixiangpf::emulation_bfd_info             \
+	-mode                         aggregate                 \
+	-handle                       <bfd_interface_handle>    \
+]
+
+# The command above will generate output as shown below:
+# {status 1} {{Ethernet - 001} {{aggregate {{status started} {port_name {Ethernet - 001}} {sessions_configured 2} {sessions_auto_created 0}
+# {sessions_configured_up 2} {sessions_auto_created_up 0} {session_flap_cnt 0} {control_pkts_tx 179} {control_pkts_rx 177} {echo_self_pkts_tx 0} 
+# {echo_self_pkts_rx 0} {echo_dut_pkts_tx 0} {echo_dut_pkts_rx 0} {mpls_tx 0} {mpls_rx 0}}}}}
+	]]></example>
+    <example lang="python" supportType="ixNetworkCpfSupport"><![CDATA[
+# Command :- ixiangpf.emulation_bfd_info
+# This example will fetch the aggregate statitics for a BFD router
+
+status = ixiangpf.emulation_bfd_info(
+    mode                                                        = "aggregate",
+    handle                                                      = "<bfd_interface_handle>",
+)
+# The command above will generate output as shown below:
+# {'status': '1', 'Ethernet - 001': {'aggregate': {'status': 'started', 'sessions_configured': '2',
+# 'sessions_auto_created_up': '0', 'sessions_auto_created': '0', 'sessions_configured_up': '2', 
+# 'echo_dut_pkts_rx': '0', 'port_name': 'Ethernet - 001', 'echo_self_pkts_rx': '0', 'echo_self_pkts_tx': '0', 
+# 'mpls_rx': '0', 'session_flap_cnt': '0', 'control_pkts_rx': '4712', 'echo_dut_pkts_tx': '0', 'mpls_tx': '0', 'control_pkts_tx': '4710'}}}
+    ]]></example>
+    <example lang="perl" supportType="ixNetworkCpfSupport"><![CDATA[
+# Command :- ixiangpf::emulation_bfd_info
+# This example will fetch the aggregate statitics for a BFD router
+my $aggregate_stats = ixiangpf::emulation_bfd_info ({
+    mode                                                        => "aggregate",
+    handle                                                      => "<bfd_interface_handle>",
+});
+# The command above will generate output as shown below:
+# {status 1} {{Ethernet - 001} {{aggregate {{status started} {port_name {Ethernet - 001}} {sessions_configured 2} {sessions_auto_created 0}
+# {sessions_configured_up 2} {sessions_auto_created_up 0} {session_flap_cnt 0} {control_pkts_tx 179} {control_pkts_rx 177} {echo_self_pkts_tx 0} 
+# {echo_self_pkts_rx 0} {echo_dut_pkts_tx 0} {echo_dut_pkts_rx 0} {mpls_tx 0} {mpls_rx 0}}}}}	
+	]]></example>
+    <example lang="robot" supportType="ixNetworkCpfSupport"><![CDATA[
+# Command :- Emulation Bfd Info
+# This example will fetch the aggregate statitics for a BFD router
+
+   ${result} =  Emulation Bfd Info  mode=aggregate   handle=<bfd_interface_handle>  
+   ${status} =  Get From Dictionary  ${result}  status
+   Run Keyword If  '${status}' != '1'  FAIL  "Error: Status is not SUCCESS"  ELSE  Log  "Status is SUCCESS"
+   ${aggregate_stats} =  Get From Dictionary  ${result}  aggregate_stats
+
+# The command above will generate output as shown below:
+# {'status': '1', 'Ethernet - 001': {'aggregate': {'status': 'started', 'sessions_configured': '2',
+# 'sessions_auto_created_up': '0', 'sessions_auto_created': '0', 'sessions_configured_up': '2', 
+# 'echo_dut_pkts_rx': '0', 'port_name': 'Ethernet - 001', 'echo_self_pkts_rx': '0', 'echo_self_pkts_tx': '0', 
+# 'mpls_rx': '0', 'session_flap_cnt': '0', 'control_pkts_rx': '4712', 'echo_dut_pkts_tx': '0', 'mpls_tx': '0', 'control_pkts_tx': '4710'}}}
+	]]></example>
+  </code_examples>
+</method>

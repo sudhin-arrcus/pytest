@@ -1,0 +1,106 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.9.12, pytest-6.2.4, py-1.10.0, pluggy-0.13.1
+rootdir: /Users/sudhinjacob/workspace/PYTHON-REDDY/venv/PYTESTCASES
+plugins: xdist-2.3.0, html-3.1.1, metadata-1.11.0, forked-1.3.0
+collected 1 item
+
+test_target.py [+]----------------------------------------------------------------[+]
+[0]--------------------STARTING--------------------------[0]
+
+ Starting the connection 
+
+ 
+ SCP --->  file MLAG271.json to the switch ----> 10.27.201.1
+
+ 
+ SCP --->  file MCLAG272.json to the switch ----> 10.27.201.2
+
+ 
+ SCP --->  file MCLAG275.json to the switch ----> 10.27.201.5
+
+ 
+ SCP --->  file MCLAG42.json to the switch ----> 10.27.201.42
+
+
+ Loading the configuration to the switch ---->10.27.201.1
+
+
+ Saving the configuration to the switch ---->10.27.201.1
+
+
+ Loading the configuration to the switch ---->10.27.201.2
+
+
+ Saving the configuration to the switch ---->10.27.201.2
+
+
+ Loading the configuration to the switch ---->10.27.201.5
+
+
+ Saving the configuration to the switch ---->10.27.201.5
+
+
+ Loading the configuration to the switch ---->10.27.201.42
+
+
+ Saving the configuration to the switch ---->10.27.201.42
+
+ Loaded all the solution configurations !!!! 
+
+
+ !!! Sleeping for 70 seconds for stablity!!!!
+
+
+----------Sleeping completed--------------------
+
+E
+
+==================================== ERRORS ====================================
+_________________________ ERROR at setup of test_check _________________________
+
+    @pytest.fixture(scope='module')
+    def init_cases():
+        print("[+]----------------------------------------------------------------[+]")
+    
+        print("[0]--------------------STARTING--------------------------[0]")
+        print("\n Starting the connection \n")
+>       con.con_switch()
+
+test_target.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sonic.sonic object at 0x10a562040>
+
+    def con_switch(self):
+        ssh = paramiko.SSHClient()
+        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        for key,value in self.ipfile.items():
+            ssh.connect(hostname=key,
+                    username='admin',
+                    password='admin',
+                    look_for_keys=False)
+            scp = SCPClient(ssh.get_transport())
+            # Sending files to the server
+            print(" \n SCP --->  file {} to the switch ----> {}\n".format(value,key))
+            scp.put(value, '/home/admin/')
+    
+            # Downloading files to the server
+            #    scp.get('test2.txt')
+        ssh.close()
+        for key,value in self.ipfile.items():
+            device = ConnectHandler(device_type='linux', ip=key, username='admin', password='admin')
+            print("\n Loading the configuration to the switch ---->{}\n".format(key))
+            output = device.send_command('sudo config load {} -y'.format(value))
+            print("\n Saving the configuration to the switch ---->{}\n".format(key))
+            output = device.send_command('sudo config save -y')
+        print(" Loaded all the solution configurations !!!! \n")
+        print("\n !!! Sleeping for 70 seconds for stablity!!!!\n")
+        time.sleep(70)
+        print("\n----------Sleeping completed--------------------\n")
+>       device.close()
+E       AttributeError: 'LinuxSSH' object has no attribute 'close'
+
+sonic.py:37: AttributeError
+=========================== short test summary info ============================
+ERROR test_target.py::test_check - AttributeError: 'LinuxSSH' object has no a...
+========================= 1 error in 144.21s (0:02:24) =========================

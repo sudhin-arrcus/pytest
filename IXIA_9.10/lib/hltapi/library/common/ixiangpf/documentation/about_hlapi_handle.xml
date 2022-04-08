@@ -1,0 +1,946 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<about_hlapi_handle>
+
+    <title>What is IxNetwork HLAPI handle?</title>
+    <description><![CDATA[
+A handle is an alphanumeric string, which is an ordered sequence of IxNetwork low level objects separated by a front slash character.
+It is returned by the HL API commands either in keyed list or in dictionary format. You need to know the proper key to retrieve the corresponding handle and use it in the subsequent HL commands.
+Handle is a mandatory argument for almost all the HL API commands, like creating new protocols or modifying new protocol stacks etc.
+
+The tables below show how the handles and corresponding keys look like. ]]>
+    </description>
+    <code_examples>
+        <example lang="tcl" supportType="ixNetworkCpfSupport"><![CDATA[
+# Creating BGP Stack on top of IPv4 Stack on Port 1
+puts "Creating BGP Stack on top of IPv4 Stack in Topology 1"
+# IPv4 handle will be obtained from interface_config command
+puts "ipv4 handle = $ipv4_1_handle"
+set bgp_ipv4_peer_1_status [::ixiangpf::emulation_bgp_config
+-mode                                    enable             
+-active                                  1                  
+-handle                                  $ipv4_1_handle     
+-remote_ip_addr                          20.20.20.1         
+]
+if {[keylget bgp_ipv4_peer_1_status status] != $::SUCCESS} {
+    puts "FAIL - $test_name - [keylget bgp_ipv4_peer_1_status log]"
+    return 0
+}
+set bgpIpv4Peer_1_handle [keylget bgp_ipv4_peer_1_status bgp_handle]
+puts "bgpv4 handle  = $bgpIpv4Peer_1_handle" ]]>
+        </example>
+        <example lang="perl" supportType="ixNetworkCpfSupport"><![CDATA[
+#!/usr/bin/perl
+use strict;
+
+#platform specifics (disabled)
+#use File::Spec::Functions;
+
+#turn warnings on during dev; generates a few spurious uninitialised var access warnings
+#use warnings;
+
+#and set $debug to 1 to turn on trace info
+my $debug=1;
+
+#######################################################################
+#
+# check to make sure environment is setup
+#
+
+my $HOME = $ENV{ANT_HOME};
+if ($HOME eq "")
+        {
+    die "\n\nANT_HOME *MUST* be set!\n\n";
+        }
+
+my $JAVACMD = $ENV{JAVACMD};
+$JAVACMD = "java" if $JAVACMD eq "";
+
+my $onnetware = 0;
+if ($^O eq "NetWare")
+{
+  $onnetware = 1;
+}
+
+my $oncygwin = ($^O eq "cygwin");]]>
+        </example>
+        <example lang="python" supportType="ixNetworkCpfSupport"><![CDATA[
+insert here example for Python]]>
+        </example>
+        <example lang="robot" supportType="ixNetworkCpfSupport"><![CDATA[
+insert here example for Robot]]>
+        </example>
+    </code_examples>
+    <output_heading>Sample Output</output_heading>
+    <output_examples>
+        <output_example lang="tcl"><![CDATA[
+# These handle can be used to modify bgp configs
+ipv4 handle  = /topology/deviceGroup/ethernet/ipv4
+bgpv4 handle = /topology/deviceGroup/ipv4Loopback/bgpIpv4Peer]]>
+        </output_example>
+        <output_example lang="perl"><![CDATA[
+insert output example for Perl]]>
+        </output_example>
+        <output_example lang="python"><![CDATA[
+insert output example for Python]]>
+        </output_example>
+        <output_example lang="robot"><![CDATA[
+insert output example for Robot]]>
+        </output_example>
+    </output_examples>
+<handle_group>
+<subtitle>EmulationAncpConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/ancp" key="ancp_handle" comment="Use the key 'ancp_handle to retreive 'ancp' configured on the top of 'ipv4'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationAncpSubscriberLinesConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/networkGroup/dslPools" key="ancp_subscriber_lines_handle" comment="Use the key 'ancp_subscriber_lines_handle to retreive 'dslPools' configured on the top of 'networkGroup'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationBfdConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/ipv4Loopback" key="ipv4_loopback_handle" comment="Use the key 'ipv4_loopback_handle to retreive 'ipv4Loopback' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/ipv6Loopback" key="ipv6_loopback_handle" comment="Use the key 'ipv6_loopback_handle to retreive 'ipv6Loopback' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4" key="ipv4_handle" comment="Use the key 'ipv4_handle to retreive 'ipv4' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6" key="ipv6_handle" comment="Use the key 'ipv6_handle to retreive 'ipv6' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet" key="ethernet_handle" comment="Use the key 'ethernet_handle to retreive 'ethernet' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/bfdRouter" key="bfd_router_handle" comment="Use the key 'bfd_router_handle to retreive 'bfdRouter' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/ipv4/bfdv4Interface" key="bfd_v4_interface_handle" comment="Use the key 'bfd_v4_interface_handle to retreive 'bfdv4Interface' configured on the top of 'ipv4'"/>
+    <handle name="/topology/deviceGroup/ipv6/bfdv6Interface" key="bfd_v6_interface_handle" comment="Use the key 'bfd_v6_interface_handle to retreive 'bfdv6Interface' configured on the top of 'ipv6'"/>
+    <handle name="/topology/deviceGroup/ipv4Loopback/bfdv4Interface" key="bfd_v4_interface_handle" comment="Use the key 'bfd_v4_interface_handle to retreive 'bfdv4Interface' configured on the top of 'ipv4Loopback'"/>
+    <handle name="/topology/deviceGroup/ipv6Loopback/bfdv6Interface" key="bfd_v6_interface_handle" comment="Use the key 'bfd_v6_interface_handle to retreive 'bfdv6Interface' configured on the top of 'ipv6Loopback'"/>
+    <handle name="/topology/deviceGroup/ethernet/dhcpv4client/bfdv4Interface" key="bfd_v4_interface_handle" comment="Use the key 'bfd_v4_interface_handle to retreive 'bfdv4Interface' configured on the top of 'dhcpv4client'"/>
+    <handle name="/topology/deviceGroup/ethernet/dhcpv6client/bfdv6Interface" key="bfd_v6_interface_handle" comment="Use the key 'bfd_v6_interface_handle to retreive 'bfdv6Interface' configured on the top of 'dhcpv6client'"/>
+    <handle name="/topology/deviceGroup/ethernet/pppoxclient/bfdv4Interface" key="bfd_v4_interface_handle" comment="Use the key 'bfd_v4_interface_handle to retreive 'bfdv4Interface' configured on the top of 'pppoxclient'"/>
+    <handle name="/topology/deviceGroup/ethernet/pppoxserver/bfdv4Interface" key="bfd_v4_interface_handle" comment="Use the key 'bfd_v4_interface_handle to retreive 'bfdv4Interface' configured on the top of 'pppoxserver'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/vxlan/bfdv4Interface" key="bfd_v4_interface_handle" comment="Use the key 'bfd_v4_interface_handle to retreive 'bfdv4Interface' configured on the top of 'vxlan'"/>
+    <handle name="/topology/deviceGroup/ethernet/pppoxclient/bfdv6Interface" key="bfd_v6_interface_handle" comment="Use the key 'bfd_v6_interface_handle to retreive 'bfdv6Interface' configured on the top of 'pppoxclient'"/>
+    <handle name="/topology/deviceGroup/ethernet/pppoxserver/bfdv6Interface" key="bfd_v6_interface_handle" comment="Use the key 'bfd_v6_interface_handle to retreive 'bfdv6Interface' configured on the top of 'pppoxserver'"/>
+    <handle name="/topology/deviceGroup/ipv4/bfdv4Interface/bfdv4Session" key="bfd_v4_session_handle" comment="Use the key 'bfd_v4_session_handle to retreive 'bfdv4Session' configured on the top of 'bfdv4Interface'"/>
+    <handle name="/topology/deviceGroup/ipv6/bfdv6Interface/bfdv6Session" key="bfd_v6_session_handle" comment="Use the key 'bfd_v6_session_handle to retreive 'bfdv6Session' configured on the top of 'bfdv6Interface'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationBgpConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/bgpIpv4Peer" key="bgp_handle" comment="Use the key 'bgp_handle to retreive 'bgpIpv4Peer' configured on the top of 'ipv4'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/bgpIpv6Peer" key="bgp_handle" comment="Use the key 'bgp_handle to retreive 'bgpIpv6Peer' configured on the top of 'ipv6'"/>
+    <handle name="/topology/deviceGroup/ipv4Loopback/bgpIpv4Peer" key="bgp_handle" comment="Use the key 'bgp_handle to retreive 'bgpIpv4Peer' configured on the top of 'ipv4Loopback'"/>
+    <handle name="/topology/deviceGroup/ipv6Loopback/bgpIpv6Peer" key="bgp_handle" comment="Use the key 'bgp_handle to retreive 'bgpIpv6Peer' configured on the top of 'ipv6Loopback'"/>
+    <handle name="/topology/deviceGroup/ethernet/dhcpv4client/bgpIpv4Peer" key="bgp_handle" comment="Use the key 'bgp_handle to retreive 'bgpIpv4Peer' configured on the top of 'dhcpv4client'"/>
+    <handle name="/topology/deviceGroup/ethernet/dhcpv6client/bgpIpv6Peer" key="bgp_handle" comment="Use the key 'bgp_handle to retreive 'bgpIpv6Peer' configured on the top of 'dhcpv6client'"/>
+    <handle name="/topology/deviceGroup/ethernet/pppoxclient/dhcpv6client/bgpIpv6Peer" key="bgp_handle" comment="Use the key 'bgp_handle to retreive 'bgpIpv6Peer' configured on the top of 'dhcpv6client'"/>
+    <handle name="/topology/deviceGroup/ethernet/pppoxclient/bgpIpv4Peer" key="bgp_handle" comment="Use the key 'bgp_handle to retreive 'bgpIpv4Peer' configured on the top of 'pppoxclient'"/>
+    <handle name="/topology/deviceGroup/ethernet/pppoxclient/bgpIpv6Peer" key="bgp_handle" comment="Use the key 'bgp_handle to retreive 'bgpIpv6Peer' configured on the top of 'pppoxclient'"/>
+    <handle name="/topology/deviceGroup/ethernet/pppoxserver/bgpIpv4Peer" key="bgp_handle" comment="Use the key 'bgp_handle to retreive 'bgpIpv4Peer' configured on the top of 'pppoxserver'"/>
+    <handle name="/topology/deviceGroup/ethernet/pppoxserver/bgpIpv6Peer" key="bgp_handle" comment="Use the key 'bgp_handle to retreive 'bgpIpv6Peer' configured on the top of 'pppoxserver'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/bgpIpv4Peer/bgpLsCommunitiesList" key="lscommunities_handle_rtr" comment="Use the key 'lscommunities_handle_rtr to retreive 'bgpLsCommunitiesList' configured on the top of 'bgpIpv4Peer'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/bgpIpv6Peer/bgpLsCommunitiesList" key="lscommunities_handle_rtr" comment="Use the key 'lscommunities_handle_rtr to retreive 'bgpLsCommunitiesList' configured on the top of 'bgpIpv6Peer'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/bgpIpv4Peer/bgpLsExtendedCommunitiesList" key="lscommunities_handle_rtr" comment="Use the key 'lscommunities_handle_rtr to retreive 'bgpLsExtendedCommunitiesList' configured on the top of 'bgpIpv4Peer'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/bgpIpv6Peer/bgpLsExtendedCommunitiesList" key="lscommunities_handle_rtr" comment="Use the key 'lscommunities_handle_rtr to retreive 'bgpLsExtendedCommunitiesList' configured on the top of 'bgpIpv6Peer'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/bgpIpv4Peer/bgpLsAsPathSegmentList" key="lsaspath_handle_rtr" comment="Use the key 'lsaspath_handle_rtr to retreive 'bgpLsAsPathSegmentList' configured on the top of 'bgpIpv4Peer'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/bgpIpv6Peer/bgpLsAsPathSegmentList" key="lsaspath_handle_rtr" comment="Use the key 'lsaspath_handle_rtr to retreive 'bgpLsAsPathSegmentList' configured on the top of 'bgpIpv6Peer'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/bgpIpv4Peer/bgpLsClusterIdList" key="lsaspath_handle_rtr" comment="Use the key 'lsaspath_handle_rtr to retreive 'bgpLsClusterIdList' configured on the top of 'bgpIpv4Peer'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/bgpIpv6Peer/bgpLsClusterIdList" key="lsaspath_handle_rtr" comment="Use the key 'lsaspath_handle_rtr to retreive 'bgpLsClusterIdList' configured on the top of 'bgpIpv6Peer'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/bgpIpv4Peer/bgpEthernetSegmentV4" key="bgp_ethernet_segment_handle" comment="Use the key 'bgp_ethernet_segment_handle to retreive 'bgpEthernetSegmentV4' configured on the top of 'bgpIpv4Peer'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/bgpIpv6Peer/bgpEthernetSegmentV6" key="bgp_ethernet_segment_handle" comment="Use the key 'bgp_ethernet_segment_handle to retreive 'bgpEthernetSegmentV6' configured on the top of 'bgpIpv6Peer'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/bgpIpv4Peer/bgpEthernetSegmentV4/bgpv4BMacMappedIpList" key="bgp_b_mac_mapped_ip_handle" comment="Use the key 'bgp_b_mac_mapped_ip_handle to retreive 'bgpv4BMacMappedIpList' configured on the top of 'bgpEthernetSegmentV4'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/bgpIpv6Peer/bgpEthernetSegmentV6/bgpv6BMacMappedIpList" key="bgp_b_mac_mapped_ip_handle" comment="Use the key 'bgp_b_mac_mapped_ip_handle to retreive 'bgpv6BMacMappedIpList' configured on the top of 'bgpEthernetSegmentV6'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationBgpFlowSpecConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/bgpIpv4Peer/bgpFlowSpecRangesListV4" key="bgp_flowSpecV4_handle" comment="Use the key 'bgp_flowSpecV4_handle to retreive 'bgpFlowSpecRangesListV4' configured on the top of 'bgpIpv4Peer'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/bgpIpv4Peer/bgpFlowSpecRangesListV6" key="bgp_flowSpecV6_handle" comment="Use the key 'bgp_flowSpecV6_handle to retreive 'bgpFlowSpecRangesListV6' configured on the top of 'bgpIpv4Peer'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/bgpIpv6Peer/bgpFlowSpecRangesListV4" key="bgp_flowSpecV4_handle" comment="Use the key 'bgp_flowSpecV4_handle to retreive 'bgpFlowSpecRangesListV4' configured on the top of 'bgpIpv6Peer'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/bgpIpv6Peer/bgpFlowSpecRangesListV6" key="bgp_flowSpecV6_handle" comment="Use the key 'bgp_flowSpecV6_handle to retreive 'bgpFlowSpecRangesListV6' configured on the top of 'bgpIpv6Peer'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationBgpMvpnConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/networkGroup" key="network_group_handle" comment="Use the key 'network_group_handle to retreive 'networkGroup' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/bgpIpv4Peer/bgpIpv4MVrf" key="bgp_mvrf" comment="Use the key 'bgp_mvrf to retreive 'bgpIpv4MVrf' configured on the top of 'bgpIpv4Peer'"/>
+    <handle name="/topology/deviceGroup/networkGroup/ipv4PrefixPools/bgpMVpnReceiverSitesIpv4" key="mvpn_receiver_site_v4" comment="Use the key 'mvpn_receiver_site_v4 to retreive 'bgpMVpnReceiverSitesIpv4' configured on the top of 'ipv4PrefixPools'"/>
+    <handle name="/topology/deviceGroup/networkGroup/ipv4PrefixPools/bgpMVpnSenderSitesIpv4" key="mvpn_sender_site_v4" comment="Use the key 'mvpn_sender_site_v4 to retreive 'bgpMVpnSenderSitesIpv4' configured on the top of 'ipv4PrefixPools'"/>
+    <handle name="/topology/deviceGroup/networkGroup/ipv4PrefixPools/bgpMVpnSenderSitesIpv4/bgpMVpnSenderSiteSpmsiV4" key="mvpn_sender_site_spmsi_v4" comment="Use the key 'mvpn_sender_site_spmsi_v4 to retreive 'bgpMVpnSenderSiteSpmsiV4' configured on the top of 'bgpMVpnSenderSitesIpv4'"/>
+    <handle name="/topology/deviceGroup/networkGroup/ipv6PrefixPools/bgpMVpnReceiverSitesIpv6" key="mvpn_receiver_site_v6" comment="Use the key 'mvpn_receiver_site_v6 to retreive 'bgpMVpnReceiverSitesIpv6' configured on the top of 'ipv6PrefixPools'"/>
+    <handle name="/topology/deviceGroup/networkGroup/ipv6PrefixPools/bgpMVpnSenderSitesIpv6" key="mvpn_sender_site_v6" comment="Use the key 'mvpn_sender_site_v6 to retreive 'bgpMVpnSenderSitesIpv6' configured on the top of 'ipv6PrefixPools'"/>
+    <handle name="/topology/deviceGroup/networkGroup/ipv6PrefixPools/bgpMVpnSenderSitesIpv6/bgpMVpnSenderSiteSpmsiV6" key="mvpn_sender_site_spmsi_v6" comment="Use the key 'mvpn_sender_site_spmsi_v6 to retreive 'bgpMVpnSenderSiteSpmsiV6' configured on the top of 'bgpMVpnSenderSitesIpv6'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationBgpRouteConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/networkGroup" key="network_group_handle" comment="Use the key 'network_group_handle to retreive 'networkGroup' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/networkGroup/ipv4PrefixPools/bgpIPRouteProperty" key="ip_routes" comment="Use the key 'ip_routes to retreive 'bgpIPRouteProperty' configured on the top of 'ipv4PrefixPools'"/>
+    <handle name="/topology/deviceGroup/networkGroup/ipv4PrefixPools/bgpV6IPRouteProperty" key="ip_routes" comment="Use the key 'ip_routes to retreive 'bgpV6IPRouteProperty' configured on the top of 'ipv4PrefixPools'"/>
+    <handle name="/topology/deviceGroup/networkGroup/ipv6PrefixPools/bgpIPRouteProperty" key="ip_routes" comment="Use the key 'ip_routes to retreive 'bgpIPRouteProperty' configured on the top of 'ipv6PrefixPools'"/>
+    <handle name="/topology/deviceGroup/networkGroup/ipv6PrefixPools/bgpV6IPRouteProperty" key="ip_routes" comment="Use the key 'ip_routes to retreive 'bgpV6IPRouteProperty' configured on the top of 'ipv6PrefixPools'"/>
+    <handle name="/topology/deviceGroup/networkGroup/ipv4PrefixPools/bgpL3VpnRouteProperty" key="l3_vpn_routes" comment="Use the key 'l3_vpn_routes to retreive 'bgpL3VpnRouteProperty' configured on the top of 'ipv4PrefixPools'"/>
+    <handle name="/topology/deviceGroup/networkGroup/ipv4PrefixPools/bgpV6L3VpnRouteProperty" key="l3_vpn_routes" comment="Use the key 'l3_vpn_routes to retreive 'bgpV6L3VpnRouteProperty' configured on the top of 'ipv4PrefixPools'"/>
+    <handle name="/topology/deviceGroup/networkGroup/ipv6PrefixPools/bgpL3VpnRouteProperty" key="l3_vpn_routes" comment="Use the key 'l3_vpn_routes to retreive 'bgpL3VpnRouteProperty' configured on the top of 'ipv6PrefixPools'"/>
+    <handle name="/topology/deviceGroup/networkGroup/ipv6PrefixPools/bgpV6L3VpnRouteProperty" key="l3_vpn_routes" comment="Use the key 'l3_vpn_routes to retreive 'bgpV6L3VpnRouteProperty' configured on the top of 'ipv6PrefixPools'"/>
+    <handle name="/topology/deviceGroup/networkGroup/ipv4PrefixPools/evpnIPv4PrefixRange" key="ip_prefix" comment="Use the key 'ip_prefix to retreive 'evpnIPv4PrefixRange' configured on the top of 'ipv4PrefixPools'"/>
+    <handle name="/topology/deviceGroup/networkGroup/ipv6PrefixPools/evpnIPv6PrefixRange" key="ip_prefix" comment="Use the key 'ip_prefix to retreive 'evpnIPv6PrefixRange' configured on the top of 'ipv6PrefixPools'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkGroup/ipv4PrefixPools/evpnIPv4PrefixRange" key="ip_prefix" comment="Use the key 'ip_prefix to retreive 'evpnIPv4PrefixRange' configured on the top of 'ipv4PrefixPools'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkGroup/ipv6PrefixPools/evpnIPv6PrefixRange" key="ip_prefix" comment="Use the key 'ip_prefix to retreive 'evpnIPv6PrefixRange' configured on the top of 'ipv6PrefixPools'"/>
+    <handle name="/topology/deviceGroup/networkGroup/macPools" key="mac_pools" comment="Use the key 'mac_pools to retreive 'macPools' configured on the top of 'networkGroup'"/>
+    <handle name="/topology/deviceGroup/networkGroup/macPools/ipv4PrefixPools" key="macpool_ip_prefix" comment="Use the key 'macpool_ip_prefix to retreive 'ipv4PrefixPools' configured on the top of 'macPools'"/>
+    <handle name="/topology/deviceGroup/networkGroup/macPools/ipv6PrefixPools" key="macpool_ip_prefix" comment="Use the key 'macpool_ip_prefix to retreive 'ipv6PrefixPools' configured on the top of 'macPools'"/>
+    <handle name="/topology/deviceGroup/networkGroup/macPools/cMacProperties" key="cmac_properties" comment="Use the key 'cmac_properties to retreive 'cMacProperties' configured on the top of 'macPools'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/bgpIpv4Peer/bgpIpv4L2Site" key="l2_site" comment="Use the key 'l2_site to retreive 'bgpIpv4L2Site' configured on the top of 'bgpIpv4Peer'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/bgpIpv6Peer/bgpIpv6L2Site" key="l2_site" comment="Use the key 'l2_site to retreive 'bgpIpv6L2Site' configured on the top of 'bgpIpv6Peer'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/bgpIpv4Peer/bgpIpv4L2Site/labelBlockList" key="label_blocks" comment="Use the key 'label_blocks to retreive 'labelBlockList' configured on the top of 'bgpIpv4L2Site'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/bgpIpv6Peer/bgpIpv6L2Site/labelBlockList" key="label_blocks" comment="Use the key 'label_blocks to retreive 'labelBlockList' configured on the top of 'bgpIpv6L2Site'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/bgpIpv4Peer/bgpVrf" key="bgp_vrf" comment="Use the key 'bgp_vrf to retreive 'bgpVrf' configured on the top of 'bgpIpv4Peer'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/bgpIpv6Peer/bgpV6Vrf" key="bgp_vrf" comment="Use the key 'bgp_vrf to retreive 'bgpV6Vrf' configured on the top of 'bgpIpv6Peer'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/bgpIpv4Peer/bgpIpv4AdL2Vpn" key="ad_l2vpn" comment="Use the key 'ad_l2vpn to retreive 'bgpIpv4AdL2Vpn' configured on the top of 'bgpIpv4Peer'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/bgpIpv6Peer/bgpIpv6AdL2Vpn" key="ad_l2vpn" comment="Use the key 'ad_l2vpn to retreive 'bgpIpv6AdL2Vpn' configured on the top of 'bgpIpv6Peer'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/bgpIpv4Peer/bgpIPv4EvpnEvi" key="evpn_evi" comment="Use the key 'evpn_evi to retreive 'bgpIPv4EvpnEvi' configured on the top of 'bgpIpv4Peer'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/bgpIpv6Peer/bgpIPv6EvpnEvi" key="evpn_evi" comment="Use the key 'evpn_evi to retreive 'bgpIPv6EvpnEvi' configured on the top of 'bgpIpv6Peer'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/bgpIpv4Peer/bgpIPv4EvpnEvi/broadcastDomainV4" key="broadcast_domain_handle" comment="Use the key 'broadcast_domain_handle to retreive 'broadcastDomainV4' configured on the top of 'bgpIPv4EvpnEvi'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/bgpIpv6Peer/bgpIPv6EvpnEvi/broadcastDomainV6" key="broadcast_domain_handle" comment="Use the key 'broadcast_domain_handle to retreive 'broadcastDomainV6' configured on the top of 'bgpIPv6EvpnEvi'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/bgpIpv4Peer/bgpIPv4EvpnPbb" key="evpn_evi" comment="Use the key 'evpn_evi to retreive 'bgpIPv4EvpnPbb' configured on the top of 'bgpIpv4Peer'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/bgpIpv6Peer/bgpIPv6EvpnPbb" key="evpn_evi" comment="Use the key 'evpn_evi to retreive 'bgpIPv6EvpnPbb' configured on the top of 'bgpIpv6Peer'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/bgpIpv4Peer/bgpIPv4EvpnPbb/broadcastDomainV4" key="broadcast_domain_handle" comment="Use the key 'broadcast_domain_handle to retreive 'broadcastDomainV4' configured on the top of 'bgpIPv4EvpnPbb'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/bgpIpv6Peer/bgpIPv6EvpnPbb/broadcastDomainV6" key="broadcast_domain_handle" comment="Use the key 'broadcast_domain_handle to retreive 'broadcastDomainV6' configured on the top of 'bgpIPv6EvpnPbb'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/bgpIpv4Peer/bgpIPv4EvpnVXLAN" key="evpn_evi" comment="Use the key 'evpn_evi to retreive 'bgpIPv4EvpnVXLAN' configured on the top of 'bgpIpv4Peer'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/bgpIpv6Peer/bgpIPv6EvpnVXLAN" key="evpn_evi" comment="Use the key 'evpn_evi to retreive 'bgpIPv6EvpnVXLAN' configured on the top of 'bgpIpv6Peer'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/bgpIpv4Peer/bgpIPv4EvpnVXLAN/broadcastDomainV4" key="broadcast_domain_handle" comment="Use the key 'broadcast_domain_handle to retreive 'broadcastDomainV4' configured on the top of 'bgpIPv4EvpnVXLAN'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/bgpIpv6Peer/bgpIPv6EvpnVXLAN/broadcastDomainV6" key="broadcast_domain_handle" comment="Use the key 'broadcast_domain_handle to retreive 'broadcastDomainV6' configured on the top of 'bgpIPv6EvpnVXLAN'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/bgpIpv4Peer/bgpIPv4EvpnVpws" key="evpn_evi" comment="Use the key 'evpn_evi to retreive 'bgpIPv4EvpnVpws' configured on the top of 'bgpIpv4Peer'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/bgpIpv6Peer/bgpIPv6EvpnVpws" key="evpn_evi" comment="Use the key 'evpn_evi to retreive 'bgpIPv6EvpnVpws' configured on the top of 'bgpIpv6Peer'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/bgpIpv4Peer/bgpIPv4EvpnVpws/broadcastDomainV4Vpws" key="broadcast_domain_vpws_handle" comment="Use the key 'broadcast_domain_vpws_handle to retreive 'broadcastDomainV4Vpws' configured on the top of 'bgpIPv4EvpnVpws'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/bgpIpv6Peer/bgpIPv6EvpnVpws/broadcastDomainV6Vpws" key="broadcast_domain_vpws_handle" comment="Use the key 'broadcast_domain_vpws_handle to retreive 'broadcastDomainV6Vpws' configured on the top of 'bgpIPv6EvpnVpws'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/bgpIpv4Peer/bgpIPv4EvpnVXLANVpws" key="evpn_evi" comment="Use the key 'evpn_evi to retreive 'bgpIPv4EvpnVXLANVpws' configured on the top of 'bgpIpv4Peer'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/bgpIpv6Peer/bgpIPv6EvpnVXLANVpws" key="evpn_evi" comment="Use the key 'evpn_evi to retreive 'bgpIPv6EvpnVXLANVpws' configured on the top of 'bgpIpv6Peer'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/bgpIpv4Peer/bgpIPv4EvpnVXLANVpws/broadcastDomainV4VxlanVpws" key="broadcast_domain_vxlan_vpws_handle" comment="Use the key 'broadcast_domain_vxlan_vpws_handle to retreive 'broadcastDomainV4VxlanVpws' configured on the top of 'bgpIPv4EvpnVXLANVpws'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/bgpIpv6Peer/bgpIPv6EvpnVXLANVpws/broadcastDomainV6VxlanVpws" key="broadcast_domain_vxlan_vpws_handle" comment="Use the key 'broadcast_domain_vxlan_vpws_handle to retreive 'broadcastDomainV6VxlanVpws' configured on the top of 'bgpIPv6EvpnVXLANVpws'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationBgpSrtePoliciesConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/bgpIpv4Peer/bgpSRTEPoliciesListV4" key="bgpSRTEPoliciesListV4_handle" comment="Use the key 'bgpSRTEPoliciesListV4_handle to retreive 'bgpSRTEPoliciesListV4' configured on the top of 'bgpIpv4Peer'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/bgpIpv6Peer/bgpSRTEPoliciesListV6" key="bgpSRTEPoliciesListV6_handle" comment="Use the key 'bgpSRTEPoliciesListV6_handle to retreive 'bgpSRTEPoliciesListV6' configured on the top of 'bgpIpv6Peer'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationBondedgreConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/greoipv4/bondedGRE" key="bondedgre_device_handle" comment="Use the key 'bondedgre_device_handle to retreive 'bondedGRE' configured on the top of 'greoipv4'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/greoipv4/dhcpv4client" key="dhcpv4_device_handle" comment="Use the key 'dhcpv4_device_handle to retreive 'dhcpv4client' configured on the top of 'greoipv4'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationCfmConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/networkGroup" key="network_group_handle" comment="Use the key 'network_group_handle to retreive 'networkGroup' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/ethernet/cfmBridge" key="cfm_emulated" comment="Use the key 'cfm_emulated to retreive 'cfmBridge' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet/cfmBridge/cfmMp" key="cfm_emulated_mp" comment="Use the key 'cfm_emulated_mp to retreive 'cfmMp' configured on the top of 'cfmBridge'"/>
+    <handle name="/topology/deviceGroup/ethernet/cfmBridge/cfmMp/cfmCustomTLVList" key="cfm_emulated_mp_tlvlist" comment="Use the key 'cfm_emulated_mp_tlvlist to retreive 'cfmCustomTLVList' configured on the top of 'cfmMp'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationCfmNetworkGroupConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/networkGroup" key="network_group_handle" comment="Use the key 'network_group_handle to retreive 'networkGroup' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/cfmSimulatedTopology" key="simulated_topology_handle" comment="Use the key 'simulated_topology_handle to retreive 'cfmSimulatedTopology' configured on the top of 'networkTopology'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simInterface" key="simulated_interface_handle" comment="Use the key 'simulated_interface_handle to retreive 'simInterface' configured on the top of 'networkTopology'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simRouterBridge" key="simulated_rbridge_handle" comment="Use the key 'simulated_rbridge_handle to retreive 'simRouterBridge' configured on the top of 'networkTopology'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simRouterBridge/cfmSimulatedMp" key="cfm_simulated_mp" comment="Use the key 'cfm_simulated_mp to retreive 'cfmSimulatedMp' configured on the top of 'simRouterBridge'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simRouterBridge/cfmSimulatedMp/cfmCustomTLVList" key="pseudo_node_custom_tlv_handle" comment="Use the key 'pseudo_node_custom_tlv_handle to retreive 'cfmCustomTLVList' configured on the top of 'cfmSimulatedMp'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationDhcpGroupConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/ethernet/dhcpv6client" key="dhcpv6client_handle" comment="Use the key 'dhcpv6client_handle to retreive 'dhcpv6client' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet/dhcpv4client" key="dhcpv4client_handle" comment="Use the key 'dhcpv4client_handle to retreive 'dhcpv4client' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/greoipv4/dhcpv4client" key="dhcpv4client_handle" comment="Use the key 'dhcpv4client_handle to retreive 'dhcpv4client' configured on the top of 'greoipv4'"/>
+    <handle name="/topology/deviceGroup/ethernet/dhcpv6client/dhcp6Iapd" key="dhcpv6_iapd_handle" comment="Use the key 'dhcpv6_iapd_handle to retreive 'dhcp6Iapd' configured on the top of 'dhcpv6client'"/>
+    <handle name="/topology/deviceGroup/ethernet/dhcpv6client/dhcp6Iana" key="dhcpv6_iana_handle" comment="Use the key 'dhcpv6_iana_handle to retreive 'dhcp6Iana' configured on the top of 'dhcpv6client'"/>
+    <handle name="/topology/deviceGroup/ethernet/pppoxclient/dhcpv6client" key="dhcpv6client_handle" comment="Use the key 'dhcpv6client_handle to retreive 'dhcpv6client' configured on the top of 'pppoxclient'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/dhcpv6relayAgent" key="dhcpv6relayagent_handle" comment="Use the key 'dhcpv6relayagent_handle to retreive 'dhcpv6relayAgent' configured on the top of 'ipv6'"/>
+    <handle name="/topology/deviceGroup/ethernet/lightweightDhcpv6relayAgent" key="dhcpv6relayagent_handle" comment="Use the key 'dhcpv6relayagent_handle to retreive 'lightweightDhcpv6relayAgent' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/dhcpv4relayAgent" key="dhcpv4relayagent_handle" comment="Use the key 'dhcpv4relayagent_handle to retreive 'dhcpv4relayAgent' configured on the top of 'ipv4'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationDhcpServerConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/dhcpv6server" key="dhcpv6server_handle" comment="Use the key 'dhcpv6server_handle to retreive 'dhcpv6server' configured on the top of 'ipv6'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/dhcpv4server" key="dhcpv4server_handle" comment="Use the key 'dhcpv4server_handle to retreive 'dhcpv4server' configured on the top of 'ipv4'"/>
+    <handle name="/topology/deviceGroup/ethernet/pppoxserver/dhcpv6server" key="dhcpv6server_handle" comment="Use the key 'dhcpv6server_handle to retreive 'dhcpv6server' configured on the top of 'pppoxserver'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/lns/pppoxserver/dhcpv6server" key="dhcpv6server_handle" comment="Use the key 'dhcpv6server_handle to retreive 'dhcpv6server' configured on the top of 'pppoxserver'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationDotonexConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/ethernet/dotOneX" key="dotonex_device_handle" comment="Use the key 'dotonex_device_handle to retreive 'dotOneX' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet/dotOneX/ipv4" key="ipv4_device_handle" comment="Use the key 'ipv4_device_handle to retreive 'ipv4' configured on the top of 'dotOneX'"/>
+    <handle name="/topology/deviceGroup/ethernet/dotOneX/ipv6" key="ipv6_device_handle" comment="Use the key 'ipv6_device_handle to retreive 'ipv6' configured on the top of 'dotOneX'"/>
+    <handle name="/topology/deviceGroup/ethernet/dotOneX/dhcpv4client" key="dhcpv4_device_handle" comment="Use the key 'dhcpv4_device_handle to retreive 'dhcpv4client' configured on the top of 'dotOneX'"/>
+    <handle name="/topology/deviceGroup/ethernet/dotOneX/dhcpv6client" key="dhcpv6_device_handle" comment="Use the key 'dhcpv6_device_handle to retreive 'dhcpv6client' configured on the top of 'dotOneX'"/>
+    <handle name="/topology/deviceGroup/ethernet/dotOneX/pppoxclient" key="pppox_client_handle" comment="Use the key 'pppox_client_handle to retreive 'pppoxclient' configured on the top of 'dotOneX'"/>
+    <handle name="/topology/deviceGroup/ethernet/dotOneX/pppoxserver" key="pppox_server_handle" comment="Use the key 'pppox_server_handle to retreive 'pppoxserver' configured on the top of 'dotOneX'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationEsmcConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/networkGroup" key="network_group_handle" comment="Use the key 'network_group_handle to retreive 'networkGroup' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/networkGroup/macPools" key="mac_pools" comment="Use the key 'mac_pools to retreive 'macPools' configured on the top of 'networkGroup'"/>
+    <handle name="/topology/deviceGroup/ethernet/esmc" key="esmc" comment="Use the key 'esmc to retreive 'esmc' configured on the top of 'ethernet'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationIgmpConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/igmpHost" key="igmp_host_handle" comment="Use the key 'igmp_host_handle to retreive 'igmpHost' configured on the top of 'ipv4'"/>
+    <handle name="/topology/deviceGroup/ethernet" key="ethernet_handle" comment="Use the key 'ethernet_handle to retreive 'ethernet' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4" key="ipv4_handle" comment="Use the key 'ipv4_handle to retreive 'ipv4' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet/pppoxclient" key="pppox_client_handle" comment="Use the key 'pppox_client_handle to retreive 'pppoxclient' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet/pppoxserver" key="pppox_server_handle" comment="Use the key 'pppox_server_handle to retreive 'pppoxserver' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/igmpHost/iptv" key="igmp_host_iptv_handle" comment="Use the key 'igmp_host_iptv_handle to retreive 'iptv' configured on the top of 'igmpHost'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationIgmpGroupConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/igmpHost/igmpMcastIPv4GroupList" key="igmp_group_handle" comment="Use the key 'igmp_group_handle to retreive 'igmpMcastIPv4GroupList' configured on the top of 'igmpHost'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/igmpHost/igmpMcastIPv4GroupList/igmpUcastIPv4SourceList" key="igmp_source_handle" comment="Use the key 'igmp_source_handle to retreive 'igmpUcastIPv4SourceList' configured on the top of 'igmpMcastIPv4GroupList'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationIgmpQuerierConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/igmpQuerier" key="igmp_querier_handle" comment="Use the key 'igmp_querier_handle to retreive 'igmpQuerier' configured on the top of 'ipv4'"/>
+    <handle name="/topology/deviceGroup/ethernet" key="ethernet_handle" comment="Use the key 'ethernet_handle to retreive 'ethernet' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4" key="ipv4_handle" comment="Use the key 'ipv4_handle to retreive 'ipv4' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet/dhcpv4client" key="dhcpv4_client_handle" comment="Use the key 'dhcpv4_client_handle to retreive 'dhcpv4client' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet/pppoxclient" key="pppox_client_handle" comment="Use the key 'pppox_client_handle to retreive 'pppoxclient' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet/pppoxserver" key="pppox_server_handle" comment="Use the key 'pppox_server_handle to retreive 'pppoxserver' configured on the top of 'ethernet'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>InterfaceConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/ethernet" key="ethernet_handle" comment="Use the key 'ethernet_handle to retreive 'ethernet' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4" key="ipv4_handle" comment="Use the key 'ipv4_handle to retreive 'ipv4' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6" key="ipv6_handle" comment="Use the key 'ipv6_handle to retreive 'ipv6' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6Autoconfiguration" key="ipv6autoconfiguration_handle" comment="Use the key 'ipv6autoconfiguration_handle to retreive 'ipv6Autoconfiguration' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ipv6Loopback" key="ipv6_loopback_handle" comment="Use the key 'ipv6_loopback_handle to retreive 'ipv6Loopback' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/ipv4Loopback" key="ipv4_loopback_handle" comment="Use the key 'ipv4_loopback_handle to retreive 'ipv4Loopback' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/greoipv4" key="greoipv4_handle" comment="Use the key 'greoipv4_handle to retreive 'greoipv4' configured on the top of 'ipv4'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/greoipv6" key="greoipv6_handle" comment="Use the key 'greoipv6_handle to retreive 'greoipv6' configured on the top of 'ipv6'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationIsisConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/ethernet" key="ethernet_handle" comment="Use the key 'ethernet_handle to retreive 'ethernet' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4" key="ipv4_handle" comment="Use the key 'ipv4_handle to retreive 'ipv4' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6" key="ipv6_handle" comment="Use the key 'ipv6_handle to retreive 'ipv6' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet/isisL3" key="isis_l3_handle" comment="Use the key 'isis_l3_handle to retreive 'isisL3' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/isisL3Router" key="isis_l3_router_handle" comment="Use the key 'isis_l3_router_handle to retreive 'isisL3Router' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/ethernet/isisL3/isisTrafficEngineering" key="isis_l3_te_handle" comment="Use the key 'isis_l3_te_handle to retreive 'isisTrafficEngineering' configured on the top of 'isisL3'"/>
+    <handle name="/topology/deviceGroup/isisL3Router/isisSRGBRangeSubObjectsList" key="srgb_range_handle_rtr" comment="Use the key 'srgb_range_handle_rtr to retreive 'isisSRGBRangeSubObjectsList' configured on the top of 'isisL3Router'"/>
+    <handle name="/topology/deviceGroup/isisL3Router/isisSRTunnelList" key="sr_tunnel_handle_rtr" comment="Use the key 'sr_tunnel_handle_rtr to retreive 'isisSRTunnelList' configured on the top of 'isisL3Router'"/>
+    <handle name="/topology/deviceGroup/isisL3Router/isisSRTunnelList/isisSegmentList" key="sr_tunnel_seg_handle_rtr" comment="Use the key 'sr_tunnel_seg_handle_rtr to retreive 'isisSegmentList' configured on the top of 'isisSRTunnelList'"/>
+    <handle name="/topology/deviceGroup/ethernet/isisL3/srlgValueList" key="srlg_range_handle_rtr" comment="Use the key 'srlg_range_handle_rtr to retreive 'srlgValueList' configured on the top of 'isisL3'"/>
+    <handle name="/topology/deviceGroup/ethernet/isisL3Router/isisSRAlgorithmList" key="sr_algoList_handle_rtr" comment="Use the key 'sr_algoList_handle_rtr to retreive 'isisSRAlgorithmList' configured on the top of 'isisL3Router'"/>
+    <handle name="/topology/deviceGroup/isisL3Router/isisSRLBDescriptorList" key="srlb_descList_handle_rtr" comment="Use the key 'srlb_descList_handle_rtr to retreive 'isisSRLBDescriptorList' configured on the top of 'isisL3Router'"/>
+    <handle name="/topology/deviceGroup/isisL3Router/isisFlexAlgorithmList" key="flex_algo_handler" comment="Use the key 'flex_algo_handler to retreive 'isisFlexAlgorithmList' configured on the top of 'isisL3Router'"/>
+    <handle name="/topology/deviceGroup/ethernet/isisL3/isisAppSpecSrlgList" key="app_spec_srlg_handler" comment="Use the key 'app_spec_srlg_handler to retreive 'isisAppSpecSrlgList' configured on the top of 'isisL3'"/>
+    <handle name="/topology/deviceGroup/ethernet/isisL3/isisTrafficEngineeringProfileList" key="isis_te_profile_handler" comment="Use the key 'isis_te_profile_handler to retreive 'isisTrafficEngineeringProfileList' configured on the top of 'isisL3'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationIsisNetworkGroupConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/networkGroup" key="network_group_handle" comment="Use the key 'network_group_handle to retreive 'networkGroup' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/isisL3SimulatedTopologyConfig" key="simulated_topology_handle" comment="Use the key 'simulated_topology_handle to retreive 'isisL3SimulatedTopologyConfig' configured on the top of 'networkTopology'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simInterface/simInterfaceIPv4Config" key="simulated_interface_ipv4_handle" comment="Use the key 'simulated_interface_ipv4_handle to retreive 'simInterfaceIPv4Config' configured on the top of 'simInterface'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simInterface/simInterfaceIPv6Config" key="simulated_interface_ipv6_handle" comment="Use the key 'simulated_interface_ipv6_handle to retreive 'simInterfaceIPv6Config' configured on the top of 'simInterface'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simInterface/isisL3PseudoInterface/isisL3PseudoIfaceAttPoint2Config" key="to_node_handle" comment="Use the key 'to_node_handle to retreive 'isisL3PseudoIfaceAttPoint2Config' configured on the top of 'isisL3PseudoInterface'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simInterface/isisL3PseudoInterface/isisL3PseudoIfaceAttPoint1Config" key="from_node_handle" comment="Use the key 'from_node_handle to retreive 'isisL3PseudoIfaceAttPoint1Config' configured on the top of 'isisL3PseudoInterface'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simInterface/isisL3PseudoInterface/srlgValueList" key="pseudo_node_srlg_range_handle" comment="Use the key 'pseudo_node_srlg_range_handle to retreive 'srlgValueList' configured on the top of 'isisL3PseudoInterface'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simInterface/isisPseudoAppSpecSrlgList" key="isis_pseudo_app_spec_srlg_handler" comment="Use the key 'isis_pseudo_app_spec_srlg_handler to retreive 'isisPseudoAppSpecSrlgList' configured on the top of 'simInterface'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simInterface/isisL3PseudoInterface/isisPseudoTraffEngProfile" key="isis_pseudo_te_profile_handler" comment="Use the key 'isis_pseudo_te_profile_handler to retreive 'isisPseudoTraffEngProfile' configured on the top of 'isisL3PseudoInterface'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simRouter" key="simulated_rbridge_handle" comment="Use the key 'simulated_rbridge_handle to retreive 'simRouter' configured on the top of 'networkTopology'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simRouter/isisL3PseudoRouter" key="pseudo_node_handle" comment="Use the key 'pseudo_node_handle to retreive 'isisL3PseudoRouter' configured on the top of 'simRouter'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simRouter/isisL3PseudoRouter/isisSRGBRangeSubObjectsList" key="pseudo_node_srgb_range_handle" comment="Use the key 'pseudo_node_srgb_range_handle to retreive 'isisSRGBRangeSubObjectsList' configured on the top of 'isisL3PseudoRouter'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simRouter/isisL3PseudoRouter/IPv4PseudoNodeRoutes" key="pseudo_node_ipv4_route_handle" comment="Use the key 'pseudo_node_ipv4_route_handle to retreive 'IPv4PseudoNodeRoutes' configured on the top of 'isisL3PseudoRouter'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simRouter/isisL3PseudoRouter/IPv6PseudoNodeRoutes" key="pseudo_node_ipv6_route_handle" comment="Use the key 'pseudo_node_ipv6_route_handle to retreive 'IPv6PseudoNodeRoutes' configured on the top of 'isisL3PseudoRouter'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simRouter/isisL3PseudoRouter/isisSRAlgorithmList" key="pseudo_node_sr_algoList_handle" comment="Use the key 'pseudo_node_sr_algoList_handle to retreive 'isisSRAlgorithmList' configured on the top of 'isisL3PseudoRouter'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simRouter/isisL3PseudoRouter/isisSRLBDescriptorList" key="pseudo_node_srlb_descriptorList_handle" comment="Use the key 'pseudo_node_srlb_descriptorList_handle to retreive 'isisSRLBDescriptorList' configured on the top of 'isisL3PseudoRouter'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simRouter/isisL3PseudoRouter/isisPseudoFlexAlgorithm" key="isis_pseudoflex_algo_handler" comment="Use the key 'isis_pseudoflex_algo_handler to retreive 'isisPseudoFlexAlgorithm' configured on the top of 'isisL3PseudoRouter'"/>
+    <handle name="/topology/deviceGroup/networkGroup/ipv4PrefixPools/isisL3RouteProperty" key="ipv4_prefix_interface_handle" comment="Use the key 'ipv4_prefix_interface_handle to retreive 'isisL3RouteProperty' configured on the top of 'ipv4PrefixPools'"/>
+    <handle name="/topology/deviceGroup/networkGroup/ipv6PrefixPools/isisL3RouteProperty" key="ipv6_prefix_interface_handle" comment="Use the key 'ipv6_prefix_interface_handle to retreive 'isisL3RouteProperty' configured on the top of 'ipv6PrefixPools'"/>
+    <handle name="/topology/deviceGroup/networkGroup/ipv4PrefixPools/isisL3RouteProperty/isisL3PrefixesSrSid" key="ipv4_prefixes_sid_handle" comment="Use the key 'ipv4_prefixes_sid_handle to retreive 'isisL3PrefixesSrSid' configured on the top of 'isisL3RouteProperty'"/>
+    <handle name="/topology/deviceGroup/networkGroup/ipv6PrefixPools/isisL3RouteProperty/isisL3PrefixesSrSid" key="ipv6_prefixes_sid_handle" comment="Use the key 'ipv6_prefixes_sid_handle to retreive 'isisL3PrefixesSrSid' configured on the top of 'isisL3RouteProperty'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>L2tpConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/ethernet" key="ethernet_handle" comment="Use the key 'ethernet_handle to retreive 'ethernet' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4" key="ipv4_handle" comment="Use the key 'ipv4_handle to retreive 'ipv4' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/lac" key="lac_handle" comment="Use the key 'lac_handle to retreive 'lac' configured on the top of 'ipv4'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/lns" key="lns_handle" comment="Use the key 'lns_handle to retreive 'lns' configured on the top of 'ipv4'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/lns/lnsAuthCredentials" key="lns_auth_credentials_handle" comment="Use the key 'lns_auth_credentials_handle to retreive 'lnsAuthCredentials' configured on the top of 'lns'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/lns/pppoxserver/pppoxServerSessions" key="pppox_server_sessions_handle" comment="Use the key 'pppox_server_sessions_handle to retreive 'pppoxServerSessions' configured on the top of 'pppoxserver'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/lns/pppoxserver" key="pppox_server_handle" comment="Use the key 'pppox_server_handle to retreive 'pppoxserver' configured on the top of 'lns'"/>
+    <handle name="/topology/deviceGroup/deviceGroup/ethernet/pppoxclient" key="pppox_client_handle" comment="Use the key 'pppox_client_handle to retreive 'pppoxclient' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/deviceGroup/ethernet/pppoxclient/dhcpv6client" key="dhcpv6_client_handle" comment="Use the key 'dhcpv6_client_handle to retreive 'dhcpv6client' configured on the top of 'pppoxclient'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/lns/pppoxserver/dhcpv6server" key="dhcpv6_server_handle" comment="Use the key 'dhcpv6_server_handle to retreive 'dhcpv6server' configured on the top of 'pppoxserver'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationLacpLinkConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/ethernet" key="ethernet_handle" comment="Use the key 'ethernet_handle to retreive 'ethernet' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/ethernet/lacp" key="lacp_handle" comment="Use the key 'lacp_handle to retreive 'lacp' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet/staticLag" key="staticLag_handle" comment="Use the key 'staticLag_handle to retreive 'staticLag' configured on the top of 'ethernet'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationLagConfig</subtitle>
+<handle_list>
+    <handle name="/lag" key="lag_handle" comment="Use the key 'lag_handle to retreive 'lag' configured on the top of ''"/>
+    <handle name="/lag" key="lag_handle" comment="Use the key 'lag_handle to retreive 'lag' configured on the top of ''"/>
+    <handle name="/lag/protocolStack" key="protocol_stack_handle" comment="Use the key 'protocol_stack_handle to retreive 'protocolStack' configured on the top of 'lag'"/>
+    <handle name="/lag/protocolStack/ethernet" key="ethernet_handle" comment="Use the key 'ethernet_handle to retreive 'ethernet' configured on the top of 'protocolStack'"/>
+    <handle name="/lag/protocolStack/ethernet/lagportlacp" key="lag_port_lacp_handle" comment="Use the key 'lag_port_lacp_handle to retreive 'lagportlacp' configured on the top of 'ethernet'"/>
+    <handle name="/lag/protocolStack/ethernet/lagportstaticlag" key="lag_port_staticLag_handle" comment="Use the key 'lag_port_staticLag_handle to retreive 'lagportstaticlag' configured on the top of 'ethernet'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationLagConfig</subtitle>
+<handle_list>
+    <handle name="/lag" key="lag_handle" comment="Use the key 'lag_handle to retreive 'lag' configured on the top of ''"/>
+    <handle name="/lag/protocolStack" key="protocol_stack_handle" comment="Use the key 'protocol_stack_handle to retreive 'protocolStack' configured on the top of 'lag'"/>
+    <handle name="/lag/protocolStack/ethernet" key="ethernet_handle" comment="Use the key 'ethernet_handle to retreive 'ethernet' configured on the top of 'protocolStack'"/>
+    <handle name="/lag/protocolStack/ethernet/lagportlacp" key="lag_port_lacp_handle" comment="Use the key 'lag_port_lacp_handle to retreive 'lagportlacp' configured on the top of 'ethernet'"/>
+    <handle name="/lag/protocolStack/ethernet/lagportstaticlag" key="lag_port_staticLag_handle" comment="Use the key 'lag_port_staticLag_handle to retreive 'lagportstaticlag' configured on the top of 'ethernet'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationLdpConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/ipv4Loopback" key="ipv4_loopback_handle" comment="Use the key 'ipv4_loopback_handle to retreive 'ipv4Loopback' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/ipv6Loopback" key="ipv6_loopback_handle" comment="Use the key 'ipv6_loopback_handle to retreive 'ipv6Loopback' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4" key="ipv4_handle" comment="Use the key 'ipv4_handle to retreive 'ipv4' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6" key="ipv6_handle" comment="Use the key 'ipv6_handle to retreive 'ipv6' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet" key="ethernet_handle" comment="Use the key 'ethernet_handle to retreive 'ethernet' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/ldpBasicRouter" key="ldp_basic_router_handle" comment="Use the key 'ldp_basic_router_handle to retreive 'ldpBasicRouter' configured on the top of 'ipv4'"/>
+    <handle name="/topology/deviceGroup/ldpBasicRouter" key="ldp_basic_router_handle" comment="Use the key 'ldp_basic_router_handle to retreive 'ldpBasicRouter' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/ldpConnectedInterface" key="ldp_connected_interface_handle" comment="Use the key 'ldp_connected_interface_handle to retreive 'ldpConnectedInterface' configured on the top of 'ipv4'"/>
+    <handle name="/topology/deviceGroup/ipv4Loopback/ldpTargetedRouter" key="ldp_targeted_router_handle" comment="Use the key 'ldp_targeted_router_handle to retreive 'ldpTargetedRouter' configured on the top of 'ipv4Loopback'"/>
+    <handle name="/topology/deviceGroup/ldpTargetedRouter" key="ldp_targeted_router_handle" comment="Use the key 'ldp_targeted_router_handle to retreive 'ldpTargetedRouter' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/ldpBasicRouter/ldpLeafRangeV4" key="leaf_ranges" comment="Use the key 'leaf_ranges to retreive 'ldpLeafRangeV4' configured on the top of 'ldpBasicRouter'"/>
+    <handle name="/topology/deviceGroup/ldpBasicRouter/ldpRootRangeV4" key="root_ranges" comment="Use the key 'root_ranges to retreive 'ldpRootRangeV4' configured on the top of 'ldpBasicRouter'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/ldpBasicRouter/ldpLeafRangeV4" key="leaf_ranges" comment="Use the key 'leaf_ranges to retreive 'ldpLeafRangeV4' configured on the top of 'ldpBasicRouter'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/ldpBasicRouter/ldpRootRangeV4" key="root_ranges" comment="Use the key 'root_ranges to retreive 'ldpRootRangeV4' configured on the top of 'ldpBasicRouter'"/>
+    <handle name="/topology/deviceGroup/ldpBasicRouterV6/ldpLeafRangeV6" key="leaf_ranges" comment="Use the key 'leaf_ranges to retreive 'ldpLeafRangeV6' configured on the top of 'ldpBasicRouterV6'"/>
+    <handle name="/topology/deviceGroup/ldpBasicRouterV6/ldpRootRangeV6" key="root_ranges" comment="Use the key 'root_ranges to retreive 'ldpRootRangeV6' configured on the top of 'ldpBasicRouterV6'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/ldpBasicRouterV6/ldpLeafRangeV6" key="leaf_ranges" comment="Use the key 'leaf_ranges to retreive 'ldpLeafRangeV6' configured on the top of 'ldpBasicRouterV6'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/ldpBasicRouterV6/ldpRootRangeV6" key="root_ranges" comment="Use the key 'root_ranges to retreive 'ldpRootRangeV6' configured on the top of 'ldpBasicRouterV6'"/>
+    <handle name="/topology/deviceGroup/ldpTargetedRouter/ldpLeafRangeV4" key="leaf_ranges" comment="Use the key 'leaf_ranges to retreive 'ldpLeafRangeV4' configured on the top of 'ldpTargetedRouter'"/>
+    <handle name="/topology/deviceGroup/ldpTargetedRouter/ldpRootRangeV4" key="root_ranges" comment="Use the key 'root_ranges to retreive 'ldpRootRangeV4' configured on the top of 'ldpTargetedRouter'"/>
+    <handle name="/topology/deviceGroup/ldpTargetedRouterV6/ldpLeafRangeV6" key="leaf_ranges" comment="Use the key 'leaf_ranges to retreive 'ldpLeafRangeV6' configured on the top of 'ldpTargetedRouterV6'"/>
+    <handle name="/topology/deviceGroup/ldpTargetedRouterV6/ldpRootRangeV6" key="root_ranges" comment="Use the key 'root_ranges to retreive 'ldpRootRangeV6' configured on the top of 'ldpTargetedRouterV6'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/ldpBasicRouterV6" key="ldpv6_basic_router_handle" comment="Use the key 'ldpv6_basic_router_handle to retreive 'ldpBasicRouterV6' configured on the top of 'ipv6'"/>
+    <handle name="/topology/deviceGroup/ldpBasicRouterV6" key="ldpv6_basic_router_handle" comment="Use the key 'ldpv6_basic_router_handle to retreive 'ldpBasicRouterV6' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/ldpConnectedInterface" key="ldp_connected_interface_handle" comment="Use the key 'ldp_connected_interface_handle to retreive 'ldpConnectedInterface' configured on the top of 'ipv6'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/ldpv6ConnectedInterface" key="ldpv6_connected_interface_handle" comment="Use the key 'ldpv6_connected_interface_handle to retreive 'ldpv6ConnectedInterface' configured on the top of 'ipv6'"/>
+    <handle name="/topology/deviceGroup/ipv6Loopback/ldpTargetedRouterV6" key="ldpv6_targeted_router_handle" comment="Use the key 'ldpv6_targeted_router_handle to retreive 'ldpTargetedRouterV6' configured on the top of 'ipv6Loopback'"/>
+    <handle name="/topology/deviceGroup/ldpTargetedRouterV6" key="ldpv6_targeted_router_handle" comment="Use the key 'ldpv6_targeted_router_handle to retreive 'ldpTargetedRouterV6' configured on the top of 'deviceGroup'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationLdpRouteConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/networkGroup" key="network_group_handle" comment="Use the key 'network_group_handle to retreive 'networkGroup' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/networkGroup/ipv4PrefixPools/ldpFECProperty" key="fecproperty_handle" comment="Use the key 'fecproperty_handle to retreive 'ldpFECProperty' configured on the top of 'ipv4PrefixPools'"/>
+    <handle name="/topology/deviceGroup/networkGroup/ipv6PrefixPools/ldpIpv6FECProperty" key="ipv6_fecproperty_handle" comment="Use the key 'ipv6_fecproperty_handle to retreive 'ldpIpv6FECProperty' configured on the top of 'ipv6PrefixPools'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/ldpBasicRouter/ldppwvpls" key="ldppwvpls_handle" comment="Use the key 'ldppwvpls_handle to retreive 'ldppwvpls' configured on the top of 'ldpBasicRouter'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/ldpBasicRouter/ldpotherpws" key="ldpotherpws_handle" comment="Use the key 'ldpotherpws_handle to retreive 'ldpotherpws' configured on the top of 'ldpBasicRouter'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/ldpBasicRouter/ldpvplsbgpad" key="ldpvplsbgpad_handle" comment="Use the key 'ldpvplsbgpad_handle to retreive 'ldpvplsbgpad' configured on the top of 'ldpBasicRouter'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/ldpBasicRouterV6/ldppwvpls" key="ldppwvpls_handle" comment="Use the key 'ldppwvpls_handle to retreive 'ldppwvpls' configured on the top of 'ldpBasicRouterV6'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/ldpBasicRouterV6/ldpotherpws" key="ldpotherpws_handle" comment="Use the key 'ldpotherpws_handle to retreive 'ldpotherpws' configured on the top of 'ldpBasicRouterV6'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/ldpBasicRouterV6/ldpvplsbgpad" key="ldpvplsbgpad_handle" comment="Use the key 'ldpvplsbgpad_handle to retreive 'ldpvplsbgpad' configured on the top of 'ldpBasicRouterV6'"/>
+    <handle name="/topology/deviceGroup/ipv4Loopback/ldpTargetedRouter/ldpvplsbgpad" key="ldpvplsbgpad_handle" comment="Use the key 'ldpvplsbgpad_handle to retreive 'ldpvplsbgpad' configured on the top of 'ldpTargetedRouter'"/>
+    <handle name="/topology/deviceGroup/ipv4Loopback/ldpTargetedRouter/ldpotherpws" key="ldpotherpws_handle" comment="Use the key 'ldpotherpws_handle to retreive 'ldpotherpws' configured on the top of 'ldpTargetedRouter'"/>
+    <handle name="/topology/deviceGroup/ipv4Loopback/ldpTargetedRouter/ldppwvpls" key="ldppwvpls_handle" comment="Use the key 'ldppwvpls_handle to retreive 'ldppwvpls' configured on the top of 'ldpTargetedRouter'"/>
+    <handle name="/topology/deviceGroup/ipv6Loopback/ldpTargetedRouterV6/ldpvplsbgpad" key="ldpvplsbgpad_handle" comment="Use the key 'ldpvplsbgpad_handle to retreive 'ldpvplsbgpad' configured on the top of 'ldpTargetedRouterV6'"/>
+    <handle name="/topology/deviceGroup/ipv6Loopback/ldpTargetedRouterV6/ldpotherpws" key="ldpotherpws_handle" comment="Use the key 'ldpotherpws_handle to retreive 'ldpotherpws' configured on the top of 'ldpTargetedRouterV6'"/>
+    <handle name="/topology/deviceGroup/ipv6Loopback/ldpTargetedRouterV6/ldppwvpls" key="ldppwvpls_handle" comment="Use the key 'ldppwvpls_handle to retreive 'ldppwvpls' configured on the top of 'ldpTargetedRouterV6'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationMldConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/mldHost" key="mld_host_handle" comment="Use the key 'mld_host_handle to retreive 'mldHost' configured on the top of 'ipv6'"/>
+    <handle name="/topology/deviceGroup/ethernet" key="ethernet_handle" comment="Use the key 'ethernet_handle to retreive 'ethernet' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6" key="ipv6_handle" comment="Use the key 'ipv6_handle to retreive 'ipv6' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet/dhcpv6client" key="dhcpv6_client_handle" comment="Use the key 'dhcpv6_client_handle to retreive 'dhcpv6client' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet/pppoxclient" key="pppox_client_handle" comment="Use the key 'pppox_client_handle to retreive 'pppoxclient' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet/pppoxserver" key="pppox_server_handle" comment="Use the key 'pppox_server_handle to retreive 'pppoxserver' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet/pppoxclient/dhcpv6client" key="dhcpv6_client_handle" comment="Use the key 'dhcpv6_client_handle to retreive 'dhcpv6client' configured on the top of 'pppoxclient'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/mldHost/iptv" key="mld_host_iptv_handle" comment="Use the key 'mld_host_iptv_handle to retreive 'iptv' configured on the top of 'mldHost'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationMldGroupConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/mldHost/mldMcastIPv6GroupList" key="mld_group_handle" comment="Use the key 'mld_group_handle to retreive 'mldMcastIPv6GroupList' configured on the top of 'mldHost'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/mldHost/mldMcastIPv6GroupList/mldUcastIPv6SourceList" key="mld_source_handle" comment="Use the key 'mld_source_handle to retreive 'mldUcastIPv6SourceList' configured on the top of 'mldMcastIPv6GroupList'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationMldQuerierConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/mldQuerier" key="mld_querier_handle" comment="Use the key 'mld_querier_handle to retreive 'mldQuerier' configured on the top of 'ipv6'"/>
+    <handle name="/topology/deviceGroup/ethernet" key="ethernet_handle" comment="Use the key 'ethernet_handle to retreive 'ethernet' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6" key="ipv6_handle" comment="Use the key 'ipv6_handle to retreive 'ipv6' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet/dhcpv6client" key="dhcpv6_client_handle" comment="Use the key 'dhcpv6_client_handle to retreive 'dhcpv6client' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet/pppoxclient" key="pppox_client_handle" comment="Use the key 'pppox_client_handle to retreive 'pppoxclient' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet/pppoxserver" key="pppox_server_handle" comment="Use the key 'pppox_server_handle to retreive 'pppoxserver' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet/pppoxclient/dhcpv6client" key="dhcpv6_client_handle" comment="Use the key 'dhcpv6_client_handle to retreive 'dhcpv6client' configured on the top of 'pppoxclient'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationMsrpListenerConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/ethernet" key="ethernet_handle" comment="Use the key 'ethernet_handle to retreive 'ethernet' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/ethernet/msrpListener" key="msrp_listener_handle" comment="Use the key 'msrp_listener_handle to retreive 'msrpListener' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet/msrpListener/msrpListenerDomains" key="msrp_listener_domain_handle" comment="Use the key 'msrp_listener_domain_handle to retreive 'msrpListenerDomains' configured on the top of 'msrpListener'"/>
+    <handle name="/topology/deviceGroup/ethernet/msrpListener/subscribedStreams" key="msrp_listener_subscribed_stream_handle" comment="Use the key 'msrp_listener_subscribed_stream_handle to retreive 'subscribedStreams' configured on the top of 'msrpListener'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationMsrpTalkerConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/ethernet" key="ethernet_handle" comment="Use the key 'ethernet_handle to retreive 'ethernet' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/ethernet/msrpTalker" key="msrp_talker_handle" comment="Use the key 'msrp_talker_handle to retreive 'msrpTalker' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet/streams" key="msrp_stream_handle" comment="Use the key 'msrp_stream_handle to retreive 'streams' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet/msrpTalker/msrpTalkerDomains" key="msrp_talker_domain_handle" comment="Use the key 'msrp_talker_domain_handle to retreive 'msrpTalkerDomains' configured on the top of 'msrpTalker'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationMulticastGroupConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/igmpHost/igmpMcastIPv4GroupList" key="multicast_group_handle" comment="Use the key 'multicast_group_handle to retreive 'igmpMcastIPv4GroupList' configured on the top of 'igmpHost'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/mldHost/mldMcastIPv6GroupList" key="multicast_group_handle" comment="Use the key 'multicast_group_handle to retreive 'mldMcastIPv6GroupList' configured on the top of 'mldHost'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/pimV4Interface/pimV4JoinPruneList" key="multicast_group_handle" comment="Use the key 'multicast_group_handle to retreive 'pimV4JoinPruneList' configured on the top of 'pimV4Interface'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/pimV6Interface/pimV6JoinPruneList" key="multicast_group_handle" comment="Use the key 'multicast_group_handle to retreive 'pimV6JoinPruneList' configured on the top of 'pimV6Interface'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/pimV4Interface/pimV4SourcesList" key="multicast_group_handle" comment="Use the key 'multicast_group_handle to retreive 'pimV4SourcesList' configured on the top of 'pimV4Interface'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/pimV6Interface/pimV6SourcesList" key="multicast_group_handle" comment="Use the key 'multicast_group_handle to retreive 'pimV6SourcesList' configured on the top of 'pimV6Interface'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/pimV4Interface/pimV4CandidateRPsList" key="multicast_group_handle" comment="Use the key 'multicast_group_handle to retreive 'pimV4CandidateRPsList' configured on the top of 'pimV4Interface'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/pimV6Interface/pimV6CandidateRPsList" key="multicast_group_handle" comment="Use the key 'multicast_group_handle to retreive 'pimV6CandidateRPsList' configured on the top of 'pimV6Interface'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationMulticastSourceConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/igmpHost/igmpMcastIPv4GroupList/igmpUcastIPv4SourceList" key="multicast_source_handle" comment="Use the key 'multicast_source_handle to retreive 'igmpUcastIPv4SourceList' configured on the top of 'igmpMcastIPv4GroupList'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/mldHost/mldMcastIPv6GroupList/mldUcastIPv6SourceList" key="multicast_source_handle" comment="Use the key 'multicast_source_handle to retreive 'mldUcastIPv6SourceList' configured on the top of 'mldMcastIPv6GroupList'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/pimV4Interface/pimV4SourcesList" key="multicast_source_handle" comment="Use the key 'multicast_source_handle to retreive 'pimV4SourcesList' configured on the top of 'pimV4Interface'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/pimV4Interface/pimV4JoinPruneList" key="multicast_source_handle" comment="Use the key 'multicast_source_handle to retreive 'pimV4JoinPruneList' configured on the top of 'pimV4Interface'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/pimV6Interface/pimV6JoinPruneList" key="multicast_source_handle" comment="Use the key 'multicast_source_handle to retreive 'pimV6JoinPruneList' configured on the top of 'pimV6Interface'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/pimV6Interface/pimV6SourcesList" key="multicast_source_handle" comment="Use the key 'multicast_source_handle to retreive 'pimV6SourcesList' configured on the top of 'pimV6Interface'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>MultivalueConfig</subtitle>
+<handle_list>
+    <handle name="/multivalue" key="multivalue_handle" comment="Use the key 'multivalue_handle to retreive 'multivalue' configured on the top of ''"/>
+    <handle name="/multivalue/custom" key="custom_handle" comment="Use the key 'custom_handle to retreive 'custom' configured on the top of 'multivalue'"/>
+    <handle name="/multivalue/custom/increment" key="increment_handle" comment="Use the key 'increment_handle to retreive 'increment' configured on the top of 'custom'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationNetconfClientConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/ipv4Loopback" key="ipv4_loopback_handle" comment="Use the key 'ipv4_loopback_handle to retreive 'ipv4Loopback' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4" key="ipv4_handle" comment="Use the key 'ipv4_handle to retreive 'ipv4' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/netconfClient" key="netconf_client_handle" comment="Use the key 'netconf_client_handle to retreive 'netconfClient' configured on the top of 'ipv4'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/netconfClient/commandSnippetsData" key="command_snippets_data_handle" comment="Use the key 'command_snippets_data_handle to retreive 'commandSnippetsData' configured on the top of 'netconfClient'"/>
+    <handle name="/topology/deviceGroup/ethernet/dhcpv4client/netconfClient" key="netconf_client_handle" comment="Use the key 'netconf_client_handle to retreive 'netconfClient' configured on the top of 'dhcpv4client'"/>
+    <handle name="/topology/deviceGroup/ethernet/dhcpv4client/netconfClient/commandSnippetsData" key="command_snippets_data_handle" comment="Use the key 'command_snippets_data_handle to retreive 'commandSnippetsData' configured on the top of 'netconfClient'"/>
+    <handle name="/topology/deviceGroup/ipv4Loopback/netconfClient" key="netconf_client_handle" comment="Use the key 'netconf_client_handle to retreive 'netconfClient' configured on the top of 'ipv4Loopback'"/>
+    <handle name="/topology/deviceGroup/ipv4Loopback/netconfClient/commandSnippetsData" key="command_snippets_data_handle" comment="Use the key 'command_snippets_data_handle to retreive 'commandSnippetsData' configured on the top of 'netconfClient'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ipv4Loopback" key="ipv4_loopback_handle" comment="Use the key 'ipv4_loopback_handle to retreive 'ipv4Loopback' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ethernet/ipv4" key="ipv4_handle" comment="Use the key 'ipv4_handle to retreive 'ipv4' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ethernet/ipv4/netconfClient" key="netconf_client_handle" comment="Use the key 'netconf_client_handle to retreive 'netconfClient' configured on the top of 'ipv4'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ethernet/ipv4/netconfClient/commandSnippetsData" key="command_snippets_data_handle" comment="Use the key 'command_snippets_data_handle to retreive 'commandSnippetsData' configured on the top of 'netconfClient'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ethernet/dhcpv4client/netconfClient" key="netconf_client_handle" comment="Use the key 'netconf_client_handle to retreive 'netconfClient' configured on the top of 'dhcpv4client'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ethernet/dhcpv4client/netconfClient/commandSnippetsData" key="command_snippets_data_handle" comment="Use the key 'command_snippets_data_handle to retreive 'commandSnippetsData' configured on the top of 'netconfClient'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ipv4Loopback/netconfClient" key="netconf_client_handle" comment="Use the key 'netconf_client_handle to retreive 'netconfClient' configured on the top of 'ipv4Loopback'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ipv4Loopback/netconfClient/commandSnippetsData" key="command_snippets_data_handle" comment="Use the key 'command_snippets_data_handle to retreive 'commandSnippetsData' configured on the top of 'netconfClient'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationNetconfServerConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/ipv4Loopback" key="ipv4_loopback_handle" comment="Use the key 'ipv4_loopback_handle to retreive 'ipv4Loopback' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4" key="ipv4_handle" comment="Use the key 'ipv4_handle to retreive 'ipv4' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/netconfServer" key="netconf_server_handle" comment="Use the key 'netconf_server_handle to retreive 'netconfServer' configured on the top of 'ipv4'"/>
+    <handle name="/topology/deviceGroup/ethernet/dhcpv4client/netconfServer" key="netconf_server_handle" comment="Use the key 'netconf_server_handle to retreive 'netconfServer' configured on the top of 'dhcpv4client'"/>
+    <handle name="/topology/deviceGroup/ipv4Loopback/netconfServer" key="netconf_server_handle" comment="Use the key 'netconf_server_handle to retreive 'netconfServer' configured on the top of 'ipv4Loopback'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ipv4Loopback" key="ipv4_loopback_handle" comment="Use the key 'ipv4_loopback_handle to retreive 'ipv4Loopback' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ethernet/ipv4" key="ipv4_handle" comment="Use the key 'ipv4_handle to retreive 'ipv4' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ethernet/ipv4/netconfServer" key="netconf_server_handle" comment="Use the key 'netconf_server_handle to retreive 'netconfServer' configured on the top of 'ipv4'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ethernet/dhcpv4client/netconfServer" key="netconf_server_handle" comment="Use the key 'netconf_server_handle to retreive 'netconfServer' configured on the top of 'dhcpv4client'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ipv4Loopback/netconfServer" key="netconf_server_handle" comment="Use the key 'netconf_server_handle to retreive 'netconfServer' configured on the top of 'ipv4Loopback'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>NetworkGroupConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/networkGroup" key="network_group_handle" comment="Use the key 'network_group_handle to retreive 'networkGroup' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/networkGroup/macPools" key="mac_pools_handle" comment="Use the key 'mac_pools_handle to retreive 'macPools' configured on the top of 'networkGroup'"/>
+    <handle name="/topology/deviceGroup/networkGroup/ipv4PrefixPools" key="ipv4_prefix_pools_handle" comment="Use the key 'ipv4_prefix_pools_handle to retreive 'ipv4PrefixPools' configured on the top of 'networkGroup'"/>
+    <handle name="/topology/deviceGroup/networkGroup/ipv6PrefixPools" key="ipv6_prefix_pools_handle" comment="Use the key 'ipv6_prefix_pools_handle to retreive 'ipv6PrefixPools' configured on the top of 'networkGroup'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simRouter" key="simulated_router_handle" comment="Use the key 'simulated_router_handle to retreive 'simRouter' configured on the top of 'networkTopology'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simRouter/ospfPseudoRouter/ospfPseudoRouterType1ExtRoutes" key="external1_handle" comment="Use the key 'external1_handle to retreive 'ospfPseudoRouterType1ExtRoutes' configured on the top of 'ospfPseudoRouter'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simRouter/ospfPseudoRouter/ospfPseudoRouterType2ExtRoutes" key="external2_handle" comment="Use the key 'external2_handle to retreive 'ospfPseudoRouterType2ExtRoutes' configured on the top of 'ospfPseudoRouter'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simRouter/ospfPseudoRouter/ospfPseudoRouterStubRoutes" key="nssa_handle" comment="Use the key 'nssa_handle to retreive 'ospfPseudoRouterStubRoutes' configured on the top of 'ospfPseudoRouter'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simRouter/ospfPseudoRouter/ospfPseudoRouterStubNetworks" key="stub_handle" comment="Use the key 'stub_handle to retreive 'ospfPseudoRouterStubNetworks' configured on the top of 'ospfPseudoRouter'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simRouter/ospfPseudoRouter/ospfPseudoRouterSummaryRoutes" key="summary_handle" comment="Use the key 'summary_handle to retreive 'ospfPseudoRouterSummaryRoutes' configured on the top of 'ospfPseudoRouter'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simInterface/simInterfaceIPv4Config" key="sim_interface_ipv4_config_handle" comment="Use the key 'sim_interface_ipv4_config_handle to retreive 'simInterfaceIPv4Config' configured on the top of 'simInterface'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simRouter/ospfv3PseudoRouter/interAreaRouter" key="v3_inter_area_handle" comment="Use the key 'v3_inter_area_handle to retreive 'interAreaRouter' configured on the top of 'ospfv3PseudoRouter'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simRouter/ospfv3PseudoRouter/externalRoutes" key="v3_external_handle" comment="Use the key 'v3_external_handle to retreive 'externalRoutes' configured on the top of 'ospfv3PseudoRouter'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simRouter/ospfv3PseudoRouter/intraAreaPrefix" key="v3_intra_area_prefix_handle" comment="Use the key 'v3_intra_area_prefix_handle to retreive 'intraAreaPrefix' configured on the top of 'ospfv3PseudoRouter'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simRouter/ospfv3PseudoRouter/nssaRoutes" key="v3_nssa_handle" comment="Use the key 'v3_nssa_handle to retreive 'nssaRoutes' configured on the top of 'ospfv3PseudoRouter'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simRouter/ospfv3PseudoRouter/interAreaPrefix" key="v3_inter_area_prefix_handle" comment="Use the key 'v3_inter_area_prefix_handle to retreive 'interAreaPrefix' configured on the top of 'ospfv3PseudoRouter'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simRouter/ospfv3PseudoRouter/linkLsaRoutes" key="v3_linklsa_handle" comment="Use the key 'v3_linklsa_handle to retreive 'linkLsaRoutes' configured on the top of 'ospfv3PseudoRouter'"/>
+    <handle name="/topology/deviceGroup/networkGroup/ipv6PrefixPools/ospfv3RouteProperty" key="ipv6_prefix_interface_handle" comment="Use the key 'ipv6_prefix_interface_handle to retreive 'ospfv3RouteProperty' configured on the top of 'ipv6PrefixPools'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simRouterBridge" key="simulated_rbridge_handle" comment="Use the key 'simulated_rbridge_handle to retreive 'simRouterBridge' configured on the top of 'networkTopology'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simInterface/simInterfaceIPv6Config" key="simulated_interface_ipv6_handle" comment="Use the key 'simulated_interface_ipv6_handle to retreive 'simInterfaceIPv6Config' configured on the top of 'simInterface'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationOspfConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/ethernet" key="ethernet_handle" comment="Use the key 'ethernet_handle to retreive 'ethernet' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4" key="ipv4_handle" comment="Use the key 'ipv4_handle to retreive 'ipv4' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/ospfv2" key="ospfv2_handle" comment="Use the key 'ospfv2_handle to retreive 'ospfv2' configured on the top of 'ipv4'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6" key="ipv6_handle" comment="Use the key 'ipv6_handle to retreive 'ipv6' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/ospfv3" key="ospfv3_handle" comment="Use the key 'ospfv3_handle to retreive 'ospfv3' configured on the top of 'ipv6'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationOspfInfo</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/ospfv2/learnedInfo" key="handle" comment="Use the key 'handle to retreive 'learnedInfo' configured on the top of 'ospfv2'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/ospfv3/learnedInfo" key="handle" comment="Use the key 'handle to retreive 'learnedInfo' configured on the top of 'ospfv3'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationOspfNetworkGroupConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simRouter" key="simulated_router_handle" comment="Use the key 'simulated_router_handle to retreive 'simRouter' configured on the top of 'networkTopology'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simRouter/ospfPseudoRouter/ospfPseudoRouterType1ExtRoutes" key="external1_handle" comment="Use the key 'external1_handle to retreive 'ospfPseudoRouterType1ExtRoutes' configured on the top of 'ospfPseudoRouter'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simRouter/ospfPseudoRouter/ospfPseudoRouterType2ExtRoutes" key="external2_handle" comment="Use the key 'external2_handle to retreive 'ospfPseudoRouterType2ExtRoutes' configured on the top of 'ospfPseudoRouter'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simRouter/ospfPseudoRouter/ospfPseudoRouterStubRoutes" key="nssa_handle" comment="Use the key 'nssa_handle to retreive 'ospfPseudoRouterStubRoutes' configured on the top of 'ospfPseudoRouter'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simRouter/ospfPseudoRouter/ospfPseudoRouterStubNetworks" key="stub_handle" comment="Use the key 'stub_handle to retreive 'ospfPseudoRouterStubNetworks' configured on the top of 'ospfPseudoRouter'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simRouter/ospfPseudoRouter/ospfPseudoRouterSummaryRoutes" key="summary_handle" comment="Use the key 'summary_handle to retreive 'ospfPseudoRouterSummaryRoutes' configured on the top of 'ospfPseudoRouter'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simInterface/simInterfaceIPv4Config/ospfPseudoInterface" key="simulated_interface_handle" comment="Use the key 'simulated_interface_handle to retreive 'ospfPseudoInterface' configured on the top of 'simInterfaceIPv4Config'"/>
+    <handle name="/topology/deviceGroup/networkGroup/ipv4PrefixPools/ospfRouteProperty" key="ipv4_prefix_interface_handle" comment="Use the key 'ipv4_prefix_interface_handle to retreive 'ospfRouteProperty' configured on the top of 'ipv4PrefixPools'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simInterface/simInterfaceIPv4Config" key="sim_interface_ipv4_config_handle" comment="Use the key 'sim_interface_ipv4_config_handle to retreive 'simInterfaceIPv4Config' configured on the top of 'simInterface'"/>
+    <handle name="/topology/deviceGroup/networkGroup" key="network_group_handle" comment="Use the key 'network_group_handle to retreive 'networkGroup' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/networkGroup/ipv4PrefixPools" key="ipv4_prefix_pools_handle" comment="Use the key 'ipv4_prefix_pools_handle to retreive 'ipv4PrefixPools' configured on the top of 'networkGroup'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simRouter/ospfv3PseudoRouter/interAreaRouter" key="v3_inter_area_handle" comment="Use the key 'v3_inter_area_handle to retreive 'interAreaRouter' configured on the top of 'ospfv3PseudoRouter'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simRouter/ospfv3PseudoRouter/externalRoutes" key="v3_external_handle" comment="Use the key 'v3_external_handle to retreive 'externalRoutes' configured on the top of 'ospfv3PseudoRouter'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simRouter/ospfv3PseudoRouter/intraAreaPrefix" key="v3_intra_area_prefix_handle" comment="Use the key 'v3_intra_area_prefix_handle to retreive 'intraAreaPrefix' configured on the top of 'ospfv3PseudoRouter'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simRouter/ospfv3PseudoRouter/nssaRoutes" key="v3_nssa_handle" comment="Use the key 'v3_nssa_handle to retreive 'nssaRoutes' configured on the top of 'ospfv3PseudoRouter'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simRouter/ospfv3PseudoRouter/interAreaPrefix" key="v3_inter_area_prefix_handle" comment="Use the key 'v3_inter_area_prefix_handle to retreive 'interAreaPrefix' configured on the top of 'ospfv3PseudoRouter'"/>
+    <handle name="/topology/deviceGroup/networkGroup/ipv6PrefixPools/ospfv3RouteProperty" key="ipv6_prefix_interface_handle" comment="Use the key 'ipv6_prefix_interface_handle to retreive 'ospfv3RouteProperty' configured on the top of 'ipv6PrefixPools'"/>
+    <handle name="/topology/deviceGroup/networkGroup/ipv6PrefixPools" key="ipv6_prefix_pools_handle" comment="Use the key 'ipv6_prefix_pools_handle to retreive 'ipv6PrefixPools' configured on the top of 'networkGroup'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simInterface/simInterfaceIPv6Config" key="sim_interface_ipv6_config_handle" comment="Use the key 'sim_interface_ipv6_config_handle to retreive 'simInterfaceIPv6Config' configured on the top of 'simInterface'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simInterface/simInterfaceIPv6Config/ospfv3PseudoInterface" key="simulated_v3_interface_handle" comment="Use the key 'simulated_v3_interface_handle to retreive 'ospfv3PseudoInterface' configured on the top of 'simInterfaceIPv6Config'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simRouter/ospfv3PseudoRouter/linkLsaRoutes" key="v3_linklsa_handle" comment="Use the key 'v3_linklsa_handle to retreive 'linkLsaRoutes' configured on the top of 'ospfv3PseudoRouter'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationOvsdbConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/ovsdbcontroller" key="ovsdb_controller_handle" comment="Use the key 'ovsdb_controller_handle to retreive 'ovsdbcontroller' configured on the top of 'ipv4'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/ovsdbcontroller/clusterData" key="clusterdata_handle" comment="Use the key 'clusterdata_handle to retreive 'clusterData' configured on the top of 'ovsdbcontroller'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationPccConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/ipv4Loopback" key="ipv4_loopback_handle" comment="Use the key 'ipv4_loopback_handle to retreive 'ipv4Loopback' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4" key="ipv4_handle" comment="Use the key 'ipv4_handle to retreive 'ipv4' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/pcc" key="pcc_handle" comment="Use the key 'pcc_handle to retreive 'pcc' configured on the top of 'ipv4'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/pcc/expectedInitiatedLspList" key="expected_initiated_lsp_list_handle" comment="Use the key 'expected_initiated_lsp_list_handle to retreive 'expectedInitiatedLspList' configured on the top of 'pcc'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/pcc/pcepBackupPCEs" key="pcep_backup_pces_handle" comment="Use the key 'pcep_backup_pces_handle to retreive 'pcepBackupPCEs' configured on the top of 'pcc'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/pcc/requestedLsps" key="requested_lsps_handle" comment="Use the key 'requested_lsps_handle to retreive 'requestedLsps' configured on the top of 'pcc'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/pcc/preEstablishedSrLsps" key="pre_established_sr_lsps_handle" comment="Use the key 'pre_established_sr_lsps_handle to retreive 'preEstablishedSrLsps' configured on the top of 'pcc'"/>
+    <handle name="/topology/deviceGroup/ipv4Loopback/pcc" key="pcc_handle" comment="Use the key 'pcc_handle to retreive 'pcc' configured on the top of 'ipv4Loopback'"/>
+    <handle name="/topology/deviceGroup/ipv4Loopback/pcc/expectedInitiatedLspList" key="expected_initiated_lsp_list_handle" comment="Use the key 'expected_initiated_lsp_list_handle to retreive 'expectedInitiatedLspList' configured on the top of 'pcc'"/>
+    <handle name="/topology/deviceGroup/ipv4Loopback/pcc/pcepBackupPCEs" key="pcep_backup_pces_handle" comment="Use the key 'pcep_backup_pces_handle to retreive 'pcepBackupPCEs' configured on the top of 'pcc'"/>
+    <handle name="/topology/deviceGroup/ipv4Loopback/pcc/requestedLsps" key="requested_lsps_handle" comment="Use the key 'requested_lsps_handle to retreive 'requestedLsps' configured on the top of 'pcc'"/>
+    <handle name="/topology/deviceGroup/ipv4Loopback/pcc/preEstablishedSrLsps" key="pre_established_sr_lsps_handle" comment="Use the key 'pre_established_sr_lsps_handle to retreive 'preEstablishedSrLsps' configured on the top of 'pcc'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ipv4Loopback" key="ipv4_loopback_handle" comment="Use the key 'ipv4_loopback_handle to retreive 'ipv4Loopback' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ethernet/ipv4" key="ipv4_handle" comment="Use the key 'ipv4_handle to retreive 'ipv4' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ethernet/ipv4/pcc" key="pcc_handle" comment="Use the key 'pcc_handle to retreive 'pcc' configured on the top of 'ipv4'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ethernet/ipv4/pcc/expectedInitiatedLspList" key="expected_initiated_lsp_list_handle" comment="Use the key 'expected_initiated_lsp_list_handle to retreive 'expectedInitiatedLspList' configured on the top of 'pcc'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ethernet/ipv4/pcc/pcepBackupPCEs" key="pcep_backup_pces_handle" comment="Use the key 'pcep_backup_pces_handle to retreive 'pcepBackupPCEs' configured on the top of 'pcc'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ethernet/ipv4/pcc/requestedLsps" key="requested_lsps_handle" comment="Use the key 'requested_lsps_handle to retreive 'requestedLsps' configured on the top of 'pcc'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ethernet/ipv4/pcc/preEstablishedSrLsps" key="pre_established_sr_lsps_handle" comment="Use the key 'pre_established_sr_lsps_handle to retreive 'preEstablishedSrLsps' configured on the top of 'pcc'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ipv4Loopback/pcc" key="pcc_handle" comment="Use the key 'pcc_handle to retreive 'pcc' configured on the top of 'ipv4Loopback'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ipv4Loopback/pcc/expectedInitiatedLspList" key="expected_initiated_lsp_list_handle" comment="Use the key 'expected_initiated_lsp_list_handle to retreive 'expectedInitiatedLspList' configured on the top of 'pcc'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ipv4Loopback/pcc/pcepBackupPCEs" key="pcep_backup_pces_handle" comment="Use the key 'pcep_backup_pces_handle to retreive 'pcepBackupPCEs' configured on the top of 'pcc'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ipv4Loopback/pcc/requestedLsps" key="requested_lsps_handle" comment="Use the key 'requested_lsps_handle to retreive 'requestedLsps' configured on the top of 'pcc'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ipv4Loopback/pcc/preEstablishedSrLsps" key="pre_established_sr_lsps_handle" comment="Use the key 'pre_established_sr_lsps_handle to retreive 'preEstablishedSrLsps' configured on the top of 'pcc'"/>
+    <handle name="/topology/deviceGroup/ethernet/dhcpv4client/pcc" key="pcc_handle" comment="Use the key 'pcc_handle to retreive 'pcc' configured on the top of 'dhcpv4client'"/>
+    <handle name="/topology/deviceGroup/ethernet/dhcpv4client/pcc/expectedInitiatedLspList" key="expected_initiated_lsp_list_handle" comment="Use the key 'expected_initiated_lsp_list_handle to retreive 'expectedInitiatedLspList' configured on the top of 'pcc'"/>
+    <handle name="/topology/deviceGroup/ethernet/dhcpv4client/pcc/pcepBackupPCEs" key="pcep_backup_pces_handle" comment="Use the key 'pcep_backup_pces_handle to retreive 'pcepBackupPCEs' configured on the top of 'pcc'"/>
+    <handle name="/topology/deviceGroup/ethernet/dhcpv4client/pcc/requestedLsps" key="requested_lsps_handle" comment="Use the key 'requested_lsps_handle to retreive 'requestedLsps' configured on the top of 'pcc'"/>
+    <handle name="/topology/deviceGroup/ethernet/dhcpv4client/pcc/preEstablishedSrLsps" key="pre_established_sr_lsps_handle" comment="Use the key 'pre_established_sr_lsps_handle to retreive 'preEstablishedSrLsps' configured on the top of 'pcc'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationPceConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/ipv4Loopback" key="ipv4_loopback_handle" comment="Use the key 'ipv4_loopback_handle to retreive 'ipv4Loopback' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4" key="ipv4_handle" comment="Use the key 'ipv4_handle to retreive 'ipv4' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/pce" key="pce_handle" comment="Use the key 'pce_handle to retreive 'pce' configured on the top of 'ipv4'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/pce/pccGroup" key="pcc_group_handle" comment="Use the key 'pcc_group_handle to retreive 'pccGroup' configured on the top of 'pce'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/pce/pccGroup/pceInitiateLSPParameters" key="pce_initiate_lsp_parameters_handle" comment="Use the key 'pce_initiate_lsp_parameters_handle to retreive 'pceInitiateLSPParameters' configured on the top of 'pccGroup'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/pce/pccGroup/pcReplyLspParameters" key="pc_reply_lsp_parameters_handle" comment="Use the key 'pc_reply_lsp_parameters_handle to retreive 'pcReplyLspParameters' configured on the top of 'pccGroup'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/pce/pccGroup/pcRequestMatchCriteria" key="pc_request_match_criteria_handle" comment="Use the key 'pc_request_match_criteria_handle to retreive 'pcRequestMatchCriteria' configured on the top of 'pccGroup'"/>
+    <handle name="/topology/deviceGroup/ipv4Loopback/pce" key="pce_handle" comment="Use the key 'pce_handle to retreive 'pce' configured on the top of 'ipv4Loopback'"/>
+    <handle name="/topology/deviceGroup/ipv4Loopback/pce/pccGroup" key="pcc_group_handle" comment="Use the key 'pcc_group_handle to retreive 'pccGroup' configured on the top of 'pce'"/>
+    <handle name="/topology/deviceGroup/ipv4Loopback/pce/pccGroup/pceInitiateLSPParameters" key="pce_initiate_lsp_parameters_handle" comment="Use the key 'pce_initiate_lsp_parameters_handle to retreive 'pceInitiateLSPParameters' configured on the top of 'pccGroup'"/>
+    <handle name="/topology/deviceGroup/ipv4Loopback/pce/pccGroup/pcReplyLspParameters" key="pc_reply_lsp_parameters_handle" comment="Use the key 'pc_reply_lsp_parameters_handle to retreive 'pcReplyLspParameters' configured on the top of 'pccGroup'"/>
+    <handle name="/topology/deviceGroup/ipv4Loopback/pce/pccGroup/pcRequestMatchCriteria" key="pc_request_match_criteria_handle" comment="Use the key 'pc_request_match_criteria_handle to retreive 'pcRequestMatchCriteria' configured on the top of 'pccGroup'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ethernet/ipv4/pce" key="pce_handle" comment="Use the key 'pce_handle to retreive 'pce' configured on the top of 'ipv4'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ethernet/ipv4/pce/pccGroup" key="pcc_group_handle" comment="Use the key 'pcc_group_handle to retreive 'pccGroup' configured on the top of 'pce'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ethernet/ipv4/pce/pccGroup/pceInitiateLSPParameters" key="pce_initiate_lsp_parameters_handle" comment="Use the key 'pce_initiate_lsp_parameters_handle to retreive 'pceInitiateLSPParameters' configured on the top of 'pccGroup'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ethernet/ipv4/pce/pccGroup/pcReplyLspParameters" key="pc_reply_lsp_parameters_handle" comment="Use the key 'pc_reply_lsp_parameters_handle to retreive 'pcReplyLspParameters' configured on the top of 'pccGroup'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ethernet/ipv4/pce/pccGroup/pcRequestMatchCriteria" key="pc_request_match_criteria_handle" comment="Use the key 'pc_request_match_criteria_handle to retreive 'pcRequestMatchCriteria' configured on the top of 'pccGroup'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ipv4Loopback/pce" key="pce_handle" comment="Use the key 'pce_handle to retreive 'pce' configured on the top of 'ipv4Loopback'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ipv4Loopback/pce/pccGroup" key="pcc_group_handle" comment="Use the key 'pcc_group_handle to retreive 'pccGroup' configured on the top of 'pce'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ipv4Loopback/pce/pccGroup/pceInitiateLSPParameters" key="pce_initiate_lsp_parameters_handle" comment="Use the key 'pce_initiate_lsp_parameters_handle to retreive 'pceInitiateLSPParameters' configured on the top of 'pccGroup'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ipv4Loopback/pce/pccGroup/pcReplyLspParameters" key="pc_reply_lsp_parameters_handle" comment="Use the key 'pc_reply_lsp_parameters_handle to retreive 'pcReplyLspParameters' configured on the top of 'pccGroup'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ipv4Loopback/pce/pccGroup/pcRequestMatchCriteria" key="pc_request_match_criteria_handle" comment="Use the key 'pc_request_match_criteria_handle to retreive 'pcRequestMatchCriteria' configured on the top of 'pccGroup'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/pce/pccGroup/learnedInfoUpdate" key="learned_info_update_handle" comment="Use the key 'learned_info_update_handle to retreive 'learnedInfoUpdate' configured on the top of 'pccGroup'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/pce/pccGroup/learnedInfoUpdate/pceDetailedSrSyncLspUpdateParams" key="pce_detailed_sr_sync_lsp_update_params_handle" comment="Use the key 'pce_detailed_sr_sync_lsp_update_params_handle to retreive 'pceDetailedSrSyncLspUpdateParams' configured on the top of 'learnedInfoUpdate'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/pce/pccGroup/learnedInfoUpdate/pceBasicSrSyncLspUpdateParams" key="pce_basic_sr_sync_lsp_update_params_handle" comment="Use the key 'pce_basic_sr_sync_lsp_update_params_handle to retreive 'pceBasicSrSyncLspUpdateParams' configured on the top of 'learnedInfoUpdate'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/pce/pccGroup/learnedInfoUpdate/pceDetailedRsvpSyncLspUpdateParams" key="pce_detailed_rsvp_sync_lsp_update_params_handle" comment="Use the key 'pce_detailed_rsvp_sync_lsp_update_params_handle to retreive 'pceDetailedRsvpSyncLspUpdateParams' configured on the top of 'learnedInfoUpdate'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/pce/pccGroup/learnedInfoUpdate/pceBasicRsvpSyncLspUpdateParams" key="pce_basic_rsvp_sync_lsp_update_params_handle" comment="Use the key 'pce_basic_rsvp_sync_lsp_update_params_handle to retreive 'pceBasicRsvpSyncLspUpdateParams' configured on the top of 'learnedInfoUpdate'"/>
+    <handle name="/topology/deviceGroup/ipv4Loopback/pce/pccGroup/learnedInfoUpdate/pceDetailedSrSyncLspUpdateParams" key="pce_detailed_sr_sync_lsp_update_params_handle" comment="Use the key 'pce_detailed_sr_sync_lsp_update_params_handle to retreive 'pceDetailedSrSyncLspUpdateParams' configured on the top of 'learnedInfoUpdate'"/>
+    <handle name="/topology/deviceGroup/ipv4Loopback/pce/pccGroup/learnedInfoUpdate/pceBasicSrSyncLspUpdateParams" key="pce_basic_sr_sync_lsp_update_params_handle" comment="Use the key 'pce_basic_sr_sync_lsp_update_params_handle to retreive 'pceBasicSrSyncLspUpdateParams' configured on the top of 'learnedInfoUpdate'"/>
+    <handle name="/topology/deviceGroup/ipv4Loopback/pce/pccGroup/learnedInfoUpdate/pceDetailedRsvpSyncLspUpdateParams" key="pce_detailed_rsvp_sync_lsp_update_params_handle" comment="Use the key 'pce_detailed_rsvp_sync_lsp_update_params_handle to retreive 'pceDetailedRsvpSyncLspUpdateParams' configured on the top of 'learnedInfoUpdate'"/>
+    <handle name="/topology/deviceGroup/ipv4Loopback/pce/pccGroup/learnedInfoUpdate/pceBasicRsvpSyncLspUpdateParams" key="pce_basic_rsvp_sync_lsp_update_params_handle" comment="Use the key 'pce_basic_rsvp_sync_lsp_update_params_handle to retreive 'pceBasicRsvpSyncLspUpdateParams' configured on the top of 'learnedInfoUpdate'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ethernet/ipv4/pce/pccGroup/learnedInfoUpdate/pceDetailedSrSyncLspUpdateParams" key="pce_detailed_sr_sync_lsp_update_params_handle" comment="Use the key 'pce_detailed_sr_sync_lsp_update_params_handle to retreive 'pceDetailedSrSyncLspUpdateParams' configured on the top of 'learnedInfoUpdate'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ethernet/ipv4/pce/pccGroup/learnedInfoUpdate/pceBasicSrSyncLspUpdateParams" key="pce_basic_sr_sync_lsp_update_params_handle" comment="Use the key 'pce_basic_sr_sync_lsp_update_params_handle to retreive 'pceBasicSrSyncLspUpdateParams' configured on the top of 'learnedInfoUpdate'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ethernet/ipv4/pce/pccGroup/learnedInfoUpdate/pceDetailedRsvpSyncLspUpdateParams" key="pce_detailed_rsvp_sync_lsp_update_params_handle" comment="Use the key 'pce_detailed_rsvp_sync_lsp_update_params_handle to retreive 'pceDetailedRsvpSyncLspUpdateParams' configured on the top of 'learnedInfoUpdate'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ethernet/ipv4/pce/pccGroup/learnedInfoUpdate/pceBasicRsvpSyncLspUpdateParams" key="pce_basic_rsvp_sync_lsp_update_params_handle" comment="Use the key 'pce_basic_rsvp_sync_lsp_update_params_handle to retreive 'pceBasicRsvpSyncLspUpdateParams' configured on the top of 'learnedInfoUpdate'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ipv4Loopback/pce/pccGroup/learnedInfoUpdate/pceDetailedSrSyncLspUpdateParams" key="pce_detailed_sr_sync_lsp_update_params_handle" comment="Use the key 'pce_detailed_sr_sync_lsp_update_params_handle to retreive 'pceDetailedSrSyncLspUpdateParams' configured on the top of 'learnedInfoUpdate'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ipv4Loopback/pce/pccGroup/learnedInfoUpdate/pceBasicSrSyncLspUpdateParams" key="pce_basic_sr_sync_lsp_update_params_handle" comment="Use the key 'pce_basic_sr_sync_lsp_update_params_handle to retreive 'pceBasicSrSyncLspUpdateParams' configured on the top of 'learnedInfoUpdate'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ipv4Loopback/pce/pccGroup/learnedInfoUpdate/pceDetailedRsvpSyncLspUpdateParams" key="pce_detailed_rsvp_sync_lsp_update_params_handle" comment="Use the key 'pce_detailed_rsvp_sync_lsp_update_params_handle to retreive 'pceDetailedRsvpSyncLspUpdateParams' configured on the top of 'learnedInfoUpdate'"/>
+    <handle name="/topology/deviceGroup/networkGroup/deviceGroup/ipv4Loopback/pce/pccGroup/learnedInfoUpdate/pceBasicRsvpSyncLspUpdateParams" key="pce_basic_rsvp_sync_lsp_update_params_handle" comment="Use the key 'pce_basic_rsvp_sync_lsp_update_params_handle to retreive 'pceBasicRsvpSyncLspUpdateParams' configured on the top of 'learnedInfoUpdate'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationPimConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/ipv4Loopback" key="ipv4_loopback_handle" comment="Use the key 'ipv4_loopback_handle to retreive 'ipv4Loopback' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/ipv6Loopback" key="ipv6_loopback_handle" comment="Use the key 'ipv6_loopback_handle to retreive 'ipv6Loopback' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4" key="ipv4_handle" comment="Use the key 'ipv4_handle to retreive 'ipv4' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6" key="ipv6_handle" comment="Use the key 'ipv6_handle to retreive 'ipv6' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet" key="ethernet_handle" comment="Use the key 'ethernet_handle to retreive 'ethernet' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/pimRouter" key="pim_router_handle" comment="Use the key 'pim_router_handle to retreive 'pimRouter' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/ipv4/pimV4Interface" key="pim_v4_interface_handle" comment="Use the key 'pim_v4_interface_handle to retreive 'pimV4Interface' configured on the top of 'ipv4'"/>
+    <handle name="/topology/deviceGroup/ipv6/pimV6Interface" key="pim_v6_interface_handle" comment="Use the key 'pim_v6_interface_handle to retreive 'pimV6Interface' configured on the top of 'ipv6'"/>
+    <handle name="/topology/deviceGroup/ipv4Loopback/pimV4Interface" key="pim_v4_interface_handle" comment="Use the key 'pim_v4_interface_handle to retreive 'pimV4Interface' configured on the top of 'ipv4Loopback'"/>
+    <handle name="/topology/deviceGroup/ipv6Loopback/pimV6Interface" key="pim_v6_interface_handle" comment="Use the key 'pim_v6_interface_handle to retreive 'pimV6Interface' configured on the top of 'ipv6Loopback'"/>
+    <handle name="/topology/deviceGroup/ethernet/dhcpv4client/pimV4Interface" key="pim_v4_interface_handle" comment="Use the key 'pim_v4_interface_handle to retreive 'pimV4Interface' configured on the top of 'dhcpv4client'"/>
+    <handle name="/topology/deviceGroup/ethernet/dhcpv6client/pimV6Interface" key="pim_v6_interface_handle" comment="Use the key 'pim_v6_interface_handle to retreive 'pimV6Interface' configured on the top of 'dhcpv6client'"/>
+    <handle name="/topology/deviceGroup/ethernet/pppoxclient/pimV4Interface" key="pim_v4_interface_handle" comment="Use the key 'pim_v4_interface_handle to retreive 'pimV4Interface' configured on the top of 'pppoxclient'"/>
+    <handle name="/topology/deviceGroup/ethernet/pppoxserver/pimV4Interface" key="pim_v4_interface_handle" comment="Use the key 'pim_v4_interface_handle to retreive 'pimV4Interface' configured on the top of 'pppoxserver'"/>
+    <handle name="/topology/deviceGroup/ethernet/pppoxclient/pimV6Interface" key="pim_v6_interface_handle" comment="Use the key 'pim_v6_interface_handle to retreive 'pimV6Interface' configured on the top of 'pppoxclient'"/>
+    <handle name="/topology/deviceGroup/ethernet/pppoxserver/pimV6Interface" key="pim_v6_interface_handle" comment="Use the key 'pim_v6_interface_handle to retreive 'pimV6Interface' configured on the top of 'pppoxserver'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationPimGroupConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/pimV4Interface/pimV4JoinPruneList" key="pim_v4_join_prune_handle" comment="Use the key 'pim_v4_join_prune_handle to retreive 'pimV4JoinPruneList' configured on the top of 'pimV4Interface'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/pimV4Interface/pimV4CandidateRPsList" key="pim_v4_candidate_rp_handle" comment="Use the key 'pim_v4_candidate_rp_handle to retreive 'pimV4CandidateRPsList' configured on the top of 'pimV4Interface'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/pimV4Interface/pimV4SourcesList" key="pim_v4_source_handle" comment="Use the key 'pim_v4_source_handle to retreive 'pimV4SourcesList' configured on the top of 'pimV4Interface'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/pimV6Interface/pimV6JoinPruneList" key="pim_v6_join_prune_handle" comment="Use the key 'pim_v6_join_prune_handle to retreive 'pimV6JoinPruneList' configured on the top of 'pimV6Interface'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/pimV6Interface/pimV6CandidateRPsList" key="pim_v6_candidate_rp_handle" comment="Use the key 'pim_v6_candidate_rp_handle to retreive 'pimV6CandidateRPsList' configured on the top of 'pimV6Interface'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/pimV6Interface/pimV6SourcesList" key="pim_v6_source_handle" comment="Use the key 'pim_v6_source_handle to retreive 'pimV6SourcesList' configured on the top of 'pimV6Interface'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>PppoxConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/ethernet/pppoxclient" key="pppox_client_handle" comment="Use the key 'pppox_client_handle to retreive 'pppoxclient' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet/pppoxserver" key="pppox_server_handle" comment="Use the key 'pppox_server_handle to retreive 'pppoxserver' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/lns/pppoxserver" key="pppox_server_handle" comment="Use the key 'pppox_server_handle to retreive 'pppoxserver' configured on the top of 'lns'"/>
+    <handle name="/topology/deviceGroup/ethernet/pppoxserver/pppoxServerSessions" key="pppox_server_sessions_handle" comment="Use the key 'pppox_server_sessions_handle to retreive 'pppoxServerSessions' configured on the top of 'pppoxserver'"/>
+    <handle name="/topology/deviceGroup/ethernet/pppoxclient/dhcpv6client" key="dhcpv6_client_handle" comment="Use the key 'dhcpv6_client_handle to retreive 'dhcpv6client' configured on the top of 'pppoxclient'"/>
+    <handle name="/topology/deviceGroup/ethernet/pppoxserver/dhcpv6server" key="dhcpv6_server_handle" comment="Use the key 'dhcpv6_server_handle to retreive 'dhcpv6server' configured on the top of 'pppoxserver'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>PtpOverIpConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/ptp" key="ptp_handle" comment="Use the key 'ptp_handle to retreive 'ptp' configured on the top of 'ipv4'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>PtpOverMacConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/ethernet/ptp" key="ptp_handle" comment="Use the key 'ptp_handle to retreive 'ptp' configured on the top of 'ethernet'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationRsvpConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/ethernet/ipv4" key="ipv4_handle" comment="Use the key 'ipv4_handle to retreive 'ipv4' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet" key="ethernet_handle" comment="Use the key 'ethernet_handle to retreive 'ethernet' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/ipv4/rsvpteIf" key="rsvp_if_handle" comment="Use the key 'rsvp_if_handle to retreive 'rsvpteIf' configured on the top of 'ipv4'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationRsvpTunnelConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/ipv4Loopback" key="ipv4_loopback_handle" comment="Use the key 'ipv4_loopback_handle to retreive 'ipv4Loopback' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4" key="ipv4_handle" comment="Use the key 'ipv4_handle to retreive 'ipv4' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet" key="ethernet_handle" comment="Use the key 'ethernet_handle to retreive 'ethernet' configured on the top of 'deviceGroup'"/>
+    <handle name="/topology/deviceGroup/ipv4/rsvpteLsps" key="rsvpte_lsp_handle" comment="Use the key 'rsvpte_lsp_handle to retreive 'rsvpteLsps' configured on the top of 'ipv4'"/>
+    <handle name="/topology/deviceGroup/ipv4/rsvpteLsps/rsvpP2PIngressLsps" key="rsvpte_p2p_ingress_handle" comment="Use the key 'rsvpte_p2p_ingress_handle to retreive 'rsvpP2PIngressLsps' configured on the top of 'rsvpteLsps'"/>
+    <handle name="/topology/deviceGroup/ipv4/rsvpteLsps/rsvpP2PEgressLsps" key="rsvpte_p2p_egress_handle" comment="Use the key 'rsvpte_p2p_egress_handle to retreive 'rsvpP2PEgressLsps' configured on the top of 'rsvpteLsps'"/>
+    <handle name="/topology/deviceGroup/ipv4Loopback/rsvpteLsps" key="rsvpte_lsp_handle" comment="Use the key 'rsvpte_lsp_handle to retreive 'rsvpteLsps' configured on the top of 'ipv4Loopback'"/>
+    <handle name="/topology/deviceGroup/ipv4Loopback/rsvpteLsps/rsvpP2PIngressLsps" key="rsvpte_p2p_ingress_handle" comment="Use the key 'rsvpte_p2p_ingress_handle to retreive 'rsvpP2PIngressLsps' configured on the top of 'rsvpteLsps'"/>
+    <handle name="/topology/deviceGroup/ipv4Loopback/rsvpteLsps/rsvpP2PEgressLsps" key="rsvpte_p2p_egress_handle" comment="Use the key 'rsvpte_p2p_egress_handle to retreive 'rsvpP2PEgressLsps' configured on the top of 'rsvpteLsps'"/>
+    <handle name="/topology/deviceGroup/ipv4/rsvpteLsps/rsvpP2mpIngressLsps" key="rsvpte_p2mp_ingress_handle" comment="Use the key 'rsvpte_p2mp_ingress_handle to retreive 'rsvpP2mpIngressLsps' configured on the top of 'rsvpteLsps'"/>
+    <handle name="/topology/deviceGroup/ipv4/rsvpteLsps/rsvpP2mpEgressLsps" key="rsvpte_p2mp_egress_handle" comment="Use the key 'rsvpte_p2mp_egress_handle to retreive 'rsvpP2mpEgressLsps' configured on the top of 'rsvpteLsps'"/>
+    <handle name="/topology/deviceGroup/ipv4Loopback/rsvpteLsps/rsvpP2mpIngressLsps" key="rsvpte_p2mp_ingress_handle" comment="Use the key 'rsvpte_p2mp_ingress_handle to retreive 'rsvpP2mpIngressLsps' configured on the top of 'rsvpteLsps'"/>
+    <handle name="/topology/deviceGroup/ipv4Loopback/rsvpteLsps/rsvpP2mpEgressLsps" key="rsvpte_p2mp_egress_handle" comment="Use the key 'rsvpte_p2mp_egress_handle to retreive 'rsvpP2mpEgressLsps' configured on the top of 'rsvpteLsps'"/>
+    <handle name="/topology/deviceGroup/ipv4/rsvpteLsps/rsvpP2mpIngressLsps/rsvpP2mpIngressSubLsps" key="rsvpte_p2mp_ingress_sublsp_handle" comment="Use the key 'rsvpte_p2mp_ingress_sublsp_handle to retreive 'rsvpP2mpIngressSubLsps' configured on the top of 'rsvpP2mpIngressLsps'"/>
+    <handle name="/topology/deviceGroup/ipv4Loopback/rsvpteLsps/rsvpP2mpIngressLsps/rsvpP2mpIngressSubLsps" key="rsvpte_p2mp_ingress_sublsp_handle" comment="Use the key 'rsvpte_p2mp_ingress_sublsp_handle to retreive 'rsvpP2mpIngressSubLsps' configured on the top of 'rsvpP2mpIngressLsps'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/rsvpteLsps/rsvpPcepExpectedInitiatedLsps" key="rsvp_pcep_expected_initiated_lsps_handle" comment="Use the key 'rsvp_pcep_expected_initiated_lsps_handle to retreive 'rsvpPcepExpectedInitiatedLsps' configured on the top of 'rsvpteLsps'"/>
+    <handle name="/topology/deviceGroup/ipv4Loopback/rsvpteLsps/rsvpPcepExpectedInitiatedLsps" key="rsvp_pcep_expected_initiated_lsps_handle" comment="Use the key 'rsvp_pcep_expected_initiated_lsps_handle to retreive 'rsvpPcepExpectedInitiatedLsps' configured on the top of 'rsvpteLsps'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>TlvConfig</subtitle>
+<handle_list>
+    <handle name="/globals/topology/dhcpv4client/tlvEditor/template" key="tlv_template_group_handle" comment="Use the key 'tlv_template_group_handle to retreive 'template' configured on the top of 'tlvEditor'"/>
+    <handle name="/globals/topology/dhcpv4client/tlvEditor/template/tlv" key="tlv_template_handle" comment="Use the key 'tlv_template_handle to retreive 'tlv' configured on the top of 'template'"/>
+    <handle name="/globals/topology/dhcpv4client/tlvEditor/template/tlv/value" key="tlv_value_handle" comment="Use the key 'tlv_value_handle to retreive 'value' configured on the top of 'tlv'"/>
+    <handle name="/globals/topology/dhcpv4client/tlvEditor/template/tlv/value/object/subTlv" key="subtlv_template_handle" comment="Use the key 'subtlv_template_handle to retreive 'subTlv' configured on the top of 'object'"/>
+    <handle name="/globals/topology/dhcpv4client/tlvEditor/template/tlv/value/object/field" key="tlv_field_handle" comment="Use the key 'tlv_field_handle to retreive 'field' configured on the top of 'object'"/>
+    <handle name="/globals/topology/dhcpv4client/tlvEditor/template/tlv/value/object/container" key="tlv_container_handle" comment="Use the key 'tlv_container_handle to retreive 'container' configured on the top of 'object'"/>
+    <handle name="/globals/topology/dhcpv4client/tlvEditor/template/tlv/value/object/subTlv" key="subtlv_template_handle" comment="Use the key 'subtlv_template_handle to retreive 'subTlv' configured on the top of 'object'"/>
+    <handle name="/globals/topology/dhcpv4client/tlvEditor/template/tlv/value/object/subTlv/value" key="tlv_value_handle" comment="Use the key 'tlv_value_handle to retreive 'value' configured on the top of 'subTlv'"/>
+    <handle name="/globals/topology/dhcpv4client/tlvEditor/template/tlv/type" key="tlv_type_handle" comment="Use the key 'tlv_type_handle to retreive 'type' configured on the top of 'tlv'"/>
+    <handle name="/globals/topology/dhcpv4client/tlvEditor/template/tlv/length" key="tlv_length_handle" comment="Use the key 'tlv_length_handle to retreive 'length' configured on the top of 'tlv'"/>
+    <handle name="/topology/deviceGroup/ethernet/dhcpv4client/tlvProfile/tlv" key="tlv_handle" comment="Use the key 'tlv_handle to retreive 'tlv' configured on the top of 'tlvProfile'"/>
+    <handle name="/topology/deviceGroup/ethernet/dhcpv4client/tlvProfile/defaultTlv" key="default_tlv_handle" comment="Use the key 'default_tlv_handle to retreive 'defaultTlv' configured on the top of 'tlvProfile'"/>
+    <handle name="/topology/deviceGroup/ethernet/dhcpv4client/tlvProfile/tlv/value" key="tlv_value_handle" comment="Use the key 'tlv_value_handle to retreive 'value' configured on the top of 'tlv'"/>
+    <handle name="/topology/deviceGroup/ethernet/dhcpv4client/tlvProfile/defaultTlv/value" key="tlv_value_handle" comment="Use the key 'tlv_value_handle to retreive 'value' configured on the top of 'defaultTlv'"/>
+    <handle name="/topology/deviceGroup/ethernet/dhcpv4client/tlvProfile/tlv/type" key="tlv_type_handle" comment="Use the key 'tlv_type_handle to retreive 'type' configured on the top of 'tlv'"/>
+    <handle name="/topology/deviceGroup/ethernet/dhcpv4client/tlvProfile/tlv/length" key="tlv_length_handle" comment="Use the key 'tlv_length_handle to retreive 'length' configured on the top of 'tlv'"/>
+    <handle name="/topology/deviceGroup/ethernet/dhcpv4client/tlvProfile/tlv/value/object/subTlv" key="subtlv_handle" comment="Use the key 'subtlv_handle to retreive 'subTlv' configured on the top of 'object'"/>
+    <handle name="/topology/deviceGroup/ethernet/dhcpv4client/tlvProfile/tlv/value/object/field" key="tlv_field_handle" comment="Use the key 'tlv_field_handle to retreive 'field' configured on the top of 'object'"/>
+    <handle name="/topology/deviceGroup/ethernet/dhcpv4client/tlvProfile/tlv/value/object/container" key="tlv_container_handle" comment="Use the key 'tlv_container_handle to retreive 'container' configured on the top of 'object'"/>
+    <handle name="/topology/deviceGroup/ethernet/dhcpv4client/tlvProfile/tlv/value/object/repeatableContainer" key="tlv_container_handle" comment="Use the key 'tlv_container_handle to retreive 'repeatableContainer' configured on the top of 'object'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>TopologyConfig</subtitle>
+<handle_list>
+    <handle name="/topology" key="topology_handle" comment="Use the key 'topology_handle to retreive 'topology' configured on the top of ''"/>
+    <handle name="/topology/deviceGroup" key="device_group_handle" comment="Use the key 'device_group_handle to retreive 'deviceGroup' configured on the top of 'topology'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>TrafficL47Config</subtitle>
+<handle_list>
+    <handle name="/traffic/trafficItem" key="traffic_l47_handle" comment="Use the key 'traffic_l47_handle to retreive 'trafficItem' configured on the top of 'traffic'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>TrafficTagConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/ethernet/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'ethernet'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'ipv4'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'ipv6'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4Loopback/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'ipv4Loopback'"/>
+    <handle name="/topology/deviceGroup/deviceGroup/ipv4Loopback/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'ipv4Loopback'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6Loopback/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'ipv6Loopback'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6Autoconfiguration/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'ipv6Autoconfiguration'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/greoipv4/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'greoipv4'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/greoipv6/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'greoipv6'"/>
+    <handle name="/topology/deviceGroup/ethernet/dhcpv4client/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'dhcpv4client'"/>
+    <handle name="/topology/deviceGroup/ethernet/dhcpv6client/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'dhcpv6client'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/lac/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'lac'"/>
+    <handle name="/topology/deviceGroup/deviceGroup/ethernet/pppoxclient/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'pppoxclient'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/lns/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'lns'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/lns/pppoxserver/pppoxServerSessions/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'pppoxServerSessions'"/>
+    <handle name="/topology/deviceGroup/ethernet/pppoxclient/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'pppoxclient'"/>
+    <handle name="/topology/deviceGroup/ethernet/pppoxserver/pppoxServerSessions/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'pppoxServerSessions'"/>
+    <handle name="/topology/deviceGroup/networkGroup/ipv4PrefixPools/ldpFECProperty/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'ldpFECProperty'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/ldpBasicRouter/ldppwvpls/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'ldppwvpls'"/>
+    <handle name="/topology/deviceGroup/ipv4Loopback/ldpTargetedRouter/ldppwvpls/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'ldppwvpls'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/ldpBasicRouter/ldpvplsbgpad/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'ldpvplsbgpad'"/>
+    <handle name="/topology/deviceGroup/ipv4Loopback/ldpTargetedRouter/ldpvplsbgpad/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'ldpvplsbgpad'"/>
+    <handle name="/topology/deviceGroup/networkGroup/macPools/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'macPools'"/>
+    <handle name="/topology/deviceGroup/networkGroup/ipv4PrefixPools/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'ipv4PrefixPools'"/>
+    <handle name="/topology/deviceGroup/networkGroup/ipv6PrefixPools/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'ipv6PrefixPools'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simRouter/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'simRouter'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/bgpIpv4Peer/bgpVrf/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'bgpVrf'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/bgpIpv6Peer/bgpV6Vrf/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'bgpV6Vrf'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/bgpIpv4Peer/bgpIpv4L2Site/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'bgpIpv4L2Site'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/bgpIpv6Peer/bgpIpv6L2Site/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'bgpIpv6L2Site'"/>
+    <handle name="/topology/deviceGroup/networkGroup/ipv4PrefixPools/bgpIPRouteProperty/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'bgpIPRouteProperty'"/>
+    <handle name="/topology/deviceGroup/networkGroup/ipv6PrefixPools/bgpIPRouteProperty/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'bgpIPRouteProperty'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/igmpHost/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'igmpHost'"/>
+    <handle name="/topology/deviceGroup/ethernet/dhcpv4client/igmpHost/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'igmpHost'"/>
+    <handle name="/topology/deviceGroup/ethernet/pppoxclient/igmpHost/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'igmpHost'"/>
+    <handle name="/topology/deviceGroup/ethernet/pppoxserver/igmpHost/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'igmpHost'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/igmpHost/igmpMcastIPv4GroupList/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'igmpMcastIPv4GroupList'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/mldHost/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'mldHost'"/>
+    <handle name="/topology/deviceGroup/ethernet/dhcpv6client/mldHost/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'mldHost'"/>
+    <handle name="/topology/deviceGroup/ethernet/pppoxclient/mldHost/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'mldHost'"/>
+    <handle name="/topology/deviceGroup/ethernet/pppoxserver/mldHost/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'mldHost'"/>
+    <handle name="/topology/deviceGroup/ethernet/pppoxclient/dhcpv6client/mldHost/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'mldHost'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/mldHost/mldMcastIPv6GroupList/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'mldMcastIPv6GroupList'"/>
+    <handle name="/topology/deviceGroup/networkGroup/ipv4PrefixPools/isisL3RouteProperty/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'isisL3RouteProperty'"/>
+    <handle name="/topology/deviceGroup/networkGroup/ipv6PrefixPools/isisL3RouteProperty/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'isisL3RouteProperty'"/>
+    <handle name="/topology/deviceGroup/networkGroup/networkTopology/simRouterBridge/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'simRouterBridge'"/>
+    <handle name="/topology/deviceGroup/networkGroup/ipv4PrefixPools/ospfRouteProperty/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'ospfRouteProperty'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/pimV4Interface/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'pimV4Interface'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/pimV4Interface/pimV4JoinPruneList/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'pimV4JoinPruneList'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/pimV4Interface/pimV4SourcesList/tag" key="traffic_tag_handle" comment="Use the key 'traffic_tag_handle to retreive 'tag' configured on the top of 'pimV4SourcesList'"/>
+</handle_list>
+</handle_group>
+<handle_group>
+<subtitle>EmulationVxlanConfig</subtitle>
+<handle_list>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/vxlan" key="vxlan_handle" comment="Use the key 'vxlan_handle to retreive 'vxlan' configured on the top of 'ipv4'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv4/vxlan/vxlanStaticInfo" key="vxlan_static_info" comment="Use the key 'vxlan_static_info to retreive 'vxlanStaticInfo' configured on the top of 'vxlan'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/vxlanv6" key="vxlanv6_handle" comment="Use the key 'vxlanv6_handle to retreive 'vxlanv6' configured on the top of 'ipv6'"/>
+    <handle name="/topology/deviceGroup/ethernet/ipv6/vxlanv6/vxlanIPv6StaticInfo" key="vxlanv6_static_info" comment="Use the key 'vxlanv6_static_info to retreive 'vxlanIPv6StaticInfo' configured on the top of 'vxlanv6'"/>
+</handle_list>
+</handle_group>
+</about_hlapi_handle>

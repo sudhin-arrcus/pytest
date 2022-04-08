@@ -1,0 +1,50 @@
+#!/bin/sh
+#
+__FILE__=$(readlink -f "$0")
+__DIR__=$(dirname "$__FILE__")
+HLT_libs=$(readlink -f "$__DIR__/../")
+IXN_libs=$(readlink -f "$__DIR__/../../../ixnetwork/9.10.2007.7")
+IXOS_libs=$(readlink -f "$__DIR__/../../../ixos-api/9.10.16.6")
+
+if ! [ -x "$(command -v ixiatcl8.5.17)" ]; then
+    echo 'WARNING: ixiatcl8.5.17 is not installed. Please consult the user guide for installing the API Dependencies.'
+else 
+    TCL_libs=/opt/ixia/tcl/8.5.*/lib
+    for FOLDER in `find $TCL_libs -type f -name pkgIndex.tcl | rev | cut -d/ -f2- | rev`
+    do
+       TCLLIBPATH="$TCLLIBPATH $FOLDER"
+    done
+fi
+
+for FOLDER in `find $HLT_libs -type f -name ixiangpf.py | rev | cut -d/ -f2- | rev`
+do
+    PYTHONPATH="$PYTHONPATH:$FOLDER"
+done
+
+for FOLDER in `find $IXN_libs -type f -name IxNetwork.py | rev | cut -d/ -f2- | rev`
+do
+    PYTHONPATH="$PYTHONPATH:$FOLDER"
+done
+
+for LIBS in "$HLT_libs $IXN_libs $IXOS_libs"
+do
+    for FOLDER in `find $LIBS -type f -name pkgIndex.tcl | rev | cut -d/ -f2- | rev`
+    do
+       TCLLIBPATH="$TCLLIBPATH $FOLDER"
+    done
+done
+
+export TCLLIBPATH
+export PYTHONPATH 
+
+if ! [ -x "$(command -v ixiapython2.7.6)" ]; then
+    if ! [ -x "$(command -v python)" ]; then
+        echo 'ERROR: Could not find an usable python interpreter (ixiapython2.7.6 or python). Please consult the user guide for installing the API Dependencies.' >&2
+        exit 1
+    else 
+        echo 'WARNING: ixiapython2.7.6 is not installed. Using the default python interpreter instead.'
+        python ${@+"$@"}
+    fi
+else 
+    ixiapython2.7.6  ${@+"$@"}
+fi
