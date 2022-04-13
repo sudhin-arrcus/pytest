@@ -3,7 +3,7 @@ import time
 from scp import SCPClient
 from netmiko import ConnectHandler
 import os
-
+import re
 class sonic:
     def __init__(self,ipfile,iplist):
 
@@ -300,9 +300,291 @@ class sonic:
         else:
             return False
 
+    def igmp_entry_check(self):
+        lsta = self.iplist
+        flag = 0
+        for i in range(2):
+            device = ConnectHandler(device_type='linux', ip=lsta[i], username='admin', password='admin')
+            print("\n Checking the IGMP Snooping Entries in the peers")
+            output = device.send_command("show igmp snooping entries")
+            pattern = "Error"
+            match = re.search(pattern, output)
+
+            if match.group() != 'Error':
+                print(" Test Case Failed IGMP Snooping Entries are not cleared ------>{}".format(lsta[i]))
+                output = device.send_command("show igmp snooping entries ")
+                print(output)
+                output = device.send_command("show run igmp ")
+                print(output)
+
+                flag = 1
+            else:
+                print(" Test Case PASSED IGMP Snooping Entries are clearing ------>{}".format(lsta[i]))
+
+        if flag == 0:
+            return True
+        else:
+            return False
+
+    def interface_check(self):
+        lsta = self.iplist
+        flag = 0
+        for i in range(2):
+            device = ConnectHandler(device_type='linux', ip=lsta[i], username='admin', password='admin')
+            print("\n Checking the Interface Status")
+            output = device.send_command("show int stat | grep \"up\" | wc -l")
 
 
+            if int(output) < 50:
+                print(" Test Case Failed Interfaces are not Up ------>{}".format(lsta[i]))
+                output = device.send_command("show int status ")
+                print(output)
+                flag = 1
+            else:
+                print(" Test Case PASSED Interfaces are up ------>{}".format(lsta[i]))
+
+        if flag == 0:
+            return True
+        else:
+            return False
+
+    def lldp_check(self):
+        lsta = self.iplist
+        flag = 0
+        for i in range(2):
+            device = ConnectHandler(device_type='linux', ip=lsta[i], username='admin', password='admin')
+            print("\n Checking the Interface Status in LLDP Message")
+            output = device.send_command("show lldp nei | grep \"Interface\" | wc -l")
 
 
+            if int(output) < 18:
+                print(" Test Case Failed LLDP messages are not showing interface properly ------>{}".format(lsta[i]))
+                output = device.send_command("show llpd nei ")
+                print(output)
+                flag = 1
+            else:
+                print(" Test Case PASSED LLDP Interfaces are up in LLDP message ------>{}".format(lsta[i]))
+
+        if flag == 0:
+            return True
+        else:
+            return False
+
+    def lldp_table_check(self):
+        lsta = self.iplist
+        flag = 0
+        for i in range(2):
+            device = ConnectHandler(device_type='linux', ip=lsta[i], username='admin', password='admin')
+            print("\n Checking the LLDP Table")
+            output = device.send_command("show lldp table | awk '/Total entries displayed/{print $4}'")
 
 
+            if int(output) < 18:
+                print(" Test Case Failed LLDP table is not displaying properly properly ------>{}".format(lsta[i]))
+                output = device.send_command("show llpd table ")
+                print(output)
+                flag = 1
+            else:
+                print(" Test Case PASSED LLDP Table check is fine------>{}".format(lsta[i]))
+
+        if flag == 0:
+            return True
+        else:
+            return False
+
+
+    def lldp_status_check(self):
+        lsta = self.iplist
+        flag = 0
+        for i in range(2):
+            device = ConnectHandler(device_type='linux', ip=lsta[i], username='admin', password='admin')
+            print("\n Checking the Interface Status true")
+            output = device.send_command("show lldp int | grep \"true\" | wc -l")
+
+
+            if int(output) < 53:
+                print(" Test Case Failed LLDP Interface status is not displaying properly properly ------>{}".format(lsta[i]))
+                output = device.send_command("show llpd int ")
+                print(output)
+                flag = 1
+            else:
+                print(" Test Case PASSED LLDP Interface check is fine------>{}".format(lsta[i]))
+
+        if flag == 0:
+            return True
+        else:
+            return False
+
+
+    def envr_check(self):
+        lsta = self.iplist
+        flag = 0
+        for i in range(2):
+            device = ConnectHandler(device_type='linux', ip=lsta[i], username='admin', password='admin')
+            print("\n Checking the Environment")
+            output = device.send_command("show environment | grep \"Adapter\" | wc -l")
+
+
+            if int(output) < 9:
+                print(" Test Case Failed Enviornment issue ------>{}".format(lsta[i]))
+                output = device.send_command("show environment")
+                print(output)
+                flag = 1
+            else:
+                print(" Test Case PASSED Enviorment works fine------>{}".format(lsta[i]))
+
+        if flag == 0:
+            return True
+        else:
+            return False
+
+    def pcie_check(self):
+        lsta = self.iplist
+        flag = 0
+        for i in range(2):
+            device = ConnectHandler(device_type='linux', ip=lsta[i], username='admin', password='admin')
+            print("\n Checking the Pcieinfo")
+            output = device.send_command("show platform pcieinfo | grep \"PCI bridge\" | wc -l")
+
+
+            if int(output) < 7:
+                print(" Test Case Failed PCI INFO MISSING ------>{}".format(lsta[i]))
+                output = device.send_command("show platform pcieinfo")
+                print(output)
+                flag = 1
+            else:
+                print(" Test Case PASSED PCIENFO works fine----->{}".format(lsta[i]))
+
+        if flag == 0:
+            return True
+        else:
+            return False
+
+
+    def config_vlan(self,vlans):
+        lsta = self.iplist
+        flag = 0
+        for i in range(2):
+            device = ConnectHandler(device_type='linux', ip=lsta[i], username='admin', password='admin')
+            print("\n Configuring Vlan \n")
+            for key,value in vlans.items():
+                print("\n Configuring Vlan {} on device ---->{}\n".format(key,lsta[i]))
+                output = device.send_command("sudo config vlan add {}".format(int(key)))
+                for value in vlans[key]:
+                    print("\n Configuring Vlan {} on interface {} \n".format(key,value))
+                    output = device.send_command("sudo config vlan mem add {}  {}".format(int(key),value))
+                print("\n Enabling Spanning tree on Vlan {}  \n".format(key))
+                output = device.send_command("sudo config spanning-tree vlan enable {}".format(int(key)))
+            print("\n!!!! Saving the configuration \n")
+            output = device.send_command("sudo config save -y")
+            time.sleep(30)
+            for key in vlans:
+                cmd = "show span vlan " + key + "| awk '/FORWARDING/{print $1}'"
+                print(cmd)
+                output = device.send_command(cmd)
+                print(output)
+                if output != "PortChannel1":
+                    print(" Test Case Failed Spanning Tree is not there in new vlan ------>{}".format(lsta[i]))
+                    output = device.send_command("show vlan br")
+                    print(output)
+                    flag = 1
+                else:
+                    print(" Test Case PASSED Vlan is created and spanning tree is running on new vlans----->{}".format(lsta[i]))
+
+        if flag == 0:
+            return True
+        else:
+            return False
+
+    def del_vlan(self,vlans):
+        lsta = self.iplist
+        flag = 0
+        for i in range(2):
+            device = ConnectHandler(device_type='linux', ip=lsta[i], username='admin', password='admin')
+            print("\n Deleting Vlan \n")
+            for key,value in vlans.items():
+
+                for value in vlans[key]:
+                    print("\n Deleting Vlan {} on interface {} \n".format(key,value))
+                    output = device.send_command("sudo config vlan mem del {}  {}".format(int(key),value))
+                print("\n Disabling Spanning tree on Vlan {}  \n".format(key))
+                output = device.send_command("sudo config spanning-tree vlan disable {}".format(int(key)))
+                print("\n Deleting Vlan {} on device ---->{}\n".format(key, lsta[i]))
+                output = device.send_command("sudo config vlan del {}".format(int(key)))
+            print("\n!!!! Saving the configuration \n")
+            output = device.send_command("sudo config save -y")
+            time.sleep(10)
+            for key in vlans:
+                output = device.send_command("show span vlan {} | wc -l".format(key))
+                print(output)
+                if int(output) != 0:
+                    print(" Test Case Failed Spanning Tree is not removed in new vlan ------>{}".format(lsta[i]))
+                    output = device.send_command("show span")
+                    print(output)
+                    flag = 1
+                else:
+                    print(" Test Case PASSED Vlan is deleted and spanning tree is disabled on new vlans----->{}".format(lsta[i]))
+
+        if flag == 0:
+            return True
+        else:
+            return False
+
+
+    def disable_span(self):
+        lsta = self.iplist
+        flag = 0
+        traffic_status = None
+        for i in range(2):
+            device = ConnectHandler(device_type='linux', ip=lsta[i], username='admin', password='admin')
+            print("\n---------- Disabling Spanning Tree -------- \n")
+            output = device.send_command("sudo config spanning-tree disable pvst")
+            time.sleep(5)
+            print("[=]------------Sleeping over for 5s after disabling spanning tree")
+            output = device.send_command("sudo config spanning-tree enable pvst")
+            output = device.send_command("sudo config spanning-tree priority 0")
+            output = device.send_command("sudo config spanning-tree interface cost PortChannel1 1")
+            output = device.send_command("sudo config spanning-tree interface bpdu_guard enable PortChannel1")
+            output = device.send_command("sudo config save -y")
+            print("\n[+]-------------Sleeping for 75 seconds for Stablity-------------[+]\n")
+            time.sleep(75)
+            output = device.send_command("show span vlan 1001 | awk '/FORWARDING/' | wc -l")
+            if int(output) < 4:
+                print("Spanning Tree ports are not forwarding ------>{}".format(lsta[i]))
+                output = device.send_command("show span ")
+                print(output)
+                output = device.send_command("show vlan br ")
+                print(output)
+                flag = 1
+            else:
+                print("\n[=+---------TEST CASE PASSED AFTER BOUNCING SPANNING TREE in ----> {}".format(lsta[i]))
+        print("\n\n[+]---------------Sleeping for 50s for checking mac table entries-------[+]")
+        time.sleep(50)
+        print("\n\n[+]---------------Checking MAC Data Plane and Control Plane-------[+]")
+        traffic_status = self.check_traffic()
+
+        if flag == 0 and traffic_status == True:
+            return True
+        else:
+            return False
+
+
+    def shut_link(self,router,port):
+
+        traffic_status = None
+        device = ConnectHandler(device_type='linux', ip=router, username='admin', password='admin')
+        print("\n---------- Shutting {} on {} ------------\n".format(router,port))
+        output = device.send_command("sudo config interface shutdown {}".format(port))
+        time.sleep(5)
+        print("[=]------------Sleeping over for 5s after shutting link")
+        output = device.send_command("sudo config interface startup {}".format(port))
+        time.sleep(50)
+
+
+        print("\n\n[+]---------------Checking MAC Data Plane and Control Plane-------[+]")
+        traffic_status = self.check_traffic()
+
+        if traffic_status == True:
+            return True
+        else:
+            return False

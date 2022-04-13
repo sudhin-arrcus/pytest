@@ -133,7 +133,23 @@ class ixia:
        val = dhcp_stats_0['Ethernet - 005']['aggregate']['addr_discovered']
        return int(val)
 
+    def igmp_start(self,han):
+        print("Starting IGMP client....")
 
+        control_status = self.ixiangpf.test_control(
+            handle=han,
+            action='start_protocol',
+        )
+
+        time.sleep(30)
+
+    def igmp_stop(self,han):
+        print("Stopping IGMP client....")
+
+        control_status = self.ixiangpf.test_control(
+            handle=han,
+            action='stop_protocol',
+        )
 
 
 
