@@ -206,3 +206,42 @@ def test_link_down():
     port = 'PortChannel1'
     c = con.shut_link(router,port)
     assert c == True,"After Bouncing the link the macs are not syncing  !!!!"
+
+def test_peerlink_down():
+    router = '10.27.201.1'
+    port = 'PortChannel1'
+    c = con.shut_link(router,port)
+    assert c == True,"After Bouncing the  peer link the macs are not syncing  !!!!"
+
+def test_dhcp_option_bounce():
+    con.disable_dhcp_options()
+    conixia.stop_protocols()
+    time.sleep(20)
+    con.enable_dhcp_options()
+    conixia.start_protocols()
+    time.sleep(25)
+    c = conixia.dhcp_stat(han)
+    assert c >=9,"Restarting Clients didnt get ip check IXIA after bouncing option 82"
+
+def test_dhcp_option_disable():
+    con.disable_dhcp_options()
+    conixia.dhcp_stop()
+    time.sleep(10)
+    conixia.dhcp_start()
+    time.sleep(10)
+    c = conixia.dhcp_stat(han)
+    con.enable_dhcp_options()
+    conixia.dhcp_stop()
+    time.sleep(5)
+    conixia.dhcp_start()
+    time.sleep(5)
+
+    assert c <=3,"Disabling option 82 is not working properly"
+
+def test_macflush():
+    conixia.stop_protocols()
+    conixia.stop_traffic()
+    time.sleep(10)
+    c = con.check_macflush()
+    assert c == True," Mac Flush is nor working properly  !!!!"
+

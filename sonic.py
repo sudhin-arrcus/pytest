@@ -203,7 +203,7 @@ class sonic:
             device = ConnectHandler(device_type='linux', ip=lsta[i], username='admin', password='admin')
             print("\n Clearing the mac database after stopping the traffic and protocols")
             output = device.send_command("sonic-clear fdb all")
-        time.sleep(10)
+        time.sleep(20)
 
         for i in range(len(lsta)):
             device = ConnectHandler(device_type='linux', ip=lsta[i], username='admin', password='admin')
@@ -585,6 +585,26 @@ class sonic:
         traffic_status = self.check_traffic()
 
         if traffic_status == True:
+            print("\n[=+---------TEST CASE PASSED AFTER BOUNCING LINK {}  in ----> {}".format(port,router))
             return True
         else:
             return False
+
+
+    def disable_dhcp_options(self):
+        lsta = self.iplist
+
+        for i in range(len(lsta)):
+            device = ConnectHandler(device_type='linux', ip=lsta[i], username='admin', password='admin')
+            print("\n---------- Disabling DHCP OPTION 82 -------->>>>{} \n".format(lsta[i]))
+            output = device.send_command("sudo config dhcp snooping information option-82 disabled")
+            output = device.send_command("sudo config save -y")
+
+    def enable_dhcp_options(self):
+        lsta = self.iplist
+
+        for i in range(len(lsta)):
+            device = ConnectHandler(device_type='linux', ip=lsta[i], username='admin', password='admin')
+            print("\n---------- Enabling DHCP OPTION 82 -------->>>{} \n".format(lsta[i]))
+            output = device.send_command("sudo config dhcp snooping information option-82 enabled")
+            output = device.send_command("sudo config save -y")
