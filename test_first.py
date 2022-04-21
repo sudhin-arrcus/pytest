@@ -6,7 +6,7 @@ log = logging.getLogger()
 @pytest.fixture(scope='module')
 def init_cases():
     print("[+]-----------------------------------------[+]")
-    log.log(1,"Intialization completed")
+    log.info("Intialization completed")
     print("!!!!!INTIALIZATION COMPLETED!!!!")
 # pytest test_first.py -v --html=report1.html
     yield

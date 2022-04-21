@@ -5,7 +5,7 @@ import ixia_con
 import sonic
 logging.basicConfig(level=logging.DEBUG)
 log = logging.getLogger()
-import time
+from datetime import datetime
 
 ipfile = {'10.27.201.1': 'MLAG271.json', '10.27.201.2': 'MCLAG272.json',
           '10.27.201.5': 'MCLAG275.json', '10.27.201.42': 'MCLAG42.json',
@@ -36,9 +36,11 @@ igmp_handle = "/topology:9/deviceGroup:3/ethernet:1/ipv4:1/igmpHost:1"
 conixia = ixia_con.ixia(path,tcl_dependencies,chassis_ip,ixnetwork_tcl_server,configFile,port_list,handler)
 @pytest.fixture(scope='module')
 def init_cases():
+    now = datetime.now()
+    dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
     print("[+]----------------------------------------------------------------[+]")
 
-    print("[0]--------------------STARTING--------------------------[0]")
+    print("[0]--------------------STARTING  The Test at  {}--------------------------[0]".format(dt_string))
     print("\n Starting the connection \n")
     con.con_switch()
     print("[0]+-----------------------CONNCETING IXIA AND STARTING TRAFFIC------[0]++\n")
@@ -51,6 +53,10 @@ def init_cases():
     print("Intialization completed")
     yield
     print("Tear Down After the cases")
+    now = datetime.now()
+    dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+    print("[0]--------------------Ending  The Test at  {}--------------------------[0]".format(dt_string))
+
 # Calling the intial setup
 
 
@@ -245,3 +251,57 @@ def test_macflush():
     c = con.check_macflush()
     assert c == True," Mac Flush is nor working properly  !!!!"
 
+
+def test_lldp_poe():
+    portlist = ['Ethernet2', 'Ethernet5', 'Ethernet30', 'Ethernet31']
+    ipr = '10.27.201.5'
+    pc = 1
+    dot3 = 1
+    req = 3800
+    alloc = 3800
+    c = con.lldp_poe_conf(ipr, portlist, pc, dot3, req, alloc)
+    assert c == True, " LLDP POE is not working properly  !!!!"
+
+def test_lldp_poe_2():
+    portlist = ['Ethernet2', 'Ethernet5', 'Ethernet30', 'Ethernet31']
+    ipr = '10.27.201.5'
+    pc = 2
+    dot3 = 1
+    req = 6400
+    alloc = 6400
+    c = con.lldp_poe_conf(ipr, portlist, pc, dot3, req, alloc)
+    assert c == True, " LLDP POE is not working properly  !!!!"
+
+def test_lldp_poe_3():
+    portlist = ['Ethernet2', 'Ethernet5', 'Ethernet30', 'Ethernet31']
+    ipr = '10.27.201.5'
+    pc = 3
+    dot3 = 1
+    req = 12500
+    alloc = 12500
+    c = con.lldp_poe_conf(ipr, portlist, pc, dot3, req, alloc)
+    assert c == True, " LLDP POE is not working properly  !!!!"
+
+def test_lldp_poe_4():
+    portlist = ['Ethernet2', 'Ethernet5', 'Ethernet30', 'Ethernet31']
+    ipr = '10.27.201.5'
+    pc = 4
+    dot3 = 2
+    req = 25500
+    alloc = 25500
+    c = con.lldp_poe_conf(ipr, portlist, pc, dot3, req, alloc)
+    assert c == True, " LLDP POE is not working properly  !!!!"
+
+def test_port_sec():
+    #conixia.init_ixia()
+    conixia.start_protocols()
+    conixia.start_traffic()
+    time.sleep(20)
+    print("!!!!----Started IXIA Protocols and traffic!!!!! \n")
+    ip = '10.27.201.5'
+    port = 'Ethernet49'
+    limit = 10
+    en = 'disable'
+    mode = 'restrict'
+    c = con.port_sec(ip, port,limit,en,mode)
+    assert c == True, " Port Security is not working properly  !!!!"

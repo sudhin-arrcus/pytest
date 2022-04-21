@@ -18,4 +18,12 @@ vlans = {'800':['PortChannel1']}
 #con.config_vlan(vlans)
 #con.del_vlan(vlans)
 #con.disable_span()
-con.shut_link('10.27.201.5','PortChannel1')
+#con.shut_link('10.27.201.5','PortChannel1')
+portlist = ['Ethernet2','Ethernet5','Ethernet30','Ethernet31']
+ipr = '10.27.201.5'
+pc = 2
+dot3 = 1
+req = 6400
+alloc = 6400
+con.lldp_poe_conf(ipr,portlist,pc,dot3,req,alloc)
+#con.lldp_status_check()

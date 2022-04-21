@@ -36,9 +36,9 @@ class sonic:
         print("\n !!! Sleeping for 70 seconds for stablity!!!!\n")
         time.sleep(70)
         print("\n----------Sleeping completed--------------------\n")
-
+        dhcp_server = self.iplist[len(self.iplist)-1]
         print("\n Restarting DHCP Server in Dump Switch\n")
-        device = ConnectHandler(device_type='linux', ip='10.27.201.6', username='admin', password='admin')
+        device = ConnectHandler(device_type='linux', ip=dhcp_server, username='admin', password='admin')
         output = device.send_command('sudo systemctl restart isc-dhcp-server.service')
         print("\n Sleeping for 10s for restarting DHCP Service in Dump Switch\n")
         time.sleep(10)
@@ -46,7 +46,7 @@ class sonic:
         output = device.send_command("sudo systemctl status isc-dhcp-server.service | grep \"Active\" | awk '/Active/ {print $2}'")
 
         if output != 'active':
-            print("\n Attention DHCP Service needs to be checked in Dump Switch 10.27.201.6 \n")
+            print("\n Attention DHCP Service needs to be checked in Dump Switch {} \n".format(dhcp_server))
     def check_switch(self):
 
 
@@ -201,7 +201,7 @@ class sonic:
         flag = 0
         for i in range(len(lsta)):
             device = ConnectHandler(device_type='linux', ip=lsta[i], username='admin', password='admin')
-            print("\n Clearing the mac database after stopping the traffic and protocols")
+            print("\n Clearing the mac database after stopping the traffic and protocols in {}".format(lsta[i]))
             output = device.send_command("sonic-clear fdb all")
         time.sleep(20)
 
@@ -550,20 +550,21 @@ class sonic:
             time.sleep(75)
             output = device.send_command("show span vlan 1001 | awk '/FORWARDING/' | wc -l")
             if int(output) < 4:
-                print("Spanning Tree ports are not forwarding ------>{}".format(lsta[i]))
+                print(" Test Cased Failed Spanning Tree ports are not forwarding ------>{}".format(lsta[i]))
                 output = device.send_command("show span ")
                 print(output)
                 output = device.send_command("show vlan br ")
                 print(output)
                 flag = 1
             else:
-                print("\n[=+---------TEST CASE PASSED AFTER BOUNCING SPANNING TREE in ----> {}".format(lsta[i]))
+                print("\n[=+---------TEST CASE PASSED AFTER BOUNCING SPANNING TREE ports are forwarding  in ----> {}".format(lsta[i]))
         print("\n\n[+]---------------Sleeping for 50s for checking mac table entries-------[+]")
         time.sleep(50)
         print("\n\n[+]---------------Checking MAC Data Plane and Control Plane-------[+]")
         traffic_status = self.check_traffic()
 
         if flag == 0 and traffic_status == True:
+            print("\n[=+---------TEST CASE PASSED AFTER BOUNCING SPANNING TREE  Traffic is fine\n")
             return True
         else:
             return False
@@ -594,7 +595,7 @@ class sonic:
     def disable_dhcp_options(self):
         lsta = self.iplist
 
-        for i in range(len(lsta)):
+        for i in range(len(lsta)-1):
             device = ConnectHandler(device_type='linux', ip=lsta[i], username='admin', password='admin')
             print("\n---------- Disabling DHCP OPTION 82 -------->>>>{} \n".format(lsta[i]))
             output = device.send_command("sudo config dhcp snooping information option-82 disabled")
@@ -603,8 +604,81 @@ class sonic:
     def enable_dhcp_options(self):
         lsta = self.iplist
 
-        for i in range(len(lsta)):
+        for i in range(len(lsta)-1):
             device = ConnectHandler(device_type='linux', ip=lsta[i], username='admin', password='admin')
             print("\n---------- Enabling DHCP OPTION 82 -------->>>{} \n".format(lsta[i]))
             output = device.send_command("sudo config dhcp snooping information option-82 enabled")
             output = device.send_command("sudo config save -y")
+
+
+    def lldp_poe_conf(self,ip,portlist,pc,dot3,req,alloc):
+        flag =0
+        flag1 = 0
+
+        device = ConnectHandler(device_type='linux', ip=ip, username='admin', password='admin')
+        print("\n---------- Enabling LLDP POE with Power Class  {}-------->>>{} \n".format(pc,ip))
+        for j in portlist:
+            output = device.send_command(
+                "sudo config lldp dot3 power --port {} --dev-type pd --supported --enabled --pair-control --power-pairs signal --power-class {} --dot3at-type {} --source pse --priority high --requested {} --allocated {}".format(
+                    j,pc,dot3,req,alloc))
+
+        output = device.send_command("sudo config save -y")
+        time.sleep(40)
+        print("\n<-------Configured Port with Power Class {} \n---------------->".format(pc))
+        output = device.send_command("show lldp nei | grep \"Class\" | head -1 | awk '/Class/{print $3}'")
+        print(output)
+        if int(output) != pc:
+            print(" <-------Test Case Failed LLDP POE Power Class is wrong in show lldp nei {}------>{}".format(pc,ip))
+            output = device.send_command("show lldp nei ")
+            print(output)
+            flag = 1
+        output = device.send_command("show lldp dot3 | grep \"{}\" | wc -l".format(req))
+        print(output)
+
+        if int(output) < 4:
+            print(" <-------Test case Failed LLDP POE Power level is wrong in show lldp dot3 {}------>{}".format(req,ip))
+            output = device.send_command("show lldp dot3 ")
+            print(output)
+            flag1 = 1
+        if flag == 0 and flag1 == 0:
+            print("\n<----------TEST CASE PASSED IN {} for Power level ----->\n".format(ip))
+            return True
+        else:
+            return False
+
+
+    def port_sec(self, ip, port,limit,en,mode):
+        flag = 0
+
+
+        device = ConnectHandler(device_type='linux', ip=ip, username='admin', password='admin')
+        print("\n---------- Configuring Port Security {} on ---- {}-------->>>{} \n".format(mode,port, ip))
+        device.send_command("sudo config port-security add {}  {}  {}  {}".format(port,limit,en,mode))
+        output = device.send_command("sudo config save -y")
+        time.sleep(5)
+        print("\n<-------Configured Port Security on {}  of  {} \n---------------->".format(port,ip))
+        output = device.send_command("show mac | grep \"{}\" | wc -l".format(port))
+        print(output)
+        if int(output) != limit:
+            print(" <-------Port Security is not working on {} --- of ---{}".format(port, ip))
+            output = device.send_command("show port-security stat ")
+            print(output)
+            output = device.send_command("show run port-security ")
+            print(output)
+            flag = 1
+        print("\n------Deleting the Port Security configurations ---------------\n")
+        output = device.send_command("sudo config port-sec del  {}".format(port))
+        output = device.send_command("sudo config save -y")
+        if flag == 0:
+            print("\n<----------TEST CASE PASSED IN {} for Port Security {} ----->\n".format(ip,mode))
+            return True
+        else:
+            return False
+
+
+
+
+
+
+
+
