@@ -69,9 +69,12 @@ class sonic:
                 print(output)
                 output = device.send_command("systemctl status docker | awk '/Active/' ")
                 print(output)
-                flag == 1
+                output = device.send_command("show log | grep \"ERR\" | tail -20 ")
+                print(output)
+                flag = 1
             else:
                 print("\n[0]+--------------Test Case Passed Dockers containers are up in {}-----[0]+\n".format(key))
+                print("[0]----------Expected Value is >=16 Observed Value after the test:{}".format(output))
 
             output = device.send_command("show ver | grep \"SONiC Software Version\"")
             print(output)
@@ -91,9 +94,12 @@ class sonic:
                 print(output)
                 output = device.send_command("show int status ")
                 print(output)
+                output = device.send_command("show log | grep \"ERR\" | tail -20 ")
+                print(output)
                 flag1 =1
             else:
                 print("\n[0]+--------------Test Case Passed Port channels are up in MCLAG Peer {}-----[0]+\n".format(lsta[i]))
+                print("[0]----------Expected Value is >=5 Observed Value after the test:{}".format(output))
         print("\n---------Checking MCLAG Session Status----------\n")
         for i in range(2):
             device = ConnectHandler(device_type='linux', ip=lsta[i], username='admin', password='admin')
@@ -105,11 +111,15 @@ class sonic:
                 print(output)
                 output = device.send_command("show ip int ")
                 print(output)
+                output = device.send_command("show log | grep \"ERR\" | tail -20 ")
+                print(output)
                 flag2 =1
             else:
                 print("\n[0]+--------------Test Case Passed MCLAG Session is up in {}-----[0]+\n".format(lsta[i]))
+                print("[0]----------Expected Value is: UP Observed Value after the test:{}".format(output))
 
         print("\n-------Checking the Port Channel status of MCLAG on peers ------\n")
+
         for i in range(2):
             device = ConnectHandler(device_type='linux', ip=lsta[i], username='admin', password='admin')
             output = device.send_command("show mclag br 1 | awk '/PortChannel/' | awk '/Up/' | grep \"Up / Up\" | wc -l")
@@ -121,9 +131,12 @@ class sonic:
                 print(output)
                 output = device.send_command("show int status ")
                 print(output)
+                output = device.send_command("show log | grep \"ERR\" | tail -20 ")
+                print(output)
                 flag3 = 1
             else:
                 print("\n[0]+--------------Test Case Passed MCLAG Port Channels are up in {}-----[0]+\n".format(lsta[i]))
+                print("[0]----------Expected Value is: >=4 Observed Value after the test:{}".format(output))
 
         print("\n---------Checking MCLAG Session Sync Status----------\n")
         for i in range(2):
@@ -136,10 +149,12 @@ class sonic:
                 print(output)
                 output = device.send_command("show ip int ")
                 print(output)
+                output = device.send_command("show log | grep \"ERR\" | tail -20 ")
+                print(output)
                 flag4 = 1
             else:
                 print("\n[0]+--------------Test Case Passed MCLAG Session Syn is Done in peer {}-----[0]+\n".format(lsta[i]))
-
+                print("[0]----------Expected Value is: Done Observed Value after the test:{}".format(output))
         print("\n---------Checking Spanning Tree Ports are forwarding in PEERS----------\n")
         for i in range(2):
             device = ConnectHandler(device_type='linux', ip=lsta[i], username='admin', password='admin')
@@ -150,10 +165,13 @@ class sonic:
                 print(output)
                 output = device.send_command("show vlan br ")
                 print(output)
+                output = device.send_command("show log | grep \"ERR\" | tail -20 ")
+                print(output)
                 flag5 = 1
             else:
                 print("\n[0]+--TEST CASE PASSED SPANNING TREE PORTS ARE FORWARDING IN PEER --> {}-----[0]+\n".format(lsta[i]))
-        print("\n---------Checking Spanning Root Bridge in Both PEERS----------\n")
+                print("[0]----------Expected Value is: >=4 Observed Value after the test:{}".format(output))
+        print("\n---------Checking Spanning Tree Root Bridge in Both PEERS----------\n")
         for i in range(2):
             device = ConnectHandler(device_type='linux', ip=lsta[i], username='admin', password='admin')
             output = device.send_command("show span vlan 1001 | awk '/Root/{print $4}' | grep \"Root\" | tail -1")
@@ -161,10 +179,12 @@ class sonic:
                 print("Spanning Tree is not Root Bridge in ------>{}".format(lsta[i]))
                 output = device.send_command("show span  vlan 1001")
                 print(output)
-
+                output = device.send_command("show log | grep \"ERR\" | tail -20 ")
+                print(output)
                 flag6 = 1
             else:
                 print("\n[0]+--------------Test Case Passed PEER --> {} is ROOT-----[0]+\n".format(lsta[i]))
+                print("[0]----------Expected Value is: Root Observed Value after the test:{}".format(output))
         
         if flag == 0 and flag1 == 0 and flag2 == 0 and flag3 == 0 and flag4 == 0 and flag5 == 0 and flag6 == 0:
             return True
@@ -187,9 +207,13 @@ class sonic:
                 print(output)
                 output = device.send_command("bcmcmd \"l2 show\" |wc -l")
                 print(output)
+                output = device.send_command("show log | grep \"ERR\" | tail -20 ")
+                print(output)
+                self.mac_detail_profile(lsta[i])
                 flag = 1
             else:
                 print(" Test Case PASSED MAC Sync between Control and Data plane ------>{}".format(lsta[i]))
+                print("[0]----------Expected Value is: >=1410 Observed Value after the test:{}".format(conmac,datmac,mcmac))
 
         if flag == 0:
             return True
@@ -218,9 +242,12 @@ class sonic:
                 print(output)
                 output = device.send_command("bcmcmd \"l2 show\" ")
                 print(output)
+                output = device.send_command("show log | grep \"ERR\" | tail -20 ")
+                print(output)
                 flag = 1
             else:
                 print(" Test Case PASSED MAC Flush worked in ------>{}".format(lsta[i]))
+                print("[0]----------Expected Value is: <40 Observed Value after the test:{}".format(output))
 
         if flag == 0:
             return True
@@ -240,10 +267,13 @@ class sonic:
                 print(" Test Case Failed Not all Vlans are not configured properly in ------>{}".format(lsta[i]))
                 output = device.send_command("show vlan br ")
                 print(output)
+                output = device.send_command("show log | grep \"ERR\" | tail -20 ")
+                print(output)
 
                 flag = 1
             else:
                 print(" Test Case PASSED Vlan configured on all interface in ------>{}".format(lsta[i]))
+                print("[0]----------Expected Value is: >=60 Observed Value after the test:{}".format(output))
 
         if flag == 0:
             return True
@@ -265,10 +295,13 @@ class sonic:
                 print(output)
                 output = device.send_command("show run dhcp ")
                 print(output)
+                output = device.send_command("show log | grep \"ERR\" | tail -20 ")
+                print(output)
 
                 flag = 1
             else:
                 print(" Test Case PASSED DHCP Clients are getting IP ------>{}".format(lsta[i]))
+                print("[0]----------Expected Value is: >8 Observed Value after the test:{}".format(output))
 
         if flag == 0:
             return True
@@ -290,10 +323,13 @@ class sonic:
                 print(output)
                 output = device.send_command("show run dhcp ")
                 print(output)
+                output = device.send_command("show log | grep \"ERR\" | tail -20 ")
+                print(output)
 
                 flag = 1
             else:
                 print(" Test Case PASSED DHCP MAC-IP Bindings are clearing ------>{}".format(lsta[i]))
+                print("[0]----------Expected Value is: <2 Observed Value after the test:{}".format(output))
 
         if flag == 0:
             return True
@@ -316,10 +352,13 @@ class sonic:
                 print(output)
                 output = device.send_command("show run igmp ")
                 print(output)
+                output = device.send_command("show log | grep \"ERR\" | tail -20 ")
+                print(output)
 
                 flag = 1
             else:
                 print(" Test Case PASSED IGMP Snooping Entries are clearing ------>{}".format(lsta[i]))
+
 
         if flag == 0:
             return True
@@ -339,9 +378,14 @@ class sonic:
                 print(" Test Case Failed Interfaces are not Up ------>{}".format(lsta[i]))
                 output = device.send_command("show int status ")
                 print(output)
+                output = device.send_command("show log | grep \"interface\" ")
+                print(output)
+                output = device.send_command("show log | grep \"ERR\" | tail -20 ")
+                print(output)
                 flag = 1
             else:
                 print(" Test Case PASSED Interfaces are up ------>{}".format(lsta[i]))
+                print("[0]----------Expected Value is: >=50 Observed Value after the test:{}".format(output))
 
         if flag == 0:
             return True
@@ -361,9 +405,14 @@ class sonic:
                 print(" Test Case Failed LLDP messages are not showing interface properly ------>{}".format(lsta[i]))
                 output = device.send_command("show llpd nei ")
                 print(output)
+                output = device.send_command("show log | grep \"LLDP\" ")
+                print(output)
+                output = device.send_command("show log | grep \"ERR\" | tail -20 ")
+                print(output)
                 flag = 1
             else:
                 print(" Test Case PASSED LLDP Interfaces are up in LLDP message ------>{}".format(lsta[i]))
+                print("[0]----------Expected Value is: >=18 Observed Value after the test:{}".format(output))
 
         if flag == 0:
             return True
@@ -383,9 +432,14 @@ class sonic:
                 print(" Test Case Failed LLDP table is not displaying properly properly ------>{}".format(lsta[i]))
                 output = device.send_command("show llpd table ")
                 print(output)
+                output = device.send_command("show log | grep \"LLDP\" ")
+                print(output)
+                output = device.send_command("show log | grep \"ERR\" | tail -20 ")
+                print(output)
                 flag = 1
             else:
                 print(" Test Case PASSED LLDP Table check is fine------>{}".format(lsta[i]))
+                print("[0]----------Expected Value is: >=18 Observed Value after the test:{}".format(output))
 
         if flag == 0:
             return True
@@ -406,9 +460,14 @@ class sonic:
                 print(" Test Case Failed LLDP Interface status is not displaying properly properly ------>{}".format(lsta[i]))
                 output = device.send_command("show llpd int ")
                 print(output)
+                output = device.send_command("show log | grep \"LLDP\" ")
+                print(output)
+                output = device.send_command("show log | grep \"ERR\" | tail -20 ")
+                print(output)
                 flag = 1
             else:
                 print(" Test Case PASSED LLDP Interface check is fine------>{}".format(lsta[i]))
+                print("[0]----------Expected Value is: >=53 Observed Value after the test:{}".format(output))
 
         if flag == 0:
             return True
@@ -426,8 +485,10 @@ class sonic:
 
 
             if int(output) < 9:
-                print(" Test Case Failed Enviornment issue ------>{}".format(lsta[i]))
+                print(" Test Case Failed Enviornment issue show env command is not showing any ------>{}".format(lsta[i]))
                 output = device.send_command("show environment")
+                print(output)
+                output = device.send_command("show log | grep \"ERR\" | tail -20 ")
                 print(output)
                 flag = 1
             else:
@@ -448,8 +509,10 @@ class sonic:
 
 
             if int(output) < 7:
-                print(" Test Case Failed PCI INFO MISSING ------>{}".format(lsta[i]))
+                print(" Test Case Failed PCI INFO MISSING show platform pcieinfo is not showing any data ------>{}".format(lsta[i]))
                 output = device.send_command("show platform pcieinfo")
+                print(output)
+                output = device.send_command("show log | grep \"ERR\" | tail -20 ")
                 print(output)
                 flag = 1
             else:
@@ -487,10 +550,12 @@ class sonic:
                     print(" Test Case Failed Spanning Tree is not there in new vlan ------>{}".format(lsta[i]))
                     output = device.send_command("show vlan br")
                     print(output)
+                    output = device.send_command("show log | grep \"ERR\" | tail -20 ")
+                    print(output)
                     flag = 1
                 else:
                     print(" Test Case PASSED Vlan is created and spanning tree is running on new vlans----->{}".format(lsta[i]))
-
+                    print("[0]----------Expected Value is: PortChannel1 Observed Value after the test:{}".format(output))
         if flag == 0:
             return True
         else:
@@ -521,10 +586,12 @@ class sonic:
                     print(" Test Case Failed Spanning Tree is not removed in new vlan ------>{}".format(lsta[i]))
                     output = device.send_command("show span")
                     print(output)
+                    output = device.send_command("show log | grep \"ERR\" | tail -20 ")
+                    print(output)
                     flag = 1
                 else:
                     print(" Test Case PASSED Vlan is deleted and spanning tree is disabled on new vlans----->{}".format(lsta[i]))
-
+                    print("[0]----------Expected Value is: 0 Observed Value after the test:{}".format(output))
         if flag == 0:
             return True
         else:
@@ -555,9 +622,12 @@ class sonic:
                 print(output)
                 output = device.send_command("show vlan br ")
                 print(output)
+                output = device.send_command("show log | grep \"ERR\" | tail -20 ")
+                print(output)
                 flag = 1
             else:
                 print("\n[=+---------TEST CASE PASSED AFTER BOUNCING SPANNING TREE ports are forwarding  in ----> {}".format(lsta[i]))
+                print("[0]----------Expected Value is: >=4 Observed Value after the test:{}".format(output))
         print("\n\n[+]---------------Sleeping for 50s for checking mac table entries-------[+]")
         time.sleep(50)
         print("\n\n[+]---------------Checking MAC Data Plane and Control Plane-------[+]")
@@ -565,6 +635,7 @@ class sonic:
 
         if flag == 0 and traffic_status == True:
             print("\n[=+---------TEST CASE PASSED AFTER BOUNCING SPANNING TREE  Traffic is fine\n")
+
             return True
         else:
             return False
@@ -623,7 +694,7 @@ class sonic:
                     j,pc,dot3,req,alloc))
 
         output = device.send_command("sudo config save -y")
-        time.sleep(40)
+        time.sleep(45)
         print("\n<-------Configured Port with Power Class {} \n---------------->".format(pc))
         output = device.send_command("show lldp nei | grep \"Class\" | head -1 | awk '/Class/{print $3}'")
         print(output)
@@ -649,7 +720,7 @@ class sonic:
 
     def port_sec(self, ip, port,limit,en,mode):
         flag = 0
-
+        flag1 = 0
 
         device = ConnectHandler(device_type='linux', ip=ip, username='admin', password='admin')
         print("\n---------- Configuring Port Security {} on ---- {}-------->>>{} \n".format(mode,port, ip))
@@ -660,24 +731,118 @@ class sonic:
         output = device.send_command("show mac | grep \"{}\" | wc -l".format(port))
         print(output)
         if int(output) != limit:
-            print(" <-------Port Security is not working on {} --- of ---{}".format(port, ip))
+            print(" <-------TEST CASE FAILED Port Security is not working on {} --- of ---{}".format(port, ip))
             output = device.send_command("show port-security stat ")
             print(output)
             output = device.send_command("show run port-security ")
             print(output)
+            output = device.send_command("show mac | grep \"{}\" | wc -l".format(port))
+            print(output)
+            output = device.send_command("show log | grep \"ERR\" | tail -20 ")
+            print(output)
             flag = 1
+        cmd = "show port-security stat | awk '/"+port+"/{print $8}'"
+        print(cmd)
+        output = device.send_command(cmd)
+        print(output)
+        if int(output) != limit:
+            print(" <-------TEST CASE FAILED show port security status is not working on {} --- of ---{}".format(port, ip))
+            output = device.send_command("show port-security stat ")
+            print(output)
+            output = device.send_command("show run port-security ")
+            print(output)
+            output = device.send_command("show mac | grep \"{}\" | wc -l".format(port))
+            print(output)
+            output = device.send_command("show log | grep \"ERR\" | tail -20 ")
+            print(output)
+            flag1 = 1
+
         print("\n------Deleting the Port Security configurations ---------------\n")
         output = device.send_command("sudo config port-sec del  {}".format(port))
         output = device.send_command("sudo config save -y")
-        if flag == 0:
+        if flag == 0 and flag1 == 0:
             print("\n<----------TEST CASE PASSED IN {} for Port Security {} ----->\n".format(ip,mode))
             return True
         else:
             return False
 
+    def port_sec_shut(self, ip, port,limit,en,mode):
+        flag = 0
+        flag1 = 0
 
+        device = ConnectHandler(device_type='linux', ip=ip, username='admin', password='admin')
+        print("\n---------- Configuring Port Security {} on ---- {}-------->>>{} \n".format(mode,port, ip))
+        device.send_command("sudo config port-security add {}  {}  {}  {}".format(port,limit,en,mode))
+        output = device.send_command("sudo config save -y")
+        time.sleep(5)
+        print("\n<-------Configured Port Security on {}  of  {} \n---------------->".format(port,ip))
+        output = device.send_command("show mac | grep \"{}\" | wc -l".format(port))
+        print(output)
+        if int(output) != 0:
+            print(" <-------TEST CASE FAILED Port Security is not working on {} --- of ---{}".format(port, ip))
+            output = device.send_command("show port-security stat ")
+            print(output)
+            output = device.send_command("show run port-security ")
+            print(output)
+            output = device.send_command("show mac | grep \"{}\" | wc -l".format(port))
+            print(output)
+            output = device.send_command("show log | grep \"ERR\" | tail -20 ")
+            print(output)
+            flag = 1
+        cmd = "show port-security stat | awk '/"+port+"/{print $8}'"
+        print(cmd)
+        output = device.send_command(cmd)
+        print(output)
+        if int(output) != 0:
+            print(" <-------TEST CASE FAILED show port security status is not working on {} --- of ---{}".format(port, ip))
+            output = device.send_command("show port-security stat ")
+            print(output)
+            output = device.send_command("show run port-security ")
+            print(output)
+            output = device.send_command("show mac | grep \"{}\" | wc -l".format(port))
+            print(output)
+            output = device.send_command("show log | grep \"ERR\" | tail -20 ")
+            print(output)
+            flag1 = 1
 
+        print("\n------Deleting the Port Security configurations ---------------\n")
+        output = device.send_command("sudo config port-sec del  {}".format(port))
+        output = device.send_command("sudo config interface startup  {}".format(port))
+        output = device.send_command("sudo config save -y")
+        if flag == 0 and flag1 == 0:
+            print("\n<----------TEST CASE PASSED IN {} for Port Security {} ----->\n".format(ip,mode))
+            return True
+        else:
+            return False
 
+    def mac_detail_profile(self,ip):
+        device = ConnectHandler(device_type='linux', ip=ip, username='admin', password='admin')
+        lstmac = ["00:00:60","00:00:40","00:00:50","00:00:5E","00:00:90","00:00:11","00:00:99","00:00:33",
+                     "00:00:B0","00:1B:0B","00:1A:0A","00:11:67"]
+        print("!!!!!!!-------------MAC Table Range From IXIA Expected Values to be present in DUT {}--------------!!!!!\n".format(ip))
+        print("00:00:60 ----> 10 macs \n")
+        print(" 00:00:40 ----> 300 macs \n")
+        print("00:00:50 ----> 300 macs \n")
+        print("00:00:5E ----> 10 macs \n")
+        print("00:00:90 ----> 254 macs \n")
+        print("00:00:11 ----> 10 macs \n")
+        print("00:00:99 ----> 10 macs \n")
+        print("00:00:33 ----> 200 macs \n")
+        print("00:00:b0 ----> 10 macs \n")
+        print("00:1A:0A ----> 100 macs \n")
+        print("00:1B:0B ----> 100 macs \n")
+        print("00:11:67 ----> 10 macs \n")
+        for i in lstmac:
+
+            print("MAC Observed Value {} check in  Control Plane \n".format(i))
+            conmac = device.send_command("show mac | grep \"{}\" | wc -l".format(i))
+            print(conmac)
+            print("MAC Observed Value {} check in  Data Plane \n".format(i))
+            datmac = device.send_command("bcmcmd \"l2 show\" | grep  \"{}\" | wc -l".format(i.lower()))
+            print(datmac)
+            print("MAC Observed Value {} check in  MCLAG \n".format(i))
+            mcmac = device.send_command("show mclag mac 1 |grep  \"{}\" | wc -l".format(i.lower()))
+            print(mcmac)
 
 
 
