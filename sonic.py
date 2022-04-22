@@ -213,7 +213,7 @@ class sonic:
                 flag = 1
             else:
                 print(" Test Case PASSED MAC Sync between Control and Data plane ------>{}".format(lsta[i]))
-                print("[0]----------Expected Value is: >=1410 Observed Value after the test:{}".format(conmac,datmac,mcmac))
+                print("[0]----------Expected Value is: >=1410 Observed Value after the test:{} {} {}".format(conmac,datmac,mcmac))
 
         if flag == 0:
             return True

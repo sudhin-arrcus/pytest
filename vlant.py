@@ -21,5 +21,6 @@ vlans = {'800':['PortChannel1']}
 #con.shut_link('10.27.201.5','PortChannel1')
 portlist = ['Ethernet2','Ethernet5','Ethernet30','Ethernet31']
 ipr = '10.27.201.1'
-con.mac_detail_profile(ipr)
+#con.mac_detail_profile(ipr)
 #con.lldp_status_check()
+con.check_traffic()
