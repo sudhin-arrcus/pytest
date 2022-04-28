@@ -199,7 +199,7 @@ class sonic:
             conmac = device.send_command("show mac |wc -l")
             datmac = device.send_command("bcmcmd \"l2 show\" |wc -l")
             mcmac = device.send_command("show mclag mac 1 |wc -l")
-            if int(conmac)<1410 and int(datmac)<1410 and int(mcmac) < 1410:
+            if int(conmac)<1410 or int(datmac)<1410 or int(mcmac) < 1410:
                 print(" Test Case Failed MAC Sync ISSUE ------>{}".format(lsta[i]))
                 output = device.send_command("show mac |wc -l")
                 print(output)
@@ -712,7 +712,8 @@ class sonic:
             print(output)
             flag1 = 1
         if flag == 0 and flag1 == 0:
-            print("\n<----------TEST CASE PASSED IN {} for Power level ----->\n".format(ip))
+            print("\n<----------TEST CASE Expected value is: >4  and observed Value is for Power Class {}  {}----->\n".format(pc,output))
+            print("\n<----------TEST CASE PASSED IN {} for Power level  {}----->\n".format(ip,req))
             return True
         else:
             return False
@@ -745,6 +746,7 @@ class sonic:
         print(cmd)
         output = device.send_command(cmd)
         print(output)
+        ob = int(output)
         if int(output) != limit:
             print(" <-------TEST CASE FAILED show port security status is not working on {} --- of ---{}".format(port, ip))
             output = device.send_command("show port-security stat ")
@@ -761,6 +763,7 @@ class sonic:
         output = device.send_command("sudo config port-sec del  {}".format(port))
         output = device.send_command("sudo config save -y")
         if flag == 0 and flag1 == 0:
+            print("\n<----------TEST CASE Expected Value is : {} Observed Value is {} ----->\n".format(limit,ob))
             print("\n<----------TEST CASE PASSED IN {} for Port Security {} ----->\n".format(ip,mode))
             return True
         else:
@@ -792,6 +795,7 @@ class sonic:
         cmd = "show port-security stat | awk '/"+port+"/{print $8}'"
         print(cmd)
         output = device.send_command(cmd)
+        ob = int(output)
         print(output)
         if int(output) != 0:
             print(" <-------TEST CASE FAILED show port security status is not working on {} --- of ---{}".format(port, ip))
@@ -810,6 +814,7 @@ class sonic:
         output = device.send_command("sudo config interface startup  {}".format(port))
         output = device.send_command("sudo config save -y")
         if flag == 0 and flag1 == 0:
+            print("\n<----------TEST CASE Expected Value is : {} Observed Value is {} ----->\n".format(0, ob))
             print("\n<----------TEST CASE PASSED IN {} for Port Security {} ----->\n".format(ip,mode))
             return True
         else:
@@ -843,6 +848,204 @@ class sonic:
             print("MAC Observed Value {} check in  MCLAG \n".format(i))
             mcmac = device.send_command("show mclag mac 1 |grep  \"{}\" | wc -l".format(i.lower()))
             print(mcmac)
+
+    def port_sec_static(self, ip, port,limit,staticmac):
+        flag = 0
+        flag1 = 0
+
+
+        device = ConnectHandler(device_type='linux', ip=ip, username='admin', password='admin')
+        print("\n---------- Configuring Port Security static  restrict {} on ---- {}-------->>>{} \n".format("static",port, ip))
+        device.send_command("sudo config port-security add {}  {}  disable restrict {}".format(port,limit,staticmac))
+        output = device.send_command("sudo config save -y")
+        time.sleep(5)
+
+        print("\n<-------Configured Port Security on {}  of  {} \n---------------->".format(port,ip))
+        output = device.send_command("show mac | grep \"{}\" | wc -l".format(port))
+        print(output)
+        if int(output) != limit:
+            print(" <-------TEST CASE FAILED Port Security static is not working on {} --- of ---{}".format(port, ip))
+            output = device.send_command("show port-security stat ")
+            print(output)
+            output = device.send_command("show run port-security ")
+            print(output)
+            output = device.send_command("show mac | grep \"{}\" ".format(port))
+            print(output)
+            output = device.send_command("show log | grep \"ERR\" | tail -20 ")
+            print(output)
+            flag = 1
+        cmd = "show port-security stat | awk '/"+port+"/{print $6}'"
+        print(cmd)
+        output = device.send_command(cmd)
+        print(output)
+        ob = int(output)
+        if int(output) != limit:
+            print(" <-------TEST CASE FAILED show port security status is not working on {} --- of ---{}".format(port, ip))
+            output = device.send_command("show port-security stat ")
+            print(output)
+            output = device.send_command("show run port-security ")
+            print(output)
+            output = device.send_command("show mac | grep \"{}\" ".format(port))
+            print(output)
+            output = device.send_command("show log | grep \"ERR\" | tail -20 ")
+            print(output)
+            flag1 = 1
+
+        print("\n------Deleting the Port Security configurations ---------------\n")
+        output = device.send_command("sudo config port-sec del  {}".format(port))
+        output = device.send_command("sudo config save -y")
+        if flag == 0 and flag1 == 0:
+            print("\n<----------TEST CASE Expected Value is : {} Observed Value is {} ----->\n".format(limit,ob))
+            print("\n<----------TEST CASE PASSED IN {} for Port Security {} ----->\n".format(ip,"static"))
+            return True
+        else:
+            return False
+
+    def port_sec_shut_static(self, ip, port,limit,staticmac):
+        flag = 0
+        flag1 = 0
+
+        device = ConnectHandler(device_type='linux', ip=ip, username='admin', password='admin')
+        print("\n---------- Configuring Port Security {} on ---- {}-------->>>{} \n".format("Static",port, ip))
+        device.send_command("sudo config port-security add {}  {}  disable port_shut {}".format(port,limit,staticmac))
+        output = device.send_command("sudo config save -y")
+        time.sleep(5)
+        print("\n<-------Configured Port Security Static port shut on {}  of  {} \n---------------->".format(port,ip))
+        output = device.send_command("show mac | grep \"{}\" | wc -l".format(port))
+        print(output)
+        if int(output) != 0:
+            print(" <-------TEST CASE FAILED Port Security is not working on {} --- of ---{}".format(port, ip))
+            output = device.send_command("show port-security stat ")
+            print(output)
+            output = device.send_command("show run port-security ")
+            print(output)
+            output = device.send_command("show mac | grep \"{}\" ".format(port))
+            print(output)
+            output = device.send_command("show log | grep \"ERR\" | tail -20 ")
+            print(output)
+            flag = 1
+        cmd = "show port-security stat | awk '/"+port+"/{print $8}'"
+        print(cmd)
+        output = device.send_command(cmd)
+        ob = int(output)
+        print(output)
+        if int(output) != 0:
+            print(" <-------TEST CASE FAILED show port security status is not working on {} --- of ---{}".format(port, ip))
+            output = device.send_command("show port-security stat ")
+            print(output)
+            output = device.send_command("show run port-security ")
+            print(output)
+            output = device.send_command("show mac | grep \"{}\" ".format(port))
+            print(output)
+            output = device.send_command("show log | grep \"ERR\" | tail -20 ")
+            print(output)
+            flag1 = 1
+
+        print("\n------Deleting the Port Security configurations ---------------\n")
+        output = device.send_command("sudo config port-sec del  {}".format(port))
+        output = device.send_command("sudo config interface startup  {}".format(port))
+        output = device.send_command("sudo config save -y")
+        if flag == 0 and flag1 == 0:
+            print("\n<----------TEST CASE Expected Value is : {} Observed Value is {} ----->\n".format(0, ob))
+            print("\n<----------TEST CASE PASSED IN {} for Port Security {} ----->\n".format(ip,"static"))
+            return True
+        else:
+            return False
+
+    def ping_ip(self, router,ip):
+        flag = 0
+        flag1 = 0
+
+        device = ConnectHandler(device_type='linux', ip=router, username='admin', password='admin')
+        print("\n---------- Pinging The in band MGMT IP {} from Dump Switch {} -------- \n".format(ip,router))
+        output = device.send_command("ping 20.0.0.2 -c 7")
+        cmd = "ping "+ip+ " -c 1 | awk '/packets/{print $6}' | cut -d '%' -f 1"
+        output = device.send_command(cmd)
+        ob = int(output)
+
+        if int(output) != 0:
+            print(" <-------TEST CASE FAILED Ping to  {}  Failed in ---{}".format(ip, router))
+            output = device.send_command("show ip int ")
+            print(output)
+            output = device.send_command("show arp")
+            print(output)
+            output = device.send_command("show log | grep \"ERR\" | tail -20 ")
+            print(output)
+            flag = 1
+
+
+        if flag == 0:
+            print("\n<----------TEST CASE Expected Value is : {} Observed Value is {} ----->\n".format(0, ob))
+            print("\n<----------TEST CASE PASSED  PING Successful in {} to MGMT IP {} ----->\n".format(router,ip))
+            return True
+        else:
+            return False
+    def restart_container(self, router,container,timer):
+
+
+        device = ConnectHandler(device_type='linux', ip=router, username='admin', password='admin')
+        print("\n---------- Restarting Container {}  in {} ------------- \n".format(container,router))
+        output = device.send_command("sudo systemctl restart {}".format(container))
+        time.sleep(timer)
+        traffic_status = self.check_traffic()
+        print("\n[0]----------Finished sleep for {}-------------[0]\n".format(timer))
+
+        if traffic_status == True:
+            print(" <-------TEST CASE Passed after restarting Container {}  in ---{}".format(container,router))
+            return True
+        else:
+            return False
+
+    def final_check(self):
+
+        lsta = self.iplist
+
+        for i in range(len(lsta)):
+            device = ConnectHandler(device_type='linux', ip=lsta[i], username='admin', password='admin')
+            print("\n---------- Final Checking in  Device :{} ------------- \n".format(lsta[i]))
+            print("\n#######################################################################\n")
+            print("\n[0]----------------CORE FILE CHECKS in {}---------------[0]\n".format(lsta[i]))
+            output = device.send_command("(cd /var/core; ls -ltr)")
+            print(output)
+            output = device.send_command("(cd /var/core; ls -ltr) | grep \"total\" | cut -d ' ' -f2")
+            if int(output) > 0:
+                print("\n------!!!!!ATTENTION CORE DETECTED !!!!!!!!!!!!!!!-------------------\n")
+                print(output)
+            output = device.send_command("(cd /var/crash; ls -ltr)")
+            print(output)
+            print("\n[0]----------------CPU And Memory Checks in {}---------------[0]\n".format(lsta[i]))
+            output = device.send_command("show process cpu | head -15 | awk 'NR==7,NR==14 {print $9,$10,$12}'")
+            print(output)
+            output = device.send_command("show process cpu | head -15 | awk 'NR==8,NR==12 {print $9}'")
+            cpu = output.split("\n")
+
+            for c in cpu:
+                if c != '':
+                    if float(c) > 80:
+                        print(c)
+                        print("\n!!!!!!!!!! ATTENTION CPU Usage USAGE IS HIGH !!!!!!")
+            output = device.send_command("show process memory | head -15")
+            print(output)
+            print("\n-----------FREE MEMORY------------------------\n")
+            output = device.send_command("( free -mt | grep -E \"Total\" | awk '{print $4}')")
+            print(output)
+            print("\n-----------Disk Usage Output in Percentage------------------------\n")
+            output = device.send_command("( df -H | awk '{print $5}' | tail -n+2 | cut -d '%' -f1)")
+
+            du = output.split("\n")
+            output = device.send_command("( df -H )")
+            print(output)
+            for d in du:
+                if d != '':
+                    if int(d) > 80:
+                        print(int(d))
+                        print("\n!!!!!!!!!!ATTENTION DISK USAGE IS HIGH !!!!!!")
+
+
+
+
+            print("\n#######################################################################\n")
+        print("\n[0]------------------------END of TESTING------------------[0]\n")
 
 
 

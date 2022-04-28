@@ -42,16 +42,17 @@ def init_cases():
     print("[0]--------------------STARTING THE TEST AT  {}-------------------------[0]".format(dt_string))
     print("\n Starting the connection \n")
     con.con_switch()
-    print("[0]+-----------------------CONNCETING IXIA AND STARTING TRAFFIC------[0]++\n")
+    print("[0]+-----------------------CONNECTING IXIA AND STARTING TRAFFIC------[0]++\n")
 
     conixia.init_ixia()
 
     conixia.start_protocols()
     conixia.start_traffic()
-    print("[0]+-----------------------IXIA Conncetion Completed------[0]++\n")
+    print("[0]+-----------------------IXIA Connection Completed------[0]++\n")
     print("Intialization completed")
     yield
-    print("Tear Down After the cases")
+    con.final_check()
+    print("\n[0]-----------------------------Tear Down After the Test Execution---------------[0]\n")
     now = datetime.now()
     dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
     print("[0]--------------------ENDING THE TEST AT  {}-------------------------[0]".format(dt_string))
@@ -247,8 +248,9 @@ def test_dhcp_option_disable():
     time.sleep(10)
     conixia.dhcp_start()
     time.sleep(10)
-    c = conixia.dhcp_stat(han)
     con.enable_dhcp_options()
+    c = conixia.dhcp_stat(han)
+    #con.enable_dhcp_options()
     conixia.dhcp_stop()
     time.sleep(5)
     conixia.dhcp_start()
@@ -324,7 +326,7 @@ def test_port_sec():
     conixia.start_protocols()
     conixia.start_traffic()
     time.sleep(20)
-    print("!!!!----Started IXIA Protocols and traffic!!!!! \n")
+    print("!!!!----Started IXIA Protocols and Traffic!!!!! \n")
     ip = '10.27.201.5'
     port = 'Ethernet49'
     limit = 10
@@ -365,6 +367,54 @@ def test_port_sec3():
     mode = 'port_shut'
     c = con.port_sec_shut(ip, port,limit,en,mode)
     assert c == True, " Port Security is not working properly  !!!!"
+
+def test_port_sec4():
+
+    print("!!!!----Testing Port Security Static with Port Restrict mode enabled!!!!! \n")
+    ip = '10.27.201.5'
+    port = 'Ethernet49'
+    limit = 2
+    smac = "00:00:50:00:00:00 00:00:50:00:00:01"
+
+    c = con.port_sec_static(ip, port,limit,smac)
+    assert c == True, " Port Security Static Restrict is not working properly  !!!!"
+
+def test_port_sec5():
+
+    print("!!!!----Testing Port Security Static with Port Shut mode enabled!!!!! \n")
+    ip = '10.27.201.5'
+    port = 'Ethernet49'
+    limit = 2
+    smac = "00:00:50:00:00:00 00:00:50:00:00:01"
+
+    c = con.port_sec_shut_static(ip, port,limit,smac)
+    assert c == True, " Port Security Static Port Shut is not working properly  !!!!"
+
+def test_ping_mgmt():
+
+    print("!!!!----Testing Ping works for In Bang Management network of Peer1 in dump Switch!!!!! \n")
+    router = '10.27.201.6'
+    ip = '20.0.0.2'
+    c = con.ping_ip(router,ip)
+    assert c == True, " Ping Failed in the Dump switch  !!!!"
+
+def test_ping_mgmt1():
+
+    print("!!!!----Testing Ping works for In Bang Management network of Peer2 in dump Switch!!!!! \n")
+    router = '10.27.201.6'
+    ip = '20.0.0.4'
+
+    c = con.ping_ip(router,ip)
+    assert c == True, " Ping Failed in the Dump Switch  !!!!"
+
+def test_restart_container():
+
+    print("!!!!----Testing Restarting Container STP in PEER1!!!!! \n")
+    container = "stp"
+    router = '10.27.201.1'
+    timer = 140
+    c = con.restart_container(router, container,timer)
+    assert c == True, " Restart STP in Peer1 failed  !!!!"
 
 
 

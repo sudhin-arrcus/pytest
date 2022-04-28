@@ -23,4 +23,24 @@ portlist = ['Ethernet2','Ethernet5','Ethernet30','Ethernet31']
 ipr = '10.27.201.1'
 #con.mac_detail_profile(ipr)
 #con.lldp_status_check()
-con.check_traffic()
+#con.check_traffic()
+#router = '10.27.201.1'
+#port = 'PortChannel1'
+#c = con.shut_link(router,port)
+#print(c)
+
+#c = con.port_sec_static(ip, port,limit,smac)
+#print(c)
+router = '10.27.201.6'
+#ip = '20.0.0.2'
+#c = con.ping_ip(router,ip)
+#print(c)
+#ip = '20.0.0.4'
+#c = con.ping_ip(router,ip)
+#print(c)
+container = "stp"
+router = '10.27.201.1'
+timer = 140
+#c =con.restart_container(router,container,timer)
+
+con.final_check()
