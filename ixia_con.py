@@ -100,6 +100,34 @@ class ixia:
        print("Rxpck = %s " % rxpck)
        print('\n\nTraffic Item Stats\n')
        return txpck,rxpck
+
+    def traffic_measure_full(self, streamlist,threshold):
+        print('\n\nCollecting traffic stats...\n\n')
+        traffic_stats = self.ixiangpf.traffic_stats(
+            mode='traffic_item',
+        )
+        flag = 0
+        for stream in streamlist:
+            print('\n\nIPv4 traffic item stats:\n')
+            txpck = traffic_stats['traffic_item'][stream]['tx']['total_pkt_rate']
+            rxpck = traffic_stats['traffic_item'][stream]['rx']['total_pkt_rate']
+            print("txpck = %s " % txpck)
+            print("Rxpck = %s " % rxpck)
+            print('\n\nTraffic Item Stats\n')
+            tx1 = float(txpck)
+            rx1 = float(rxpck)
+            if rx1 >= tx1-threshold:
+                print("\n\n[0]--------------No Loss Detected for the stream {} its tx = {} and rx = {}-----[0]\n\n".format(stream,tx1,rx1))
+            else:
+                print("\n\n[0]-------------- Loss Detected for the stream {} its tx = {} and rx = {}-----[0]\n\n".format(stream, tx1, rx1))
+                flag =1
+        if flag == 0:
+            print("\n\n ++++++++Test Case Passed for All streams No loss detected \n\n")
+            return True
+        else:
+            print("\n\n ++++++++Test Case Failed for Loss detected \n\n")
+            return False
+
       
     def dhcp_start(self):
         print("Starting dhcp client....")

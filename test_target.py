@@ -30,6 +30,11 @@ configFile = '/root/sudhin/MCLAG6.ixncfg'
 handler = ["/topology:5/deviceGroup:1/ethernet:1/dhcpv4client:1","/topology:5/deviceGroup:2/ethernet:1/dhcpv4client:1","/topology:5/deviceGroup:4/ethernet:2/dhcpv4client:1","/topology:7/deviceGroup:1/ethernet:1/dhcpv4client:1","/topology:7/deviceGroup:3/ethernet:1/dhcpv4client:1","/topology:7/deviceGroup:4/ethernet:1/dhcpv4client:1","/topology:9/deviceGroup:1/ethernet:1/dhcpv4client:1","/topology:9/deviceGroup:2/ethernet:1/dhcpv4client:1","/topology:10/deviceGroup:1/ethernet:1/dhcpv4client:1","/topology:10/deviceGroup:2/ethernet:2/dhcpv4client:1"]
 han = "/topology:5/deviceGroup:1/ethernet:1/dhcpv4client:1/item:1"
 igmp_handle = "/topology:9/deviceGroup:3/ethernet:1/ipv4:1/igmpHost:1"
+traffic_profile = ["unknownunicastfrom5toall","unicast-traffic-1","unicast-Traffic","VRRPPACKET",
+                   "Router Traffic","Broadcast-40toall","Broadcastpeer11toallSH-site",
+                   "ARP","Unkownunicast-CE42","UNICAST-FROM1to42","Unicast-fromCe242to40",
+                   "MUL-232"]
+threshold =10
 conixia = ixia_con.ixia(path,tcl_dependencies,chassis_ip,ixnetwork_tcl_server,configFile,port_list,handler)
 @pytest.fixture(scope='module')
 def init_cases():
@@ -76,7 +81,12 @@ def test_traffic():
     tx1 = float(tx)
     rx1 = float(rx)
 
-    assert rx1 >= tx1-10, " Traffic for the unicast stream there is packet drop"
+    assert rx1 >= tx1-threshold, " Traffic for the unicast stream there is packet drop"
+
+def test_full_traffic():
+    print("!!!!----Testing the MAC Sync in PEERS!!!!! \n")
+    c = conixia.traffic_measure_full(traffic_profile,threshold)
+    assert c == True, "Traffic Issue Check Logs!!!"
 
 def test_vlan():
     print("!!!!----Testing the Vlan Database!!!!! \n")
@@ -116,14 +126,14 @@ def test_igmptraffic():
     tx,rx = conixia.traffic_measure("MUL-232")
     tx1 = float(tx)
     rx1 = float(rx)
-    assert rx1 >= tx1-10 ," Traffic for the Multicast Stream stream there is packet drop"
+    assert rx1 >= tx1-threshold ," Traffic for the Multicast Stream stream there is packet drop"
 
 def test_router_traffic():
     print(" Testing Router traffic is going while snooping enabled\n")
     tx,rx = conixia.traffic_measure("Router Traffic")
     tx1 = float(tx)
     rx1 = float(rx)
-    assert rx1 >= tx1-10 ," Router traffic is affected check the ixia and DUT....."
+    assert rx1 >= tx1-threshold ," Router traffic is affected check the ixia and DUT....."
 
 def test_igmp_nohost():
     print(" Testing Multicast Traffic is not going to the Unitrested hosts\n")
@@ -158,14 +168,14 @@ def test_broadcast_traffic():
     tx,rx = conixia.traffic_measure("Broadcastpeer11toallSH-site")
     tx1 = float(tx)
     rx1 = float(rx)
-    assert rx1 >= tx1-10 ," Broadcast traffic is affected check the ixia and DUT....."
+    assert rx1 >= tx1-threshold ," Broadcast traffic is affected check the ixia and DUT....."
 
 def test_vrrp_traffic():
     print(" Testing VRRP Passthrough traffic is going through...\n")
     tx,rx = conixia.traffic_measure("VRRPPACKET")
     tx1 = float(tx)
     rx1 = float(rx)
-    assert rx1 >= tx1-10 ," VRRP Pass through traffic is affected check the ixia and DUT....."
+    assert rx1 >= tx1-threshold ," VRRP Pass through traffic is affected check the ixia and DUT....."
 
 def test_interface():
     print("!!!!----Testing the Interface Status!!!!! \n")
