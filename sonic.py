@@ -650,7 +650,7 @@ class sonic:
         time.sleep(5)
         print("[=]------------Sleeping over for 5s after shutting link")
         output = device.send_command("sudo config interface startup {}".format(port))
-        time.sleep(50)
+        time.sleep(80)
 
 
         print("\n\n[+]---------------Checking MAC Data Plane and Control Plane-------[+]")
@@ -1048,5 +1048,270 @@ class sonic:
         print("\n[0]------------------------END of TESTING------------------[0]\n")
 
 
+    def port_prio_change(self, ip, port):
+        flag = 0
 
 
+        device = ConnectHandler(device_type='linux', ip=ip, username='admin', password='admin')
+        print("\n---------- Configuring lowest Port Priority  on ---- {}-------->>>{} \n".format(port, ip))
+        device.send_command("sudo config spanning-tree interface priority {}  10".format(port))
+        output = device.send_command("sudo config save -y")
+        time.sleep(2)
+        print("\n<-------Configured Spanning Tree Port Priority  on {}  of  {} \n---------------->".format(port,ip))
+        cmd = "show span vlan 1001 | grep "+port+ " | awk '{print $6}'"
+        output = device.send_command(cmd)
+        ob = output
+        print(output)
+        if output != 'BLOCKING':
+            print(" <-------TEST CASE FAILED Port Priority is taking effect {} --- of ---{}".format(port, ip))
+            output = device.send_command("show span vlan 1001 ")
+            print(output)
+            output = device.send_command("show run span ")
+            print(output)
+
+            flag = 1
+        device.send_command("sudo config spanning-tree interface priority {}  128".format(port))
+        if flag == 0:
+            print("\n<----------TEST CASE PASSED Expected Value is : BLOCKING Observed Value is {} ----->\n".format(ob))
+            print("\n<----------TEST CASE PASSED IN {} for Port Priority Check  ----->\n".format(ip))
+            return True
+        else:
+            return False
+
+    def path_cost_change(self, ip, port):
+        flag = 0
+        flag1 = 0
+
+        device = ConnectHandler(device_type='linux', ip=ip, username='admin', password='admin')
+        print("\n---------- Configuring lowest Path  on ---- {}-------->>>{} \n".format(port, ip))
+        device.send_command("sudo config spanning-tree interface cost {}  1".format(port))
+        output = device.send_command("sudo config save -y")
+        time.sleep(3)
+        print("\n<-------Configured Spanning Tree Path Cost  on {}  of  {} \n---------------->".format(port,ip))
+        cmd = "show span vlan 1001 | grep "+port+ " | awk '{print $6}'"
+        output = device.send_command(cmd)
+        ob = output
+        print(output)
+        if output != 'BLOCKING':
+            print(" <-------TEST CASE FAILED Path Cost is taking effect {} --- of ---{}".format(port, ip))
+            output = device.send_command("show span vlan 1001 ")
+            print(output)
+            output = device.send_command("show run span ")
+            print(output)
+
+            flag = 1
+        cmd = "show span vlan 1001 | grep " + port + " | awk '{print $3}'"
+        output = device.send_command(cmd)
+        if int(output) != 1:
+            print(" <-------TEST CASE FAILED Path Cost is not taking effect {} --- of ---{}".format(port, ip))
+            output = device.send_command("show span vlan 1001 ")
+            print(output)
+            output = device.send_command("show run span ")
+            print(output)
+
+            flag1 = 1
+
+
+        if flag == 0 and flag1 == 0:
+            print("\n<----------TEST CASE PASSED Expected Value is : BLOCKING Observed Value is {} ----->\n".format(ob))
+            print("\n<----------TEST CASE PASSED IN {} for Path Cost Check  ----->\n".format(ip))
+            return True
+        else:
+            return False
+
+
+    def stp_vlan_disable(self, ip,vlan):
+        flag = 0
+        flag1 = 0
+
+        device = ConnectHandler(device_type='linux', ip=ip, username='admin', password='admin')
+        print("\n---------- Disabling STP on Vlan {}  in -------->>>{} \n".format(vlan,ip))
+        device.send_command("sudo config spanning-tree vlan disable {} ".format(vlan))
+        output = device.send_command("sudo config save -y")
+        time.sleep(2)
+        print("\n<-------Enabling Spanning Tree on Vlan {}  of  {} \n---------------->".format(vlan,ip))
+
+        device.send_command("sudo config spanning-tree vlan enable {} ".format(vlan))
+        output = device.send_command("sudo config save -y")
+        time.sleep(50)
+
+        output = device.send_command("show span vlan {} | grep \"FORWARDING\" | wc -l".format(vlan))
+        print(output)
+        ob = output
+        if int(output) == 0:
+            print(" <-------TEST CASE FAILED STP is not working for vlan {} --- in ---{}".format(vlan,ip))
+            output = device.send_command("show span vlan 1001 ")
+            print(output)
+            output = device.send_command("show run span ")
+            print(output)
+
+            flag = 1
+
+        if flag == 0 :
+            print("\n<----------TEST CASE PASSED Expected Value is : !=0 Observed Value is {} ----->\n".format(ob))
+            print("\n<----------TEST CASE PASSED For Disable/Enable STP for Vlan  ----->\n".format(ip))
+            return True
+        else:
+            return False
+
+    def mclag_tcpmss(self, mss):
+        lsta =self.iplist
+        flag = 0
+
+        for i in range(2):
+            device = ConnectHandler(device_type='linux', ip=lsta[i], username='admin', password='admin')
+            print("\n---------- Configuring TCP MSS {}  on  {}----------->>> \n".format(mss, lsta[i]))
+            device.send_command("sudo config mclag tcp-max-segment-size 1 {} ".format(mss))
+            output = device.send_command("sudo config save -y")
+            time.sleep(2)
+        print("\n<-------Configured MSS {} on MCLAG PEERS \n---------------->".format(mss))
+
+
+        for i in range(2):
+            device = ConnectHandler(device_type='linux', ip=lsta[i], username='admin', password='admin')
+            output = device.send_command("show mclag br 1 | awk '/TCP-Max-segment-size/{print $2}'")
+            print(output)
+            ob = output
+            if int(output) != mss:
+                print(" <-------TEST CASE FAILED TCP MSS  {} is not working------- in ---{}".format(mss, lsta[i]))
+                output = device.send_command("show mclag br 1 ")
+                print(output)
+                flag = 1
+
+        if flag == 0:
+            print("\n<----------TEST CASE PASSED Expected Value is : {} Observed Value is {} ----->\n".format(mss,ob))
+            print("\n<----------TEST CASE PASSED for changing the TCP MSS in MCLAG \n")
+            return True
+        else:
+            return False
+
+    def vlan_delete(self,ip,vlan,ports):
+
+        flag = 0
+        device = ConnectHandler(device_type='linux', ip=ip, username='admin', password='admin')
+        print("\n---------- Deleting Vlan {}  on  {}----------->>> \n".format(vlan, ports))
+        for p in ports:
+            device.send_command("sudo config vlan mem del {}  {}".format(vlan,p))
+        output = device.send_command("sudo config save -y")
+        time.sleep(2)
+        device.send_command("sudo config span vlan disable {}".format(vlan))
+        device.send_command("sudo config vlan del  {}".format(vlan))
+        device.send_command("sudo config save -y")
+        output = device.send_command("show vlan br | grep \"{}\" | wc -l".format(vlan))
+        if int(output) == 0:
+            print("Vlan is Successfully deleted from Device")
+        else:
+            print("\n-------Failed to Delete Vlan from Device------------------\n")
+        device.send_command("sudo config vlan add  {}".format(vlan))
+        device.send_command("sudo config span vlan enable {}".format(vlan))
+
+        for p in ports:
+            device.send_command("sudo config vlan mem add {}   {}".format(vlan,p))
+
+        device.send_command("sudo config vlan igmp_snooping state {} enabled".format(vlan))
+        device.send_command("sudo config vlan dhcp_snooping status {} enabled".format(vlan))
+        device.send_command("sudo config vlan mem dhcp_snooping {} Ethernet1 trusted 3000".format(vlan))
+        device.send_command("sudo config vlan mem dhcp_snooping {} PortChannel1 trusted 3000".format(vlan))
+        device.send_command("sudo config save -y")
+
+        time.sleep(50)
+
+        device = ConnectHandler(device_type='linux', ip=ip, username='admin', password='admin')
+        output = device.send_command("show span vlan 1001 | grep \"FORWARDING\" | wc -l")
+        print(output)
+        ob = output
+        if int(output) < 5:
+            print(" <-------TEST CASE FAILED Deleting and Adding Vlan back------ in ---{}".format(ip))
+            output = device.send_command("show vlan br ")
+            print(output)
+            output = device.send_command("show span vlan {} ".format(vlan))
+            print(output)
+            flag = 1
+
+        if flag == 0:
+            print("\n<----------TEST CASE PASSED Expected Value is : >5 Observed Value is {} ----->\n".format(ob))
+            print("\n<----------TEST CASE PASSED Deleting and Adding Vlan Back \n")
+            return True
+        else:
+            return False
+
+    def docker_restart_container(self, router,container,timer):
+
+
+        device = ConnectHandler(device_type='linux', ip=router, username='admin', password='admin')
+        print("\n---------- Restarting Container {}  in {} ------------- \n".format(container,router))
+        output = device.send_command("sudo docker restart {}".format(container))
+        time.sleep(timer)
+        traffic_status = self.check_traffic()
+        print("\n[0]----------Finished sleep for {}-------------[0]\n".format(timer))
+
+        if traffic_status == True:
+            print(" <-------TEST CASE Passed after restarting Container {}  in ---{}".format(container,router))
+            return True
+        else:
+            return False
+
+    def vlan_port_delete(self,ip,vlan,ports):
+
+        flag = 0
+        device = ConnectHandler(device_type='linux', ip=ip, username='admin', password='admin')
+        print("\n---------- Deleting Vlan {}  on  {}----------->>> \n".format(vlan, ports))
+        for p in ports:
+            device.send_command("sudo config vlan mem del {}  {}".format(vlan,p))
+        output = device.send_command("sudo config save -y")
+        time.sleep(2)
+
+        device.send_command("sudo config save -y")
+        output = device.send_command("show vlan br | grep \"{}\" | wc -l".format(vlan))
+        if int(output) == 1:
+            print("Ports are Successfully deleted from Vlan")
+        else:
+            print("\n-------Failed to Delete Ports from Vlan ------------------\n")
+
+
+        for p in ports:
+            device.send_command("sudo config vlan mem add {}   {}".format(vlan,p))
+
+        device.send_command("sudo config vlan igmp_snooping state {} enabled".format(vlan))
+        device.send_command("sudo config vlan dhcp_snooping status {} enabled".format(vlan))
+        device.send_command("sudo config vlan mem dhcp_snooping {} Ethernet1 trusted 3000".format(vlan))
+        device.send_command("sudo config vlan mem dhcp_snooping {} PortChannel1 trusted 3000".format(vlan))
+        device.send_command("sudo config save -y")
+
+
+        time.sleep(55)
+
+        device = ConnectHandler(device_type='linux', ip=ip, username='admin', password='admin')
+        output = device.send_command("show span vlan 1001 | grep \"FORWARDING\" | wc -l")
+        print(output)
+        ob = output
+        if int(output) < 5:
+            print(" <-------TEST CASE FAILED Deleting Ports from Vlan and adding it back------ in ---{}".format(ip))
+            output = device.send_command("show vlan br ")
+            print(output)
+            output = device.send_command("show span vlan {} ".format(vlan))
+            print(output)
+            flag = 1
+
+        if flag == 0:
+            print("\n<----------TEST CASE PASSED Expected Value is : >5 Observed Value is {} ----->\n".format(ob))
+            print("\n<----------TEST CASE PASSED Deleting and Adding Ports to Vlan \n")
+            return True
+        else:
+            return False
+
+    def tcp_dump(self, router):
+
+        device = ConnectHandler(device_type='linux', ip=router, username='admin', password='admin')
+        print("\n---------- Capturing TCP Dump in {} ------------- \n".format(router))
+        output = device.send_command("sudo tcpdump -i PortChannel1 -c 20 | grep \"STP\"")
+        #print(output)
+        if re.search("TCN",output):
+            print(" <-------TEST CASE FAILED  Checking the Fix for ASX-688 TCN is seen in Tcp Dump------ in ---{}".format(router))
+            output = device.send_command("sudo tcpdump -i PortChannel1 -c 20 | grep \"STP\"")
+            print(output)
+            return False
+
+        else:
+            print("\n<----------TEST CASE PASSED No TCN Flag Seen in TCP DUMP Taken in  {}----->\n".format(router))
+            return True
