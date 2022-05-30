@@ -1056,7 +1056,7 @@ class sonic:
         print("\n---------- Configuring lowest Port Priority  on ---- {}-------->>>{} \n".format(port, ip))
         device.send_command("sudo config spanning-tree interface priority {}  10".format(port))
         output = device.send_command("sudo config save -y")
-        time.sleep(2)
+        time.sleep(30)
         print("\n<-------Configured Spanning Tree Port Priority  on {}  of  {} \n---------------->".format(port,ip))
         cmd = "show span vlan 1001 | grep "+port+ " | awk '{print $6}'"
         output = device.send_command(cmd)
@@ -1086,7 +1086,7 @@ class sonic:
         print("\n---------- Configuring lowest Path  on ---- {}-------->>>{} \n".format(port, ip))
         device.send_command("sudo config spanning-tree interface cost {}  1".format(port))
         output = device.send_command("sudo config save -y")
-        time.sleep(3)
+        time.sleep(30)
         print("\n<-------Configured Spanning Tree Path Cost  on {}  of  {} \n---------------->".format(port,ip))
         cmd = "show span vlan 1001 | grep "+port+ " | awk '{print $6}'"
         output = device.send_command(cmd)

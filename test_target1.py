@@ -154,7 +154,7 @@ def test_restart_container1():
     print("!!!!----Testing Restarting SWSS Container  in PEER2!!!!! \n")
     container = "swss"
     router = '10.27.201.2'
-    timer = 240
+    timer = 300
     c = con.docker_restart_container(router, container,timer)
     assert c == True, " Restart SWSS in Peer2 failed  !!!!"
 
