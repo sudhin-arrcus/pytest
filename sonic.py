@@ -406,7 +406,7 @@ class sonic:
 
             if int(output) < 18:
                 print(" Test Case Failed LLDP messages are not showing interface properly ------>{}".format(lsta[i]))
-                output = device.send_command("show llpd nei ")
+                output = device.send_command("show lldp nei ")
                 print(output)
                 output = device.send_command("show log | grep \"LLDP\" ")
                 print(output)
@@ -433,7 +433,7 @@ class sonic:
 
             if int(output) < 18:
                 print(" Test Case Failed LLDP table is not displaying properly properly ------>{}".format(lsta[i]))
-                output = device.send_command("show llpd table ")
+                output = device.send_command("show lldp table ")
                 print(output)
                 output = device.send_command("show log | grep \"LLDP\" ")
                 print(output)
@@ -461,7 +461,7 @@ class sonic:
 
             if int(output) < 53:
                 print(" Test Case Failed LLDP Interface status is not displaying properly properly ------>{}".format(lsta[i]))
-                output = device.send_command("show llpd int ")
+                output = device.send_command("show lldp int ")
                 print(output)
                 output = device.send_command("show log | grep \"LLDP\" ")
                 print(output)
@@ -1065,6 +1065,7 @@ class sonic:
         output = device.send_command(cmd)
         ob = output
         print(output)
+        output = output.lstrip()
         if output != 'BLOCKING':
             print(" <-------TEST CASE FAILED Port Priority is taking effect {} --- of ---{}".format(port, ip))
             output = device.send_command("show span vlan 1001 ")
@@ -1095,6 +1096,7 @@ class sonic:
         output = device.send_command(cmd)
         ob = output
         print(output)
+        output = output.lstrip()
         if output != 'BLOCKING':
             print(" <-------TEST CASE FAILED Path Cost is taking effect {} --- of ---{}".format(port, ip))
             output = device.send_command("show span vlan 1001 ")
