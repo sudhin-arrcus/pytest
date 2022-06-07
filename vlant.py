@@ -69,5 +69,6 @@ port = ['Ethernet1', 'Ethernet46', 'Ethernet52', 'PortChannel1', 'PortChannel2',
 con.vlan_port_delete(ip, vlan, port)
 '''
 
-router = "10.27.201.5"
-print(con.tcp_dump(router))
+#router = "10.27.201.5"
+#print(con.tcp_dump(router))
+con.check_switch()

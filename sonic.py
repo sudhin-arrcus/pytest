@@ -63,7 +63,7 @@ class sonic:
 
             print("\n Validating the Switches ---->{}\n".format(key))
             output = device.send_command("docker ps -a | awk '/docker/' | awk '/Up/' | wc -l")
-            if int(output)< 16:
+            if int(output)< 15:
                 print("Docker is down in switch ------>{}".format(key))
                 output = device.send_command("docker ps -a ")
                 print(output)
@@ -74,7 +74,7 @@ class sonic:
                 flag = 1
             else:
                 print("\n[0]+--------------Test Case Passed Dockers containers are up in {}-----[0]+\n".format(key))
-                print("[0]----------Expected Value is >=16 Observed Value after the test:{}".format(output))
+                print("[0]----------Expected Value is >=15 Observed Value after the test:{}".format(output))
 
             output = device.send_command("show ver | grep \"SONiC Software Version\"")
             print(output)
