@@ -549,6 +549,7 @@ class sonic:
                 print(cmd)
                 output = device.send_command(cmd)
                 print(output)
+                output = output.lstrip()
                 if output != "PortChannel1":
                     print(" Test Case Failed Spanning Tree is not there in new vlan ------>{}".format(lsta[i]))
                     output = device.send_command("show vlan br")
