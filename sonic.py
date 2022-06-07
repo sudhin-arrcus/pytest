@@ -34,7 +34,7 @@ class sonic:
             output = device.send_command('sudo config save -y')
         print(" Loaded all the solution configurations !!!! \n")
         print("\n !!! Sleeping for 70 seconds for stablity!!!!\n")
-        time.sleep(70)
+        time.sleep(80)
         print("\n----------Sleeping completed--------------------\n")
         dhcp_server = self.iplist[len(self.iplist)-1]
         print("\n Restarting DHCP Server in Dump Switch\n")
@@ -105,6 +105,7 @@ class sonic:
             device = ConnectHandler(device_type='linux', ip=lsta[i], username='admin', password='admin')
             output = device.send_command("show mclag br 1 | awk '/Session Status/' | awk '/Up/ {print $4}'")
             print(output)
+            output = output.lstrip()
             if output != 'Up':
                 print("MCLAG SESSION Status is Down ------>{}".format(lsta[i]))
                 output = device.send_command("show mclag br 1 ")
@@ -142,6 +143,7 @@ class sonic:
         for i in range(2):
             device = ConnectHandler(device_type='linux', ip=lsta[i], username='admin', password='admin')
             output = device.send_command("show mclag br 1 | awk '/Session Sync/ {print $4}'")
+            output = output.lstrip()
             #print(output)
             if output != 'Done':
                 print("MCLAG SESSION SYN is Down ------>{}".format(lsta[i]))
@@ -175,6 +177,7 @@ class sonic:
         for i in range(2):
             device = ConnectHandler(device_type='linux', ip=lsta[i], username='admin', password='admin')
             output = device.send_command("show span vlan 1001 | awk '/Root/{print $4}' | grep \"Root\" | tail -1")
+            output = output.lstrip()
             if output != 'Root':
                 print("Spanning Tree is not Root Bridge in ------>{}".format(lsta[i]))
                 output = device.send_command("show span  vlan 1001")
