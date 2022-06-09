@@ -32,6 +32,8 @@ class sonic:
             output = device.send_command('sudo config load {} -y'.format(value))
             print("\n Saving the configuration to the switch ---->{}\n".format(key))
             output = device.send_command('sudo config save -y')
+            time.sleep(3)
+
         print(" Loaded all the solution configurations !!!! \n")
         print("\n !!! Sleeping for 70 seconds for stablity!!!!\n")
         time.sleep(80)
@@ -962,6 +964,8 @@ class sonic:
 
         device = ConnectHandler(device_type='linux', ip=router, username='admin', password='admin')
         print("\n---------- Pinging The in band MGMT IP {} from Dump Switch {} -------- \n".format(ip,router))
+        output = device.send_command("sudo systemctl restart interfaces-config")
+        time.sleep(50)
         output = device.send_command("ping 20.0.0.2 -c 7")
         cmd = "ping "+ip+ " -c 1 | awk '/packets/{print $6}' | cut -d '%' -f 1"
         output = device.send_command(cmd)
